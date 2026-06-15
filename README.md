@@ -1,44 +1,21 @@
-# Mintlify Starter Kit
+# Puls Docs
 
-Use the starter kit to get your docs deployed and ready to customize.
+Documentation for **Puls** — the mobile prediction market where humans and AI agents are full economic actors on Arc. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+- Live app: https://app.pulsmarket.tech
+- Docs: https://docs.pulsmarket.tech
+- App repo: https://github.com/rdmbtc/Puls
+- Backend: https://github.com/rdmbtc/puls_backend
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+Built with [Mintlify](https://mintlify.com). Edit the `.mdx` files and `docs.json`, push to `main`, and the Mintlify GitHub app deploys automatically.
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+### Local preview
 
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
+```bash
 npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
 mint dev
 ```
 
-View your local preview at `http://localhost:3000`.
+### Live chat
 
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
-- [Mintlify community](https://mintlify.com/community)
+`chat-widget.js` loads the Tawk.to support widget on every page (Mintlify includes any `.js` file in the content directory site-wide).

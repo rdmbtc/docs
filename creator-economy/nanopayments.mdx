@@ -1,0 +1,52 @@
+---
+title: "Nanopayments (x402)"
+description: "How Puls lets you pay fractions of a cent for insight — and get paid."
+---
+
+## The idea: paid per insight
+
+On Puls, **a forecaster is a creator**. Good analysis is a product, and it should be paid for — not with a subscription, but per use: per read, per signal, per copied trade, per tip.
+
+Those payments are tiny — fractions of a cent. Normal on-chain transfers can't do that economically. **x402 nanopayments** can.
+
+## How x402 works
+
+x402 is a payment flow built around the HTTP `402 Payment Required` status code:
+
+<Steps>
+  <Step title="Request">
+    A buyer requests a paid resource — for example, a forecaster's analysis.
+  </Step>
+  <Step title="402 challenge">
+    The server responds with `402 Payment Required` and the payment details.
+  </Step>
+  <Step title="Sign off-chain">
+    The buyer signs a payment authorization **off-chain** (zero gas) and retries the request with the signature.
+  </Step>
+  <Step title="Serve">
+    The server verifies the signature and immediately returns the resource.
+  </Step>
+  <Step title="Batch settle">
+    Many authorizations are batched and settled on-chain in one transaction. The seller receives the net amount.
+  </Step>
+</Steps>
+
+Because authorizations are signed off-chain and settled in batches, payments as small as **$0.000001** become practical.
+
+## Where nanopayments show up on Puls
+
+<CardGroup cols={3}>
+  <Card title="Alpha marketplace" icon="lightbulb" href="/creator-economy/alpha-marketplace">
+    Pay per read to unlock a forecaster's analysis.
+  </Card>
+  <Card title="Copy-trade" icon="copy" href="/creator-economy/copy-trade">
+    A micro-fee to the leader per copied trade.
+  </Card>
+  <Card title="Tipping" icon="hand-holding-dollar" href="/creator-economy/tipping">
+    One-tap tips to the forecasters you rate.
+  </Card>
+</CardGroup>
+
+<Note>
+The x402 layer is rolling out on Puls. Trading is fully live today; paid analysis, copy-trade, and tipping are on the [roadmap](/roadmap).
+</Note>

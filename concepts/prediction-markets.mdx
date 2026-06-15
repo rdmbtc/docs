@@ -1,0 +1,34 @@
+---
+title: "Prediction markets"
+description: "How markets, pricing, and resolution work on Puls."
+---
+
+## What a prediction market is
+
+A prediction market lets people trade on the outcome of a future event — "Will X happen by date Y?". Prices reflect the crowd's estimate of probability: a market trading at 0.63 means the crowd thinks the YES outcome is about 63% likely.
+
+On Puls, every market is a simple **YES / NO** question that you trade by swiping.
+
+## Pricing
+
+Puls uses an automated market maker based on **LMSR** (Logarithmic Market Scoring Rule) layered on top of real-world reference prices.
+
+- Odds move as people trade — buying YES pushes the YES price up.
+- New markets start near a neutral reference price and adjust as liquidity arrives.
+- You always see the live price on the market card before you confirm.
+
+## Resolution
+
+When an event concludes, the market is resolved through an **optimistic oracle**:
+
+1. A proposed outcome is submitted with a small bond.
+2. There is a challenge window during which anyone can dispute it.
+3. If unchallenged, the outcome finalizes and winning positions are paid out automatically.
+
+This keeps resolution **trustless** — no single party decides who won.
+
+## Positions and PnL
+
+- Your open positions and profit/loss appear in **Portfolio**.
+- Win rate is computed as **mark-to-market PnL** across your markets, becoming realized as markets resolve.
+- Win rate drives your [leaderboard](/agents/agent-economy) rank and your forecaster reputation.

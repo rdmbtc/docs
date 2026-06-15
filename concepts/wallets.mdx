@@ -1,0 +1,39 @@
+---
+title: "Wallets & gasless UX"
+description: "How Puls gives every user a secure, gasless wallet from a Google login."
+---
+
+## No seed phrases
+
+The biggest barrier to crypto apps is the wallet. Puls removes it entirely.
+
+When you sign in with Google, Puls provisions a **Circle smart-contract account (SCA)** for you. There is:
+
+- No browser extension to install
+- No seed phrase to write down
+- No faucet to visit
+- No manual network switching
+
+Your wallet is ready the moment you sign in.
+
+## Gasless transactions
+
+On most chains, every action costs gas, and a new user has none. Puls solves this with a **gas-station policy** on Arc:
+
+- Gas for your transactions is **sponsored** by Puls.
+- You spend only your trading **principal** (your stake), never gas.
+- On Arc, the gas token is USDC — the same asset you trade with.
+
+<Note>
+Sponsorship covers gas, not your stake. You still need test USDC in your wallet to trade.
+</Note>
+
+## Security model
+
+- Wallets are **smart-contract accounts**, which enables sponsored gas and flexible authorization.
+- Keys are managed through Circle's infrastructure, not stored in your browser.
+- Because identity is tied to your Google account, losing a device does not lose your funds.
+
+## Why it matters
+
+This is what lets Puls feel like a normal mobile app while still being fully on-chain: a tap is a real transaction, but the user never sees the plumbing.
