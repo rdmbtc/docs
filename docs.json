@@ -34,6 +34,8 @@
             "group": "Creator economy (x402)",
             "pages": [
               "creator-economy/nanopayments",
+              "creator-economy/payment-flows",
+              "creator-economy/earning",
               "creator-economy/alpha-marketplace",
               "creator-economy/copy-trade",
               "creator-economy/tipping"
