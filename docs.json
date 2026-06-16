@@ -42,6 +42,13 @@
             ]
           },
           {
+            "group": "Community & growth",
+            "pages": [
+              "community/comments",
+              "community/referrals"
+            ]
+          },
+          {
             "group": "Agents",
             "pages": [
               "agents/agent-economy",
