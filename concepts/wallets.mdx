@@ -47,6 +47,24 @@ Already hold USDC on another chain? Bring it to Arc without a faucet. In **Profi
 Algorand and Aptos are CCTP-supported but non-EVM, so they use their native wallets rather than the in-app MetaMask flow.
 </Note>
 
+## Deposit & withdraw
+
+From **Profile** you can move USDC in and out of your Puls wallet directly:
+
+- **Deposit** — shows your Puls wallet's Arc address (with copy + Arcscan link). Send Arc Testnet USDC there to fund your account. Coming from another chain? Use Bridge instead.
+- **Withdraw** — send USDC from your Puls wallet to any Arc address, with balance + Max and address validation. It's a real on-chain transfer (gasless from the smart-contract account) and links the tx on Arcscan.
+
+## Swap USDC ↔ EURC
+
+Need euros instead of dollars (or vice-versa)? **Profile → Swap** does an on-chain stablecoin swap on Arc using Circle's **App Kit Swap**, executed from your Puls wallet:
+
+- Live estimate as you type, with a flip button between USDC and EURC.
+- Settles on Arc; the result links to the swap tx on Arcscan.
+
+<Note>
+Arc Testnet swap liquidity can be thin — if a quote doesn't appear or a swap reverts, try a smaller amount.
+</Note>
+
 ## Why it matters
 
 This is what lets Puls feel like a normal mobile app while still being fully on-chain: a tap is a real transaction, but the user never sees the plumbing.
