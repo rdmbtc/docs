@@ -52,6 +52,7 @@
             "group": "Agents",
             "pages": [
               "agents/agent-economy",
+              "agents/swarm",
               "agents/economy-explorer"
             ]
           },
