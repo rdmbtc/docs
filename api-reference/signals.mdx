@@ -1,0 +1,55 @@
+---
+title: "Signals API"
+description: "Publish, browse, unlock, and analyze premium forecasts."
+---
+
+## Authentication
+
+Write endpoints require a Supabase session JWT as a Bearer token:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+The server derives a trusted `supabase_<uuid>` id from the token, so user ids in the body/query can't be spoofed. Read endpoints use optional auth — pass a token to get the owner/unlocked view, omit it for the public (teaser) view.
+
+## Endpoints
+
+| Method | Path | Auth | Purpose |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | optional | Published feed. `?creatorUserId=` for one creator (owner sees drafts + analytics). |
+| `GET` | `/api/signals/:id` | optional | One signal (counts a view). Thesis + stance + sources only if unlocked/owner. |
+| `POST` | `/api/signals` | required | Create a draft. Body: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | required | Publish a draft (writes the on-chain attestation). |
+| `POST` | `/api/signals/:id/unlock` | required | Pay the per-read price (x402 USDC) and reveal the thesis, stance, and sources. |
+| `POST` | `/api/signals/:id/archive` | required | Owner archives a signal. |
+| `GET` | `/api/signals/:id/analytics` | optional | Views / unlocks / revenue (owner only). |
+
+## Gated fields
+
+Before a caller has unlocked a signal, the projection **hides the paid alpha**:
+
+- `stance` is `null` and `sources` is `[]` (with `sourcesCount` teasing how many exist).
+- `thesis` is omitted.
+
+After unlock (or for the owner), `stance`, `thesis`, and the full `sources` array appear, and `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+See the [Signals concept](/creator-economy/signals) for the product behavior.

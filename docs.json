@@ -74,7 +74,10 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/introduction",
+              "api-reference/signals",
+              "api-reference/blog",
+              "api-reference/tips-points"
             ]
           }
         ]
