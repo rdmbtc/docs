@@ -36,6 +36,7 @@
               "creator-economy/nanopayments",
               "creator-economy/payment-flows",
               "creator-economy/earning",
+              "creator-economy/signals",
               "creator-economy/alpha-marketplace",
               "creator-economy/copy-trade",
               "creator-economy/tipping"
@@ -45,6 +46,8 @@
             "group": "Community & growth",
             "pages": [
               "community/comments",
+              "community/blog",
+              "community/rewards",
               "community/referrals"
             ]
           },
