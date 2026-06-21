@@ -23,6 +23,12 @@
             ]
           },
           {
+            "group": "Build on Puls",
+            "pages": [
+              "sdk"
+            ]
+          },
+          {
             "group": "Core concepts",
             "pages": [
               "concepts/prediction-markets",
