@@ -1,0 +1,70 @@
+---
+title: "Ví & UX gasless"
+description: "Cách Puls mang đến cho mỗi người dùng một ví bảo mật, gasless từ đăng nhập Google."
+---
+
+## Không seed phrase
+
+Rào cản lớn nhất với các ứng dụng crypto là ví. Puls loại bỏ hoàn toàn.
+
+Khi bạn đăng nhập bằng Google, Puls cấp phát một **tài khoản smart-contract Circle (SCA)** cho bạn. Không có:
+
+- Tiện ích trình duyệt cần cài đặt
+- Seed phrase cần viết ra
+- Faucet cần truy cập
+- Chuyển mạng thủ công
+
+Ví của bạn sẵn sàng ngay khi đăng nhập.
+
+## Giao dịch gasless
+
+Trên hầu hết các chuỗi, mọi hành động đều tốn gas, và người dùng mới không có. Puls giải quyết bằng **chính sách gas-station** trên Arc:
+
+- Gas cho các giao dịch của bạn được Puls **tài trợ**.
+- Bạn chỉ tiêu **phần gốc** giao dịch (tiền đặt cược), không bao giờ tiêu gas.
+- Trên Arc, token gas là USDC — cùng tài sản bạn giao dịch.
+
+<Note>
+Tài trợ chi trả gas, không phải tiền đặt cược của bạn. Bạn vẫn cần test USDC trong ví để giao dịch.
+</Note>
+
+## Mô hình bảo mật
+
+- Ví là **tài khoản smart-contract**, cho phép gas được tài trợ và ủy quyền linh hoạt.
+- Khóa được quản lý qua hạ tầng của Circle, không lưu trong trình duyệt.
+- Vì danh tính gắn với tài khoản Google, mất thiết bị không làm mất tiền.
+
+## Nạp tiền & bridging (CCTP)
+
+Đã có USDC trên chuỗi khác? Mang nó đến Arc mà không cần faucet. Trong **Profile → Bridge USDC to Arc**, Puls dùng **Cross-Chain Transfer Protocol (CCTP V2)** của Circle để chuyển USDC từ một testnet EVM sang ví Puls của bạn:
+
+- Các nguồn được hỗ trợ hôm nay: **Ethereum Sepolia, Arbitrum Sepolia, Avalanche Fuji** (kết nối ví trình duyệt như MetaMask).
+- Sheet đọc số dư USDC của bạn trên mỗi chuỗi và hiển thị nút **Max**.
+- Nó đốt trên chuỗi nguồn và, qua **Forwarding Service** của Circle, mint trên Arc cho bạn — vì vậy bạn không cần Arc gas để nhận.
+- Bạn có thể mint thẳng vào **ví Puls (Circle)** của mình hoặc ví đã kết nối.
+
+<Note>
+Algorand và Aptos được CCTP hỗ trợ nhưng không phải EVM, vì vậy chúng dùng ví gốc của mình thay vì luồng MetaMask trong ứng dụng.
+</Note>
+
+## Nạp & rút
+
+Từ **Profile** bạn có thể chuyển USDC vào/ra ví Puls trực tiếp:
+
+- **Deposit** — hiển thị địa chỉ Arc của ví Puls (với copy + liên kết Arcscan). Gửi USDC Arc Testnet đến đó để nạp tài khoản. Đến từ chuỗi khác? Dùng Bridge.
+- **Withdraw** — gửi USDC từ ví Puls đến bất kỳ địa chỉ Arc nào, với số dư + Max và xác thực địa chỉ. Đó là một chuyển khoản on-chain thực sự (gasless từ tài khoản smart-contract) và liên kết tx trên Arcscan.
+
+## Swap USDC ↔ EURC
+
+Cần euro thay vì đô (hoặc ngược lại)? **Profile → Swap** thực hiện swap stablecoin on-chain trên Arc bằng **App Kit Swap** của Circle, thực thi từ ví Puls:
+
+- Ước tính trực tiếp khi bạn gõ, với nút lật giữa USDC và EURC.
+- Thanh toán trên Arc; kết quả liên kết đến tx swap trên Arcscan.
+
+<Note>
+Thanh khoản swap Arc Testnet có thể mỏng — nếu báo giá không xuất hiện hoặc một swap bị revert, hãy thử số tiền nhỏ hơn.
+</Note>
+
+## Vì sao điều này quan trọng
+
+Đây là điều cho phép Puls có cảm giác như một ứng dụng di động bình thường trong khi vẫn hoàn toàn on-chain: một chạm là giao dịch thật, nhưng người dùng không bao giờ thấy hạ tầng.

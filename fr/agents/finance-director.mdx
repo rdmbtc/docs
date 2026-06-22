@@ -1,0 +1,63 @@
+---
+title: "Finance Director (portefeuille IA payant)"
+description: "Un agent IA premium qui lit l'ensemble de votre portefeuille et construit un panier structuré et risk-managed de prédictions +EV — payé en USDC via x402, avec une garantie de remboursement on-chain."
+---
+
+## Un gestionnaire de portefeuille IA que vous payez en USDC
+
+Le **Finance Director** est un agent premium dans votre onglet **My Agent**. Pour un petit
+frais en **USDC via x402**, il lit l'**intégralité de votre portefeuille** — solde, positions ouvertes et
+votre propre historique de gains/pertes — puis renvoie un **panier structuré et risk-managed** de
+prédictions +EV **dimensionné à votre solde**, chacun avec un lien direct vers le marché.
+
+C'est l'économie des agents retournée vers *vous* : un stratège autonome qui fait
+la recherche, le dimensionnement et la diversification pour lesquels un humain paierait un conseiller.
+
+## Comment ça fonctionne
+
+<Steps>
+  <Step title="Analyser (aperçu gratuit)">
+    Le Director lit votre portefeuille et tease ce qu'il a trouvé — votre solde,
+    votre taux de réussite et combien de marchés +EV il peut bâtir autour. Sans frais.
+  </Step>
+  <Step title="Choisir un profil de risque">
+    **Safe** (favoris à haute probabilité, fort taux de réussite), **Balanced** ou
+    **Aggressive** (edge plus élevé, plus contrarien, gains plus gros). Honnête sur le
+    compromis taux de réussite ↔ gain.
+  </Step>
+  <Step title="Déverrouiller (x402)">
+    Payez les frais en USDC. Le Director renvoie un panier **core / satellite / hedge**
+    — chaque pick avec son côté, une taille en USDC (ne dépassant jamais votre solde), la
+    probabilité de consensus, une justification en une ligne et un lien vers le marché.
+  </Step>
+</Steps>
+
+## Garantie de remboursement — skin in the game
+
+C'est la partie qu'aucun conseiller n'offre : **si le panier recommandé perd une fois ses
+marchés résolus, le Director vous rembourse les frais — automatiquement, réglé sur Arc.**
+
+Le plan est enregistré quand vous l'achetez. Un reconciler découplé attend que chaque
+pick de votre panier soit résolu, fait le bilan et :
+
+- **Panier gagnant** → le Director garde les frais.
+- **Panier perdant** → il transfère les frais vers votre portefeuille sur Arc et vous notifie.
+  L'IA met littéralement son argent là où est sa bouche.
+
+Cette garantie est ce qui fait des « safe predicts » une promesse honnête plutôt que du
+marketing.
+
+## Pourquoi c'est différent
+
+- **Conscient du portefeuille.** Il dimensionne selon *votre* solde, évite les marchés que vous détenez déjà
+  et peut couvrir votre exposition ouverte.
+- **Il apprend qui vous êtes.** Il lit votre propre historique de gains/pertes et adapte le plan pour
+  l'améliorer.
+- **Ancré.** Les picks proviennent des mêmes recherches en direct + consensus de l'oracle IA sur lesquels le
+  [swarm](/agents/swarm) trade — les lignes dégénérées ~0¢/100¢ sont filtrées.
+- **Composable.** Des agents externes peuvent aussi acheter un portefeuille, via un appel x402
+  signé côté client à `POST /api/agent/director` — du commerce d'agent à agent.
+
+<Note>
+Éducatif, pas un conseil financier. Puls fonctionne sur Arc Testnet avec des USDC de test.
+</Note>

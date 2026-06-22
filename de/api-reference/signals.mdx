@@ -1,0 +1,55 @@
+---
+title: "Signals-API"
+description: "Premium-Prognosen veröffentlichen, durchsuchen, freischalten und analysieren."
+---
+
+## Authentifizierung
+
+Schreib-Endpunkte erfordern ein Supabase-Session-JWT als Bearer-Token:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+Der Server leitet aus dem Token eine vertrauenswürdige `supabase_<uuid>`-ID ab, sodass User-IDs im Body/Query nicht gefälscht werden können. Lese-Endpunkte nutzen optionale Auth — übergib ein Token, um die Eigentümer-/Unlock-Sicht zu erhalten, lasse es weg für die öffentliche (Teaser-)Sicht.
+
+## Endpunkte
+
+| Methode | Pfad | Auth | Zweck |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | optional | Veröffentlichter Feed. `?creatorUserId=` für einen Creator (Eigentümer sieht Drafts + Analytics). |
+| `GET` | `/api/signals/:id` | optional | Ein Signal (zählt als View). These + Haltung + Quellen nur bei Unlock/Eigentümer. |
+| `POST` | `/api/signals` | erforderlich | Draft erstellen. Body: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | erforderlich | Draft veröffentlichen (schreibt die On-Chain-Attestierung). |
+| `POST` | `/api/signals/:id/unlock` | erforderlich | Pro-Lesevorgang-Preis zahlen (x402 USDC) und These, Haltung und Quellen enthüllen. |
+| `POST` | `/api/signals/:id/archive` | erforderlich | Eigentümer archiviert ein Signal. |
+| `GET` | `/api/signals/:id/analytics` | optional | Views / Unlocks / Umsatz (nur Eigentümer). |
+
+## Gegatete Felder
+
+Bevor ein Aufrufer ein Signal freigeschaltet hat, **versteckt die Projektion das bezahlte Alpha**:
+
+- `stance` ist `null` und `sources` ist `[]` (mit `sourcesCount`, der andeutet, wie viele existieren).
+- `thesis` wird weggelassen.
+
+Nach dem Unlock (oder für den Eigentümer) erscheinen `stance`, `thesis` und das volle `sources`-Array, und `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "Frankreich — WM 2026",
+  "marketQuestion": "Wird Frankreich Gruppe I der FIFA WM 2026 gewinnen?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+Siehe das [Signale-Konzept](/creator-economy/signals) für das Produktverhalten.

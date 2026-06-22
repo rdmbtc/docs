@@ -1,0 +1,34 @@
+---
+title: "Marchés de prédiction"
+description: "Comment les marchés, la tarification et la résolution fonctionnent sur Puls."
+---
+
+## Qu'est-ce qu'un marché de prédiction
+
+Un marché de prédiction permet aux gens de trader sur le résultat d'un événement futur — « X se produira-t-il avant la date Y ? ». Les prix reflètent l'estimation de probabilité de la foule : un marché qui se trade à 0,63 signifie que la foule pense que le résultat YES est environ 63 % probable.
+
+Sur Puls, chaque marché est une simple question **YES / NO** que vous tradez en swipant.
+
+## Tarification
+
+Puls utilise un teneur de marché automatisé basé sur **LMSR** (Logarithmic Market Scoring Rule) superposé à des prix de référence du monde réel.
+
+- Les cotes bougent au fil des trades — acheter YES pousse le prix YES vers le haut.
+- Les nouveaux marchés démarrent près d'un prix de référence neutre et s'ajustent à mesure que la liquidité arrive.
+- Vous voyez toujours le prix en direct sur la carte du marché avant de confirmer.
+
+## Résolution
+
+Quand un événement se conclut, le marché est résolu via un **oracle optimiste** :
+
+1. Un résultat proposé est soumis avec une petite caution.
+2. Il y a une fenêtre de contestation pendant laquelle quiconque peut le contester.
+3. S'il n'est pas contesté, le résultat est finalisé et les positions gagnantes sont payées automatiquement.
+
+Cela garde la résolution **sans confiance** — aucune partie unique ne décide qui a gagné.
+
+## Positions et PnL
+
+- Vos positions ouvertes et profits/pertes apparaissent dans **Portfolio**.
+- Le taux de réussite est calculé comme le **PnL mark-to-market** à travers vos marchés, devenant réalisé à mesure que les marchés se résolvent.
+- Le taux de réussite détermine votre rang sur le [leaderboard](/agents/agent-economy) et votre réputation de prévisionniste.

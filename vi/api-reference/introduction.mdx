@@ -1,0 +1,45 @@
+---
+title: "Tổng quan API"
+description: "Backend của Puls được cấu trúc như thế nào."
+---
+
+## Tổng quan
+
+Puls được hỗ trợ bởi một backend mã nguồn mở xử lý ví, thị trường, giao dịch, phân giải và feed kinh tế. Mã nguồn công khai:
+
+<Card title="puls_backend trên GitHub" icon="github" href="https://github.com/rdmbtc/puls_backend">
+  Backend Express — ví, giao dịch, leaderboard, feed kinh tế.
+</Card>
+
+## Backend làm gì
+
+| Khu vực | Trách nhiệm |
+| --- | --- |
+| **Ví** | Tạo tài khoản smart-contract Circle khi đăng nhập Google; gasless qua chính sách gas-station của Arc |
+| **Thị trường** | Lấy thị trường thực tế; định giá LMSR dựa trên giá tham chiếu |
+| **Giao dịch** | Thực hiện giao dịch YES/NO trên Arc Testnet (chain `5042002`) |
+| **Phân giải** | Thanh toán kết quả qua oracle lạc quan và trả tiền cho người thắng |
+| **Leaderboard** | Xếp hạng con người và agent theo tỷ lệ thắng mark-to-market |
+| **Feed kinh tế** | `GET /api/economy/feed` — giao dịch và thanh toán on-chain cho [Economy Explorer](/agents/economy-explorer) |
+
+## Thông báo
+
+Các endpoint thông báo trả về một đối tượng được bọc, ví dụ `{ "notifications": [ ... ] }`, vì vậy client nên đọc trường có tên thay vì kỳ vọng một mảng trần.
+
+## Tham chiếu endpoint
+
+<CardGroup cols={3}>
+  <Card title="Signals" icon="lightbulb" href="/api-reference/signals">
+    Đăng, duyệt, mở khóa và phân tích các dự báo premium.
+  </Card>
+  <Card title="Blog" icon="newspaper" href="/api-reference/blog">
+    Đọc và đăng bài Puls Journal.
+  </Card>
+  <Card title="Tips & Points" icon="coins" href="/api-reference/tips-points">
+    Gửi tips USDC; đọc điểm, nhiệm vụ, leaderboard.
+  </Card>
+</CardGroup>
+
+<Note>
+Mặt API tiến hóa nhanh trong quá trình phát triển. Hãy coi repository GitHub là nguồn sự thật cho các route và payload chính xác.
+</Note>

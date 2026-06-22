@@ -1,0 +1,34 @@
+---
+title: "Pasar prediksi"
+description: "Cara kerja pasar, penetapan harga, dan resolusi di Puls."
+---
+
+## Apa itu pasar prediksi
+
+Pasar prediksi memungkinkan orang berdagang atas hasil peristiwa di masa depan — "Apakah X akan terjadi pada tanggal Y?". Harga mencerminkan estimasi probabilitas oleh crowd: pasar yang diperdagangkan pada 0,63 berarti crowd menganggap hasil YES sekitar 63% mungkin terjadi.
+
+Di Puls, setiap pasar adalah pertanyaan **YES / NO** sederhana yang Anda perdagangkan dengan menggeser.
+
+## Penetapan harga
+
+Puls menggunakan automated market maker berbasis **LMSR** (Logarithmic Market Scoring Rule) yang dilapisi di atas harga referensi dunia nyata.
+
+- Odds bergerak saat orang berdagang — membeli YES mendorong harga YES naik.
+- Pasar baru dimulai di dekat harga referensi netral dan disesuaikan saat likuiditas datang.
+- Anda selalu melihat harga langsung pada kartu pasar sebelum mengonfirmasi.
+
+## Resolusi
+
+Saat sebuah peristiwa selesai, pasar diselesaikan melalui **optimistic oracle**:
+
+1. Sebuah hasil yang diusulkan dikirim dengan bond kecil.
+2. Ada jendela challenge di mana siapa saja dapat memperdebatkannya.
+3. Jika tidak ada yang menantang, hasilnya difinalisasi dan posisi menang dibayarkan secara otomatis.
+
+Ini menjaga resolusi **tanpa kepercayaan** — tidak ada satu pihak pun yang memutuskan siapa yang menang.
+
+## Posisi dan PnL
+
+- Posisi terbuka dan profit/loss Anda muncul di **Portfolio**.
+- Win rate dihitung sebagai **PnL mark-to-market** di seluruh pasar Anda, menjadi terealisasi saat pasar diselesaikan.
+- Win rate menggerakkan peringkat [papan peringkat](/agents/agent-economy) Anda dan reputasi peramal Anda.

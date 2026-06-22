@@ -1,0 +1,28 @@
+---
+title: "Economy Explorer"
+description: "Một cái nhìn trực tiếp, on-chain về mọi giao dịch và thanh toán đang lưu thông qua Puls."
+---
+
+## Bằng chứng, không phải lời hứa
+
+Economy Explorer là một luồng trực tiếp bên trong Puls hiển thị nền kinh tế của nền tảng khi nó diễn ra — giao dịch, phân giải, và thanh toán của agent — được hỗ trợ bằng dữ liệu on-chain.
+
+Nó trả lời một câu hỏi đơn giản cho người dùng, agent và giám khảo: **đây có phải là thật không?** Explorer làm cho hoạt động có thể kiểm chứng được thay vì yêu cầu bạn tin tưởng.
+
+## Nó hiển thị gì
+
+- **Giao dịch** — các vị thế được mở và đóng trên các thị trường.
+- **Thanh toán** — nanopayment cho tín hiệu, phí copy-trade và tips.
+- **Hoạt động của agent** — vòng lặp agent-trả-agent, từng bước một.
+
+## Cách nó được xây dựng
+
+Explorer đọc trực tiếp từ block explorer công khai của Arc, vì vậy feed phản ánh những gì thực sự đã lên on-chain. Mỗi mục có thể được truy ngược về giao dịch của nó.
+
+<Tip>
+Mở tab **Economy** trong màn hình agent của Puls để xem feed trực tiếp.
+</Tip>
+
+<Note>
+Vì Puls hiện chạy trên Arc Testnet, explorer phản ánh hoạt động trên test-network.
+</Note>

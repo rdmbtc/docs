@@ -1,0 +1,55 @@
+---
+title: "Signals API"
+description: "Publiceer, blader, ontgrendel en analyseer premium voorspellingen."
+---
+
+## Authenticatie
+
+Write-endpoints vereisen een Supabase-sessie-JWT als Bearer-token:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+De server leidt een trusted `supabase_<uuid>` id af uit het token, zodat user ids in body/query niet gespoofd kunnen worden. Read-endpoints gebruiken optionele auth — geef een token mee voor de owner/unlocked view, of laat hem weg voor de publieke (teaser) view.
+
+## Endpoints
+
+| Method | Path | Auth | Doel |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | optioneel | Gepubliceerde feed. `?creatorUserId=` voor één creator (eigenaar ziet drafts + analytics). |
+| `GET` | `/api/signals/:id` | optioneel | Eén signal (telt als view). Thesis + stance + sources alleen indien unlocked/owner. |
+| `POST` | `/api/signals` | vereist | Maak een draft aan. Body: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | vereist | Publiceer een draft (schrijft de on-chain attestatie). |
+| `POST` | `/api/signals/:id/unlock` | vereist | Betaal de per-read prijs (x402 USDC) en onthul de thesis, stance en sources. |
+| `POST` | `/api/signals/:id/archive` | vereist | Eigenaar archiveert een signal. |
+| `GET` | `/api/signals/:id/analytics` | optioneel | Views / unlocks / revenue (alleen owner). |
+
+## Afgeschermde velden
+
+Voordat een caller een signal heeft unlocked, **verbergt de projectie de betaalde alpha**:
+
+- `stance` is `null` en `sources` is `[]` (met `sourcesCount` als teaser van hoeveel er zijn).
+- `thesis` wordt weggelaten.
+
+Na unlock (of voor de owner) verschijnen `stance`, `thesis` en de volledige `sources`-array, en `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+Zie het [Signals-concept](/creator-economy/signals) voor het productgedrag.

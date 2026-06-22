@@ -1,0 +1,52 @@
+---
+title: "Nanopayment (x402)"
+description: "Cách Puls cho phép bạn trả phần nhỏ của cent cho góc nhìn — và được trả tiền."
+---
+
+## Ý tưởng: trả theo góc nhìn
+
+Trên Puls, **một nhà dự báo là một creator**. Phân tích tốt là một sản phẩm và nên được trả tiền — không phải bằng đăng ký, mà theo lượt sử dụng: theo lượt đọc, theo signal, theo giao dịch sao chép, theo tip.
+
+Những thanh toán đó nhỏ xíu — phần nhỏ của một cent. Chuyển khoản on-chain thông thường không thể làm điều đó kinh tế. **Nanopayment x402** có thể.
+
+## Cách x402 hoạt động
+
+x402 là một luồng thanh toán được xây dựng quanh mã trạng thái HTTP `402 Payment Required`:
+
+<Steps>
+  <Step title="Yêu cầu">
+    Người mua yêu cầu một tài nguyên trả phí — ví dụ, phân tích của một nhà dự báo.
+  </Step>
+  <Step title="Thách thức 402">
+    Server đáp lại với `402 Payment Required` và chi tiết thanh toán.
+  </Step>
+  <Step title="Ký off-chain">
+    Người mua ký ủy quyền thanh toán **off-chain** (không gas) và thử lại yêu cầu với chữ ký.
+  </Step>
+  <Step title="Phục vụ">
+    Server xác minh chữ ký và ngay lập tức trả tài nguyên.
+  </Step>
+  <Step title="Thanh toán theo lô">
+    Nhiều ủy quyền được gộp lại và thanh toán on-chain trong một giao dịch. Người bán nhận số tiền ròng.
+  </Step>
+</Steps>
+
+Vì các ủy quyền được ký off-chain và thanh toán theo lô, các thanh toán nhỏ tới **$0,000001** trở nên khả thi.
+
+## Nanopayment xuất hiện ở đâu trên Puls
+
+<CardGroup cols={3}>
+  <Card title="Chợ alpha" icon="lightbulb" href="/creator-economy/alpha-marketplace">
+    Trả theo lượt đọc để mở khóa phân tích của nhà dự báo.
+  </Card>
+  <Card title="Copy-trade" icon="copy" href="/creator-economy/copy-trade">
+    Một phí nhỏ cho leader mỗi giao dịch được sao chép.
+  </Card>
+  <Card title="Tipping" icon="hand-holding-dollar" href="/creator-economy/tipping">
+    Tips một chạm cho các nhà dự báo bạn đánh giá cao.
+  </Card>
+</CardGroup>
+
+<Note>
+Lớp x402 đang được triển khai trên Puls. Giao dịch đã hoàn toàn hoạt động hôm nay; phân tích trả phí, copy-trade và tipping đang ở [lộ trình](/roadmap).
+</Note>

@@ -1,0 +1,63 @@
+---
+title: "Finance Director (bezahltes KI-Portfolio)"
+description: "Ein Premium-KI-Agent, der dein gesamtes Portfolio liest und einen strukturierten, risikomanagten Korb aus +EV-Prognosen baut — bezahlt in USDC über x402, mit On-Chain-Geld-zurück-Garantie."
+---
+
+## Ein KI-Portfoliomanager, den du in USDC bezahlst
+
+Der **Finance Director** ist ein Premium-Agent in deinem **Mein Agent**-Tab. Für eine kleine
+**x402-USDC**-Gebühr liest er dein **gesamtes Portfolio** — Guthaben, offene Positionen und
+deine eigene Gewinn/Verlust-Bilanz — und gibt dann einen **strukturierten, risikomanagten Korb**
+von +EV-Prognosen zurück, **passend zu deinem Guthaben dimensioniert**, jeweils mit direktem Link zum Markt.
+
+Es ist die Agenten-Ökonomie zurückgerichtet auf *dich*: ein autonomer Stratege, der
+die Recherche, Dimensionierung und Diversifikation übernimmt, für die ein Mensch sonst einen Berater bezahlen würde.
+
+## So funktioniert es
+
+<Steps>
+  <Step title="Analyse (kostenlose Vorschau)">
+    Der Director liest dein Portfolio und gibt einen Vorgeschmack auf das, was er gefunden hat — dein Guthaben,
+    deine Erfolgsquote und wie viele +EV-Märkte er drumherum aufbauen kann. Keine Gebühr.
+  </Step>
+  <Step title="Risikoprofil wählen">
+    **Sicher** (Favoriten mit hoher Wahrscheinlichkeit, hohe Erfolgsquote), **Ausgewogen** oder
+    **Aggressiv** (höhere Edge, konträrer, größere Auszahlung). Ehrlich über den
+    Erfolgsquote-↔-Auszahlungs-Tradeoff.
+  </Step>
+  <Step title="Freischalten (x402)">
+    Bezahle die Gebühr in USDC. Der Director liefert einen **Kern-/Satelliten-/Hedge**-Korb
+    — jeder Pick mit Seite, USDC-Größe (überschreitet nie dein Guthaben), Konsens-Wahrscheinlichkeit,
+    Ein-Satz-Begründung und antippbarem Marktlink.
+  </Step>
+</Steps>
+
+## Geld-zurück-Garantie — Skin in the Game
+
+Das ist der Teil, den kein Berater anbietet: **Wenn der empfohlene Korb verliert, sobald seine
+Märkte aufgelöst werden, erstattet der Director deine Gebühr — automatisch, abgewickelt auf Arc.**
+
+Der Plan wird beim Kauf festgehalten. Ein entkoppelter Reconciler wartet, bis jeder
+Pick im Korb aufgelöst ist, summiert das Ergebnis und:
+
+- **Korb gewonnen** → der Director behält die Gebühr.
+- **Korb verloren** → er überweist deine Gebühr zurück an deine Wallet auf Arc und benachrichtigt
+  dich. Die KI setzt ihr eigenes Geld auf ihre Worte.
+
+Diese Garantie macht „sichere Prognosen" zu einem ehrlichen Versprechen statt zu
+Marketing.
+
+## Warum es anders ist
+
+- **Portfolio-bewusst.** Er dimensioniert für *dein* Guthaben, vermeidet Märkte, die du bereits hältst,
+  und kann dein offenes Exposure hedgen.
+- **Lernt, wer du bist.** Er liest deine eigene Gewinn/Verlust-Bilanz und passt den Plan an, um sie
+  zu verbessern.
+- **Geerdet.** Picks stammen aus derselben Live-Recherche + KI-Oracle-Konsens, auf dem der
+  [Schwarm](/agents/swarm) handelt — degenerierte ~0¢/100¢-Lines werden herausgefiltert.
+- **Komponierbar.** Externe Agenten können ebenfalls ein Portfolio kaufen, über einen client-signierten
+  x402-Aufruf an `POST /api/agent/director` — Agent-zu-Agent-Handel.
+
+<Note>
+Bildung, keine Finanzberatung. Puls läuft auf Arc Testnet mit Test-USDC.
+</Note>

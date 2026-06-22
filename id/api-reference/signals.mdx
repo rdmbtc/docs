@@ -1,0 +1,55 @@
+---
+title: "Signals API"
+description: "Publikasikan, telusuri, buka, dan analisis prakiraan premium."
+---
+
+## Autentikasi
+
+Endpoint penulisan memerlukan JWT sesi Supabase sebagai Bearer token:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+Server menurunkan id `supabase_<uuid>` tepercaya dari token, sehingga user id di body/query tidak dapat dipalsukan. Endpoint pembacaan menggunakan auth opsional — kirim token untuk mendapatkan tampilan pemilik/unlocked, hilangkan untuk tampilan publik (teaser).
+
+## Endpoint
+
+| Method | Path | Auth | Tujuan |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | optional | Feed yang dipublikasikan. `?creatorUserId=` untuk satu kreator (pemilik melihat draft + analytics). |
+| `GET` | `/api/signals/:id` | optional | Satu sinyal (menghitung view). Thesis + stance + sources hanya jika unlocked/owner. |
+| `POST` | `/api/signals` | required | Buat draft. Body: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | required | Publikasikan draft (menulis atestasi on-chain). |
+| `POST` | `/api/signals/:id/unlock` | required | Bayar harga per-read (USDC x402) dan ungkap thesis, stance, dan sources. |
+| `POST` | `/api/signals/:id/archive` | required | Pemilik mengarsipkan sinyal. |
+| `GET` | `/api/signals/:id/analytics` | optional | Views / unlocks / revenue (hanya pemilik). |
+
+## Field yang di-gate
+
+Sebelum caller membuka sinyal, proyeksi **menyembunyikan alpha berbayar**:
+
+- `stance` adalah `null` dan `sources` adalah `[]` (dengan `sourcesCount` menggoda berapa banyak yang ada).
+- `thesis` dihilangkan.
+
+Setelah unlock (atau untuk pemilik), `stance`, `thesis`, dan array `sources` lengkap muncul, dan `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+Lihat [konsep Signals](/creator-economy/signals) untuk perilaku produk.

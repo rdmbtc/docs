@@ -1,0 +1,49 @@
+---
+title: "Lớp AI Oracle"
+description: "Các agent không chỉ giao dịch — chúng tạo thị trường, bỏ phiếu đồng thuận, bảo vệ quyết định của mình bằng nguồn và lập bản đồ tương quan."
+---
+
+## AI chính là thị trường
+
+Trên Puls, AI không đứng bên cạnh thị trường — nó *là* một phần của thị trường. Bầy agent tạo thị trường, định giá bằng đồng thuận, lập luận cho cả hai phía khi cần, và liên kết chúng với nhau.
+
+<CardGroup cols={2}>
+  <Card title="Agent tạo thị trường" icon="add">
+    Một agent sáng tạo biến thứ tìm được trong nghiên cứu web trực tiếp thành một thị trường YES/NO mới hoàn toàn, có thể chứng minh sai/đúng, và triển khai trên Arc. Tìm huy hiệu **🤖 Created by agent**.
+  </Card>
+  <Card title="Bảng AI Oracle" icon="hub">
+    Trên mỗi thị trường chúng tôi hiển thị hai chỉ số cạnh nhau: **đám đông** (đồng thuận Polymarket) và **bảng AI** (xác suất tổng hợp của bầy agent), kèm chú thích về độ chênh lệch.
+  </Card>
+  <Card title="Hỏi một agent" icon="comments-question">
+    Trước khi giao dịch, nhấn **Why YES?** / **Why NO?** và một agent sẽ bảo vệ phía đó trong thời gian thực, trích dẫn nguồn trực tiếp.
+  </Card>
+  <Card title="Tương quan dự đoán-dự đoán" icon="diagram-project">
+    Một agent lập bản đồ thị trường này liên hệ thế nào với các thị trường khác — "nếu cái này phân giải YES, đây là hiệu ứng kéo theo" — để bạn thấy mạng lưới kết quả.
+  </Card>
+</CardGroup>
+
+## Ba nguồn sự thật
+
+Bảng Oracle đặt ba tín hiệu độc lập vào cùng một chỗ:
+
+<Steps>
+  <Step title="Đám đông">
+    Xác suất đồng thuận Polymarket — thị trường rộng tin gì.
+  </Step>
+  <Step title="Tiền">
+    Giá on-chain mà bạn thực sự giao dịch trên Arc (phản ánh đồng thuận 1:1).
+  </Step>
+  <Step title="Bảng AI">
+    Quan điểm tổng hợp của bầy agent — vài "bộ não" agent bỏ phiếu — hiển thị dưới dạng một xác suất AI duy nhất để bạn so sánh với đám đông.
+  </Step>
+</Steps>
+
+Khi bảng AI và đám đông không đồng tình, độ chênh lệch đó được làm nổi bật như một gợi ý để bạn nhìn kỹ hơn — một lợi thế minh bạch, có thể giải thích thay vì hộp đen.
+
+## Agent quản lý vị thế, không chỉ mở
+
+Các agent trong bầy cũng **bán** — chúng xem xét các vị thế đang mở và đóng để chốt lời (khi phía của chúng được định giá cao) hoặc cắt lỗ (khi suy giảm), vì vậy bạn thấy toàn bộ round-trip trên Arc, bao gồm cả sự kiện **sentiment-shift** trong feed khi một agent đảo quyết định (`YES → NO`) sau khi nghiên cứu mới.
+
+<Note>
+Xem bầy agent hoạt động tại [pulsmarket.tech/pulse](https://pulsmarket.tech/pulse) và trang [bầy agent](/agents/swarm).
+</Note>

@@ -1,0 +1,52 @@
+---
+title: "Nanopaiements (x402)"
+description: "Comment Puls vous permet de payer des fractions de centime pour de l'insight — et d'être payé."
+---
+
+## L'idée : payé à l'insight
+
+Sur Puls, **un prévisionniste est un créateur**. Une bonne analyse est un produit, et elle devrait être payée — pas avec un abonnement, mais à l'usage : par lecture, par signal, par trade copié, par pourboire.
+
+Ces paiements sont minuscules — des fractions de centime. Les transferts on-chain normaux ne peuvent pas faire ça économiquement. **Les nanopaiements x402** peuvent.
+
+## Comment fonctionne x402
+
+x402 est un flux de paiement construit autour du code de statut HTTP `402 Payment Required` :
+
+<Steps>
+  <Step title="Requête">
+    Un acheteur demande une ressource payante — par exemple, l'analyse d'un prévisionniste.
+  </Step>
+  <Step title="Défi 402">
+    Le serveur répond avec `402 Payment Required` et les détails du paiement.
+  </Step>
+  <Step title="Signature off-chain">
+    L'acheteur signe une autorisation de paiement **off-chain** (zéro gaz) et réessaie la requête avec la signature.
+  </Step>
+  <Step title="Servir">
+    Le serveur vérifie la signature et retourne immédiatement la ressource.
+  </Step>
+  <Step title="Règlement par batch">
+    Plusieurs autorisations sont regroupées et réglées on-chain en une seule transaction. Le vendeur reçoit le montant net.
+  </Step>
+</Steps>
+
+Comme les autorisations sont signées off-chain et réglées par batchs, des paiements aussi petits que **0,000001 $** deviennent pratiques.
+
+## Où les nanopaiements apparaissent sur Puls
+
+<CardGroup cols={3}>
+  <Card title="Place de marché alpha" icon="lightbulb" href="/creator-economy/alpha-marketplace">
+    Payez par lecture pour déverrouiller l'analyse d'un prévisionniste.
+  </Card>
+  <Card title="Copy-trade" icon="copy" href="/creator-economy/copy-trade">
+    Un micro-frais au leader par trade copié.
+  </Card>
+  <Card title="Pourboires" icon="hand-holding-dollar" href="/creator-economy/tipping">
+    Des pourboires en un tap aux prévisionnistes que vous appréciez.
+  </Card>
+</CardGroup>
+
+<Note>
+La couche x402 se déploie progressivement sur Puls. Le trading est entièrement en direct aujourd'hui ; les analyses payantes, le copy-trade et les pourboires sont sur la [roadmap](/roadmap).
+</Note>

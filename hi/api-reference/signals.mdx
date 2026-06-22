@@ -1,0 +1,55 @@
+---
+title: "Signals API"
+description: "प्रीमियम पूर्वानुमान प्रकाशित करें, ब्राउज़ करें, अनलॉक करें, और विश्लेषण करें।"
+---
+
+## प्रमाणीकरण
+
+राइट एंडपॉइंट्स को Bearer टोकन के रूप में Supabase सेशन JWT की आवश्यकता होती है:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+सर्वर टोकन से एक विश्वसनीय `supabase_<uuid>` id प्राप्त करता है, इसलिए body/query में user ids को धोखा नहीं दिया जा सकता। रीड एंडपॉइंट्स वैकल्पिक auth का उपयोग करते हैं — मालिक/अनलॉक्ड व्यू पाने के लिए एक टोकन पास करें, सार्वजनिक (टीज़र) व्यू के लिए इसे छोड़ दें।
+
+## एंडपॉइंट्स
+
+| Method | Path | Auth | उद्देश्य |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | वैकल्पिक | प्रकाशित फीड। एक क्रिएटर के लिए `?creatorUserId=` (मालिक drafts + analytics देखता है)। |
+| `GET` | `/api/signals/:id` | वैकल्पिक | एक सिग्नल (एक व्यू गिनती)। थीसिस + रुख + स्रोत केवल अनलॉक्ड/मालिक होने पर। |
+| `POST` | `/api/signals` | आवश्यक | एक draft बनाएँ। Body: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`। |
+| `POST` | `/api/signals/:id/publish` | आवश्यक | एक draft प्रकाशित करें (ऑन-चेन अटेस्टेशन लिखता है)। |
+| `POST` | `/api/signals/:id/unlock` | आवश्यक | प्रति-रीड मूल्य (x402 USDC) का भुगतान करें और थीसिस, रुख, और स्रोत प्रकट करें। |
+| `POST` | `/api/signals/:id/archive` | आवश्यक | मालिक एक सिग्नल को संग्रहीत करता है। |
+| `GET` | `/api/signals/:id/analytics` | वैकल्पिक | व्यूज़ / अनलॉक्स / रेवेन्यू (केवल मालिक)। |
+
+## Gated फ़ील्ड्स
+
+जब तक कोई कॉलर एक सिग्नल को अनलॉक नहीं कर लेता, प्रोजेक्शन **पेड alpha छुपाता है**:
+
+- `stance` `null` है और `sources` `[]` है (`sourcesCount` टीज़ करता है कि कितने मौजूद हैं)।
+- `thesis` छोड़ दिया जाता है।
+
+अनलॉक के बाद (या मालिक के लिए), `stance`, `thesis`, और पूरा `sources` ऐरे दिखाई देता है, और `unlocked: true`।
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+उत्पाद व्यवहार के लिए [Signals concept](/creator-economy/signals) देखें।

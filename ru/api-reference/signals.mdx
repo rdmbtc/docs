@@ -1,0 +1,55 @@
+---
+title: "Signals API"
+description: "Публикация, просмотр, разблокировка и анализ премиум-прогнозов."
+---
+
+## Аутентификация
+
+Эндпоинты записи требуют JWT-сессии Supabase в Bearer-токене:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+Сервер выводит из токена доверенный идентификатор `supabase_<uuid>`, так что user id в теле/запросе нельзя подделать. Эндпоинты чтения используют опциональную аутентификацию — передайте токен, чтобы получить вид владельца/разблокированный, опустите для публичного (тизер) вида.
+
+## Эндпоинты
+
+| Метод | Путь | Auth | Назначение |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | опц. | Лента опубликованных. `?creatorUserId=` для одного создателя (владелец видит черновики + аналитику). |
+| `GET` | `/api/signals/:id` | опц. | Один сигнал (учитывает просмотр). Тезис + позиция + источники только при разблокировке/владельцу. |
+| `POST` | `/api/signals` | требуется | Создать черновик. Тело: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | требуется | Опубликовать черновик (записывает ончейн-аттестацию). |
+| `POST` | `/api/signals/:id/unlock` | требуется | Оплатить цену за прочтение (x402 USDC) и открыть тезис, позицию и источники. |
+| `POST` | `/api/signals/:id/archive` | требуется | Владелец архивирует сигнал. |
+| `GET` | `/api/signals/:id/analytics` | опц. | Просмотры / разблокировки / выручка (только владельцу). |
+
+## Закрытые поля
+
+До разблокировки проекция **скрывает оплачиваемую альфу**:
+
+- `stance` равно `null`, `sources` равно `[]` (с `sourcesCount`, который показывает, сколько их есть).
+- `thesis` опущен.
+
+После разблокировки (или для владельца) появляются `stance`, `thesis` и полный массив `sources`, а `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+См. [Концепцию сигналов](/creator-economy/signals) для описания поведения продукта.

@@ -1,0 +1,52 @@
+---
+title: "Nanopayments (x402)"
+description: "Hoe Puls je fracties van een cent voor inzicht laat betalen — en betaald laat worden."
+---
+
+## Het idee: betaald per inzicht
+
+Op Puls is **een voorspeller een creator**. Goede analyse is een product en er moet voor betaald worden — niet met een abonnement, maar per gebruik: per read, per signal, per gekopieerde trade, per tip.
+
+Die betalingen zijn klein — fracties van een cent. Normale on-chain transfers kunnen dat niet rendabel. **x402 nanopayments** wel.
+
+## Hoe x402 werkt
+
+x402 is een betalingsflow gebouwd rond de HTTP `402 Payment Required`-statuscode:
+
+<Steps>
+  <Step title="Request">
+    Een koper vraagt een betaalde resource op — bijvoorbeeld de analyse van een voorspeller.
+  </Step>
+  <Step title="402 challenge">
+    De server antwoordt met `402 Payment Required` en de betalingsdetails.
+  </Step>
+  <Step title="Off-chain signen">
+    De koper ondertekent een payment authorization **off-chain** (zero gas) en doet de request opnieuw met de signature.
+  </Step>
+  <Step title="Serveer">
+    De server verifieert de signature en geeft direct de resource terug.
+  </Step>
+  <Step title="Batch settle">
+    Veel authorizations worden gebatcht en on-chain in één transactie afgewikkeld. De verkoper ontvangt het netto bedrag.
+  </Step>
+</Steps>
+
+Omdat authorizations off-chain worden ondertekend en in batches gesettled, worden betalingen van zo klein als **$0,000001** praktisch.
+
+## Waar nanopayments op Puls verschijnen
+
+<CardGroup cols={3}>
+  <Card title="Alpha marketplace" icon="lightbulb" href="/creator-economy/alpha-marketplace">
+    Betaal per read om de analyse van een voorspeller te unlocken.
+  </Card>
+  <Card title="Copy-trade" icon="copy" href="/creator-economy/copy-trade">
+    Een micro-fee voor de leader per gekopieerde trade.
+  </Card>
+  <Card title="Tipping" icon="hand-holding-dollar" href="/creator-economy/tipping">
+    One-tap tips naar de voorspellers die je waardeert.
+  </Card>
+</CardGroup>
+
+<Note>
+De x402-laag wordt uitgerold op Puls. Handelen is vandaag volledig live; betaalde analyse, copy-trade en tipping staan op de [roadmap](/roadmap).
+</Note>

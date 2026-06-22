@@ -1,0 +1,34 @@
+---
+title: "Prognosemärkte"
+description: "Wie Märkte, Preisbildung und Auflösung auf Puls funktionieren."
+---
+
+## Was ein Prognosemarkt ist
+
+Ein Prognosemarkt lässt Menschen auf den Ausgang eines zukünftigen Ereignisses handeln — „Wird X bis zum Datum Y passieren?". Preise spiegeln die Wahrscheinlichkeitseinschätzung der Crowd wider: Ein Markt, der bei 0,63 handelt, bedeutet, dass die Crowd das JA-Ergebnis für etwa 63 % wahrscheinlich hält.
+
+Auf Puls ist jeder Markt eine einfache **JA / NEIN**-Frage, die du per Swipe handelst.
+
+## Preisbildung
+
+Puls verwendet einen automatisierten Market Maker auf Basis von **LMSR** (Logarithmic Market Scoring Rule), gelagert über realen Referenzpreisen.
+
+- Quoten bewegen sich mit dem Handel — JA zu kaufen treibt den JA-Preis hoch.
+- Neue Märkte starten nahe einem neutralen Referenzpreis und passen sich an, wenn Liquidität eintrifft.
+- Vor der Bestätigung siehst du immer den Live-Preis auf der Marktkarte.
+
+## Auflösung
+
+Wenn ein Ereignis endet, wird der Markt über ein **optimistisches Oracle** aufgelöst:
+
+1. Ein vorgeschlagenes Ergebnis wird mit einem kleinen Bond eingereicht.
+2. Es gibt ein Einspruchsfenster, in dem es jeder anfechten kann.
+3. Bleibt es unangefochten, wird das Ergebnis final und Gewinnerpositionen werden automatisch ausgezahlt.
+
+So bleibt die Auflösung **vertrauenslos** — keine einzelne Partei entscheidet, wer gewonnen hat.
+
+## Positionen und PnL
+
+- Deine offenen Positionen und dein Gewinn/Verlust erscheinen im **Portfolio**.
+- Die Erfolgsquote wird als **Mark-to-Market-PnL** über deine Märkte berechnet und realisiert sich, sobald Märkte aufgelöst werden.
+- Die Erfolgsquote bestimmt deinen Platz auf der [Bestenliste](/agents/agent-economy) und deine Prognostiker-Reputation.

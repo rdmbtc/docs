@@ -1,0 +1,70 @@
+---
+title: "Dompet & UX gasless"
+description: "Bagaimana Puls memberi setiap pengguna dompet yang aman dan gasless dari login Google."
+---
+
+## Tanpa seed phrase
+
+Hambatan terbesar untuk aplikasi kripto adalah dompet. Puls menghilangkannya sepenuhnya.
+
+Saat Anda masuk dengan Google, Puls menyediakan **smart-contract account (SCA) Circle** untuk Anda. Tidak ada:
+
+- Ekstensi browser yang perlu diinstal
+- Seed phrase yang perlu dicatat
+- Faucet yang perlu dikunjungi
+- Pergantian jaringan manual
+
+Dompet Anda siap pada saat Anda masuk.
+
+## Transaksi gasless
+
+Di sebagian besar chain, setiap aksi mengeluarkan gas, dan pengguna baru tidak memilikinya. Puls menyelesaikan ini dengan **kebijakan gas-station** di Arc:
+
+- Gas untuk transaksi Anda **disponsori** oleh Puls.
+- Anda hanya membelanjakan **principal** trading Anda (taruhan), tidak pernah gas.
+- Di Arc, token gas adalah USDC — aset yang sama yang Anda perdagangkan.
+
+<Note>
+Sponsorship menutupi gas, bukan taruhan Anda. Anda tetap membutuhkan USDC uji di dompet Anda untuk berdagang.
+</Note>
+
+## Model keamanan
+
+- Dompet adalah **smart-contract account**, yang memungkinkan gas yang disponsori dan otorisasi yang fleksibel.
+- Key dikelola melalui infrastruktur Circle, tidak disimpan di browser Anda.
+- Karena identitas terkait dengan akun Google Anda, kehilangan perangkat tidak berarti kehilangan dana Anda.
+
+## Pengisian dana & bridging (CCTP)
+
+Sudah memiliki USDC di chain lain? Bawa ke Arc tanpa faucet. Di **Profile → Bridge USDC to Arc**, Puls menggunakan **Cross-Chain Transfer Protocol (CCTP V2)** dari Circle untuk memindahkan USDC dari testnet EVM ke dompet Puls Anda:
+
+- Sumber yang didukung saat ini: **Ethereum Sepolia, Arbitrum Sepolia, Avalanche Fuji** (hubungkan dompet browser seperti MetaMask).
+- Sheet membaca saldo USDC Anda di setiap chain dan menampilkan tombol **Max**.
+- Itu burn di chain sumber dan, melalui **Forwarding Service** Circle, mint di Arc untuk Anda — jadi Anda tidak memerlukan gas Arc untuk menerima.
+- Anda dapat mint langsung ke **dompet Puls (Circle)** atau dompet yang terhubung.
+
+<Note>
+Algorand dan Aptos didukung CCTP tetapi non-EVM, sehingga mereka menggunakan dompet asli mereka daripada alur MetaMask dalam aplikasi.
+</Note>
+
+## Deposit & withdraw
+
+Dari **Profile** Anda dapat memindahkan USDC masuk dan keluar dari dompet Puls Anda secara langsung:
+
+- **Deposit** — menampilkan alamat Arc dompet Puls Anda (dengan tombol copy + tautan Arcscan). Kirim USDC Arc Testnet ke sana untuk mengisi akun Anda. Datang dari chain lain? Gunakan Bridge saja.
+- **Withdraw** — kirim USDC dari dompet Puls Anda ke alamat Arc mana pun, dengan saldo + Max dan validasi alamat. Ini transfer on-chain nyata (gasless dari smart-contract account) dan menautkan tx di Arcscan.
+
+## Swap USDC ↔ EURC
+
+Butuh euro alih-alih dolar (atau sebaliknya)? **Profile → Swap** melakukan swap stablecoin on-chain di Arc menggunakan **App Kit Swap** Circle, dieksekusi dari dompet Puls Anda:
+
+- Estimasi langsung saat Anda mengetik, dengan tombol flip antara USDC dan EURC.
+- Diselesaikan di Arc; hasilnya menautkan ke tx swap di Arcscan.
+
+<Note>
+Likuiditas swap Arc Testnet bisa tipis — jika kuotasi tidak muncul atau swap revert, coba jumlah yang lebih kecil.
+</Note>
+
+## Mengapa ini penting
+
+Inilah yang membuat Puls terasa seperti aplikasi seluler biasa sambil tetap sepenuhnya on-chain: satu ketukan adalah transaksi nyata, tetapi pengguna tidak pernah melihat pipa-pipanya.

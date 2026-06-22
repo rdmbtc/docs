@@ -1,0 +1,62 @@
+---
+title: "Finance Director (portofolio AI berbayar)"
+description: "Agen AI premium yang membaca seluruh portofolio Anda dan membangun keranjang +EV predicts yang terstruktur dan dikelola risikonya — dibayar dalam USDC melalui x402, dengan jaminan uang kembali on-chain."
+---
+
+## Manajer portofolio AI yang Anda bayar dalam USDC
+
+**Finance Director** adalah agen premium di tab **My Agent** Anda. Untuk biaya
+**USDC x402** kecil, ia membaca **seluruh portofolio Anda** — saldo, posisi terbuka, dan
+rekam jejak menang/kalah Anda sendiri — lalu mengembalikan **keranjang +EV predicts yang terstruktur dan dikelola risikonya** yang **diukur sesuai saldo Anda**, masing-masing dengan tautan langsung ke pasar.
+
+Ini adalah ekonomi agen yang diarahkan kembali ke *Anda*: ahli strategi otonom yang melakukan
+riset, sizing, dan diversifikasi yang biasanya akan Anda bayar untuk dilakukan oleh seorang penasihat manusia.
+
+## Cara kerjanya
+
+<Steps>
+  <Step title="Analisis (pratinjau gratis)">
+    Director membaca portofolio Anda dan menggoda apa yang ditemukannya — saldo Anda,
+    win rate Anda, dan berapa banyak pasar +EV yang dapat dibangun. Tanpa biaya.
+  </Step>
+  <Step title="Pilih profil risiko">
+    **Aman** (favorit probabilitas tinggi, win rate tinggi), **Seimbang**, atau
+    **Agresif** (edge lebih tinggi, lebih contrarian, payoff lebih besar). Jujur tentang
+    trade-off win-rate ↔ payoff.
+  </Step>
+  <Step title="Buka (x402)">
+    Bayar biayanya dalam USDC. Director mengembalikan keranjang **core / satellite / hedge**
+    — setiap pilihan dengan sisinya, ukuran USDC (tidak pernah melebihi saldo Anda), 
+    probabilitas konsensus, alasan satu baris, dan tautan pasar yang dapat diketuk.
+  </Step>
+</Steps>
+
+## Jaminan uang kembali — skin in the game
+
+Inilah bagian yang tidak ditawarkan penasihat mana pun: **jika keranjang yang direkomendasikan kalah setelah
+pasarnya diselesaikan, Director mengembalikan biaya Anda — secara otomatis, diselesaikan di Arc.**
+
+Rencana dicatat saat Anda membelinya. Reconciler yang dipisahkan menunggu hingga setiap
+pilihan di keranjang Anda diselesaikan, menjumlahkan hasilnya, dan:
+
+- **Keranjang menang** → Director menyimpan biaya.
+- **Keranjang kalah** → ia mentransfer biaya Anda kembali ke dompet Anda di Arc dan memberi tahu
+  Anda. AI benar-benar menempatkan uangnya pada apa yang dikatakannya.
+
+Jaminan itulah yang membuat "safe predicts" menjadi janji jujur, bukan
+pemasaran.
+
+## Mengapa berbeda
+
+- **Sadar portofolio.** Ia mengukur sesuai saldo *Anda*, menghindari pasar yang sudah Anda pegang,
+  dan dapat melakukan hedge pada eksposur terbuka Anda.
+- **Mempelajari siapa Anda.** Ia membaca rekam jejak menang/kalah Anda sendiri dan menyesuaikan rencana untuk
+  memperbaikinya.
+- **Berlandasan.** Pilihan datang dari riset langsung yang sama + konsensus AI-Oracle yang dipakai
+  [swarm](/agents/swarm) untuk berdagang — garis ~0¢/100¢ yang degenerate disaring.
+- **Composable.** Agen eksternal juga dapat membeli portofolio, melalui panggilan x402
+  yang ditandatangani client ke `POST /api/agent/director` — perdagangan antar-agen.
+
+<Note>
+Edukasional, bukan nasihat keuangan. Puls berjalan di Arc Testnet dengan USDC uji.
+</Note>
