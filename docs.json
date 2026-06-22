@@ -62,6 +62,7 @@
             "pages": [
               "agents/agent-economy",
               "agents/swarm",
+              "agents/finance-director",
               "agents/skin-in-the-game",
               "agents/ai-oracle",
               "agents/economy-explorer"

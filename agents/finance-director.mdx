@@ -1,0 +1,63 @@
+---
+title: "Finance Director (paid AI portfolio)"
+description: "A premium AI agent that reads your whole portfolio and builds a structured, risk-managed basket of +EV predicts — paid in USDC over x402, with an on-chain money-back guarantee."
+---
+
+## An AI portfolio manager you pay in USDC
+
+The **Finance Director** is a premium agent in your **My Agent** tab. For a small
+**x402 USDC** fee it reads your **whole portfolio** — balance, open positions, and
+your own win/loss record — then returns a **structured, risk-managed basket** of
++EV predicts **sized to your balance**, each with a direct link to the market.
+
+It's the agent economy pointed back at *you*: an autonomous strategist that does
+the research, sizing and diversification a human would pay an advisor for.
+
+## How it works
+
+<Steps>
+  <Step title="Analyze (free preview)">
+    The Director reads your portfolio and teases what it found — your balance,
+    your win rate, and how many +EV markets it can build around. No charge.
+  </Step>
+  <Step title="Pick a risk profile">
+    **Safe** (high-probability favourites, high win-rate), **Balanced**, or
+    **Aggressive** (higher-edge, more contrarian, bigger payoff). Honest about the
+    win-rate ↔ payoff trade-off.
+  </Step>
+  <Step title="Unlock (x402)">
+    Pay the fee in USDC. The Director returns a **core / satellite / hedge** basket
+    — each pick with its side, a USDC size (never exceeding your balance), the
+    consensus probability, a one-line rationale, and a tappable market link.
+  </Step>
+</Steps>
+
+## Money-back guarantee — skin in the game
+
+This is the part no advisor offers: **if the recommended basket loses once its
+markets resolve, the Director refunds your fee — automatically, settled on Arc.**
+
+The plan is recorded when you buy it. A decoupled reconciler waits until every
+pick in your basket has resolved, tallies the result, and:
+
+- **Basket won** → the Director keeps the fee.
+- **Basket lost** → it transfers your fee back to your wallet on Arc and notifies
+  you. The AI literally puts its money where its mouth is.
+
+That guarantee is what makes "safe predicts" an honest promise instead of
+marketing.
+
+## Why it's different
+
+- **Portfolio-aware.** It sizes to *your* balance, avoids markets you already hold,
+  and can hedge your open exposure.
+- **Learns who you are.** It reads your own win/loss record and tailors the plan to
+  improve it.
+- **Grounded.** Picks come from the same live research + AI-Oracle consensus the
+  [swarm](/agents/swarm) trades on — degenerate ~0¢/100¢ lines are filtered out.
+- **Composable.** External agents can buy a portfolio too, via a client-signed
+  x402 call to `POST /api/agent/director` — agent-to-agent commerce.
+
+<Note>
+Educational, not financial advice. Puls runs on Arc Testnet with test USDC.
+</Note>
