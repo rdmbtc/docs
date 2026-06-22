@@ -1,0 +1,70 @@
+---
+title: "Portefeuilles & UX gasless"
+description: "Comment Puls donne à chaque utilisateur un portefeuille sécurisé et gasless à partir d'une connexion Google."
+---
+
+## Pas de seed phrases
+
+Le plus grand obstacle aux applications crypto, c'est le portefeuille. Puls le supprime entièrement.
+
+Quand vous vous connectez avec Google, Puls provisionne pour vous un **smart-contract account (SCA) Circle**. Il n'y a :
+
+- Pas d'extension de navigateur à installer
+- Pas de seed phrase à noter
+- Pas de faucet à visiter
+- Pas de changement de réseau manuel
+
+Votre portefeuille est prêt au moment où vous vous connectez.
+
+## Transactions gasless
+
+Sur la plupart des chaînes, chaque action coûte du gaz, et un nouvel utilisateur n'en a pas. Puls résout cela avec une **politique de gas-station** sur Arc :
+
+- Le gaz pour vos transactions est **sponsorisé** par Puls.
+- Vous ne dépensez que votre **principal** de trading (votre mise), jamais le gaz.
+- Sur Arc, le token de gaz est l'USDC — le même actif que vous tradez.
+
+<Note>
+La sponsorisation couvre le gaz, pas votre mise. Vous avez toujours besoin d'USDC de test dans votre portefeuille pour trader.
+</Note>
+
+## Modèle de sécurité
+
+- Les portefeuilles sont des **smart-contract accounts**, ce qui permet le gaz sponsorisé et une autorisation flexible.
+- Les clés sont gérées via l'infrastructure de Circle, pas stockées dans votre navigateur.
+- Comme l'identité est liée à votre compte Google, perdre un appareil ne fait pas perdre vos fonds.
+
+## Financement & bridging (CCTP)
+
+Vous détenez déjà des USDC sur une autre chaîne ? Apportez-les sur Arc sans faucet. Dans **Profile → Bridge USDC to Arc**, Puls utilise le **Cross-Chain Transfer Protocol (CCTP V2)** de Circle pour déplacer des USDC depuis un testnet EVM vers votre portefeuille Puls :
+
+- Sources supportées aujourd'hui : **Ethereum Sepolia, Arbitrum Sepolia, Avalanche Fuji** (connectez un portefeuille de navigateur comme MetaMask).
+- La feuille lit votre solde USDC sur chaque chaîne et affiche un bouton **Max**.
+- Elle burn sur la chaîne source et, via le **Forwarding Service** de Circle, mint sur Arc pour vous — vous n'avez donc pas besoin de gaz Arc pour recevoir.
+- Vous pouvez mint directement vers votre portefeuille **Puls (Circle)** ou votre portefeuille connecté.
+
+<Note>
+Algorand et Aptos sont supportés par CCTP mais non-EVM, ils utilisent donc leurs portefeuilles natifs plutôt que le flux MetaMask intégré.
+</Note>
+
+## Dépôt & retrait
+
+Depuis **Profile**, vous pouvez déplacer des USDC dans et hors de votre portefeuille Puls directement :
+
+- **Dépôt** — affiche l'adresse Arc de votre portefeuille Puls (avec copier + lien Arcscan). Envoyez-y des USDC Arc Testnet pour financer votre compte. Vous venez d'une autre chaîne ? Utilisez Bridge à la place.
+- **Retrait** — envoyez des USDC de votre portefeuille Puls vers toute adresse Arc, avec solde + Max et validation d'adresse. C'est un véritable transfert on-chain (gasless depuis le smart-contract account) et il lie la tx sur Arcscan.
+
+## Swap USDC ↔ EURC
+
+Besoin d'euros au lieu de dollars (ou vice-versa) ? **Profile → Swap** effectue un swap de stablecoins on-chain sur Arc en utilisant **App Kit Swap** de Circle, exécuté depuis votre portefeuille Puls :
+
+- Estimation en direct au fur et à mesure que vous tapez, avec un bouton flip entre USDC et EURC.
+- Se règle sur Arc ; le résultat lie la tx de swap sur Arcscan.
+
+<Note>
+La liquidité de swap sur Arc Testnet peut être faible — si une quote n'apparaît pas ou qu'un swap revert, essayez un montant plus petit.
+</Note>
+
+## Pourquoi c'est important
+
+C'est ce qui permet à Puls de ressembler à une application mobile normale tout en étant entièrement on-chain : un tap est une vraie transaction, mais l'utilisateur ne voit jamais la plomberie.

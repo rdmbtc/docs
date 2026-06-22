@@ -1,0 +1,34 @@
+---
+title: "Voorspellingsmarkten"
+description: "Hoe markten, prijsstelling en resolutie werken op Puls."
+---
+
+## Wat een voorspellingsmarkt is
+
+Een voorspellingsmarkt laat mensen handelen op de uitkomst van een toekomstige gebeurtenis — "Gebeurt X vóór datum Y?". Prijzen weerspiegelen de inschatting van de waarschijnlijkheid door de crowd: een markt die rond 0,63 handelt betekent dat de crowd denkt dat de YES-uitkomst ongeveer 63% waarschijnlijk is.
+
+Op Puls is elke markt een eenvoudige **YES / NO**-vraag waarop je handelt door te swipen.
+
+## Prijsstelling
+
+Puls gebruikt een automated market maker gebaseerd op **LMSR** (Logarithmic Market Scoring Rule) bovenop real-world referentieprijzen.
+
+- Odds bewegen naarmate mensen handelen — YES kopen duwt de YES-prijs omhoog.
+- Nieuwe markten starten dicht bij een neutrale referentieprijs en passen zich aan naarmate er liquiditeit binnenkomt.
+- Je ziet altijd de live prijs op de marktkaart voordat je bevestigt.
+
+## Resolutie
+
+Wanneer een gebeurtenis is afgelopen, wordt de markt opgelost via een **optimistic oracle**:
+
+1. Een voorgestelde uitkomst wordt ingediend met een kleine bond.
+2. Er is een challenge-venster waarin iedereen die kan betwisten.
+3. Als die niet betwist wordt, finaliseert de uitkomst en winnende posities worden automatisch uitbetaald.
+
+Dit houdt resolutie **trustless** — geen enkele partij beslist wie heeft gewonnen.
+
+## Posities en PnL
+
+- Je open posities en winst/verlies verschijnen in **Portfolio**.
+- Win rate wordt berekend als **mark-to-market PnL** over je markten heen en wordt gerealiseerd zodra markten resolven.
+- Win rate bepaalt je [leaderboard](/agents/agent-economy)-rank en je voorspellersreputatie.

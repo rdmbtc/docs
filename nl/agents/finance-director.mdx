@@ -1,0 +1,63 @@
+---
+title: "Finance Director (betaalde AI-portfolio)"
+description: "Een premium AI-agent die je volledige portfolio leest en een gestructureerde, risk-managed mand van +EV predicts bouwt — betaald in USDC via x402, met een on-chain money-back garantie."
+---
+
+## Een AI-portfoliomanager die je in USDC betaalt
+
+De **Finance Director** is een premium agent in je **My Agent**-tab. Voor een kleine
+**x402 USDC**-fee leest hij je **volledige portfolio** — saldo, open posities, en
+je eigen win/loss-record — en geeft een **gestructureerde, risk-managed mand** van
++EV predicts terug **op maat van je saldo**, elk met een directe link naar de markt.
+
+Het is de agent-economie terug op *jou* gericht: een autonome strateeg die het
+onderzoek, de sizing en de diversificatie doet waar mensen normaal een adviseur voor betalen.
+
+## Hoe het werkt
+
+<Steps>
+  <Step title="Analyseer (gratis preview)">
+    De Director leest je portfolio en geeft een teaser van wat hij vond — je saldo,
+    je win rate en om hoeveel +EV-markten hij kan bouwen. Geen kosten.
+  </Step>
+  <Step title="Kies een risicoprofiel">
+    **Safe** (hoge-waarschijnlijkheidsfavorieten, hoge win-rate), **Balanced**, of
+    **Aggressive** (hogere edge, meer contrarian, grotere payoff). Eerlijk over de
+    trade-off tussen win-rate ↔ payoff.
+  </Step>
+  <Step title="Ontgrendel (x402)">
+    Betaal de fee in USDC. De Director geeft een **core / satellite / hedge**-mand terug
+    — elke pick met zijn kant, een USDC-omvang (nooit groter dan je saldo), de
+    consensuswaarschijnlijkheid, een one-line rationale en een tikbare marktlink.
+  </Step>
+</Steps>
+
+## Money-back garantie — skin in the game
+
+Dit is het deel dat geen enkele adviseur biedt: **als de aanbevolen mand verliest zodra
+zijn markten resolven, vergoedt de Director je fee — automatisch, gesettled op Arc.**
+
+Het plan wordt vastgelegd wanneer je het koopt. Een ontkoppelde reconciler wacht
+tot elke pick in je mand is geresolved, telt het resultaat op en:
+
+- **Mand gewonnen** → de Director houdt de fee.
+- **Mand verloren** → hij stuurt je fee terug naar je wallet op Arc en stuurt je
+  een melding. De AI zet letterlijk zijn geld waar zijn mond zit.
+
+Die garantie maakt van "safe predicts" een eerlijke belofte in plaats van
+marketing.
+
+## Waarom hij anders is
+
+- **Portfolio-aware.** Hij sized naar *jouw* saldo, vermijdt markten die je al
+  aanhoudt en kan je openstaande exposure hedgen.
+- **Leert wie je bent.** Hij leest je eigen win/loss-record en stelt het plan af om
+  dat te verbeteren.
+- **Onderbouwd.** Picks komen uit hetzelfde live research + AI-Oracle consensus waarop
+  de [swarm](/agents/swarm) handelt — degenereerde ~0¢/100¢-lijnen worden eruit gefilterd.
+- **Composeerbaar.** Externe agents kunnen ook een portfolio kopen, via een client-signed
+  x402-call naar `POST /api/agent/director` — agent-to-agent commerce.
+
+<Note>
+Educatief, geen financieel advies. Puls draait op Arc Testnet met test USDC.
+</Note>

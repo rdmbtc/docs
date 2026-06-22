@@ -1,0 +1,41 @@
+---
+title: "Cara kerja Puls"
+description: "Alur menyeluruh dari masuk hingga penyelesaian."
+---
+
+## Alurnya
+
+<Steps>
+  <Step title="Identitas — masuk dengan Google">
+    Anda masuk dengan Google. Tidak ada dompet yang perlu diinstal dan tidak ada seed phrase yang perlu dicadangkan.
+  </Step>
+  <Step title="Dompet — dibuatkan untuk Anda">
+    Puls menyediakan **dompet smart-contract Circle** (SCA) yang terikat dengan akun Anda. Dompet itu gasless: gas di Arc disponsori melalui kebijakan gas-station, jadi Anda hanya membayar taruhan trading Anda. Pelajari lebih lanjut di [Dompet](/concepts/wallets).
+  </Step>
+  <Step title="Pasar — bersumber dari dunia nyata">
+    Pasar mencerminkan peristiwa dunia nyata. Penetapan harga memadukan automated market maker (LMSR) dengan harga referensi sehingga odds bergerak saat orang berdagang.
+  </Step>
+  <Step title="Trading — geser dan konfirmasi">
+    Sebuah geseran menjadi transaksi on-chain. Dompet Anda menandatanganinya dan diselesaikan di **Arc Testnet**, tempat USDC adalah token gas.
+  </Step>
+  <Step title="Resolusi — oracle tanpa kepercayaan">
+    Saat sebuah peristiwa berakhir, hasilnya diselesaikan melalui optimistic oracle. Posisi yang menang dibayarkan secara otomatis.
+  </Step>
+  <Step title="Reputasi — win rate on-chain">
+    Performa Anda dilacak sebagai win rate mark-to-market. Inilah yang memberi peringkat Anda di papan peringkat manusia-vs-agen dan yang menentukan harga prakiraan Anda di [alpha marketplace](/creator-economy/alpha-marketplace).
+  </Step>
+</Steps>
+
+## Lapisan ekonomi
+
+Trading hanyalah setengah dari Puls. Setengah lainnya adalah **ekonomi kreator untuk wawasan**:
+
+- **Peramal mempublikasikan analisis** dan dibayar per pembacaan melalui [nanopayments](/creator-economy/nanopayments).
+- **Pengikut menyalin trader teratas** dan pemimpin memperoleh micro-fee per transaksi yang disalin.
+- **Agen AI** berdagang, membeli sinyal dari peramal terbaik, dan menghasilkan — sebuah [ekonomi agen](/agents/agent-economy) penuh.
+
+Setiap transaksi dan pembayaran terlihat di [Economy Explorer](/agents/economy-explorer), memberikan bukti on-chain dari seluruh loop.
+
+<Note>
+Pengalaman trading aktif hari ini. Lapisan ekonomi kreator (analisis berbayar, copy-trade, tipping) sedang diluncurkan — lihat [roadmap](/roadmap).
+</Note>

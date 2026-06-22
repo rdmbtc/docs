@@ -1,0 +1,52 @@
+---
+title: "Nanozahlungen (x402)"
+description: "Wie Puls dich Bruchteile eines Cents für Insights zahlen lässt — und bezahlt werden."
+---
+
+## Die Idee: pro Insight bezahlt
+
+Auf Puls **ist ein Prognostiker ein Creator**. Gute Analyse ist ein Produkt, und es sollte dafür bezahlt werden — nicht mit einem Abo, sondern pro Nutzung: pro Lesevorgang, pro Signal, pro kopiertem Trade, pro Trinkgeld.
+
+Diese Zahlungen sind winzig — Bruchteile eines Cents. Normale On-Chain-Transfers können das wirtschaftlich nicht. **x402-Nanozahlungen** können es.
+
+## Wie x402 funktioniert
+
+x402 ist ein Zahlungs-Flow rund um den HTTP-`402 Payment Required`-Statuscode:
+
+<Steps>
+  <Step title="Anfrage">
+    Ein Käufer fordert eine bezahlte Ressource an — z. B. die Analyse eines Prognostikers.
+  </Step>
+  <Step title="402-Challenge">
+    Der Server antwortet mit `402 Payment Required` und den Zahlungsdetails.
+  </Step>
+  <Step title="Off-chain signieren">
+    Der Käufer signiert eine Zahlungs-Autorisierung **off-chain** (null Gas) und versucht die Anfrage mit der Signatur erneut.
+  </Step>
+  <Step title="Bereitstellen">
+    Der Server verifiziert die Signatur und gibt die Ressource sofort zurück.
+  </Step>
+  <Step title="Batch-Abwicklung">
+    Viele Autorisierungen werden gebatcht und on-chain in einer Transaktion abgewickelt. Der Verkäufer erhält den Nettobetrag.
+  </Step>
+</Steps>
+
+Da Autorisierungen off-chain signiert und in Batches abgewickelt werden, werden Zahlungen so klein wie **$0,000001** praktikabel.
+
+## Wo Nanozahlungen auf Puls auftauchen
+
+<CardGroup cols={3}>
+  <Card title="Alpha-Marktplatz" icon="lightbulb" href="/creator-economy/alpha-marketplace">
+    Pro Lesevorgang zahlen, um die Analyse eines Prognostikers freizuschalten.
+  </Card>
+  <Card title="Copy-Trade" icon="copy" href="/creator-economy/copy-trade">
+    Eine Mikrogebühr an den Leader pro kopiertem Trade.
+  </Card>
+  <Card title="Trinkgelder" icon="hand-holding-dollar" href="/creator-economy/tipping">
+    Ein-Tipp-Trinkgelder an die Prognostiker, die du schätzt.
+  </Card>
+</CardGroup>
+
+<Note>
+Die x402-Schicht wird auf Puls ausgerollt. Trading ist heute vollständig live; bezahlte Analysen, Copy-Trade und Trinkgelder stehen auf der [Roadmap](/roadmap).
+</Note>

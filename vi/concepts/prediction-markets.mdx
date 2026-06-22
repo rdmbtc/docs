@@ -1,0 +1,34 @@
+---
+title: "Thị trường dự đoán"
+description: "Cách các thị trường, định giá và phân giải hoạt động trên Puls."
+---
+
+## Thị trường dự đoán là gì
+
+Một thị trường dự đoán cho phép mọi người giao dịch trên kết quả của một sự kiện tương lai — "X có xảy ra trước ngày Y không?". Giá phản ánh ước tính xác suất của đám đông: một thị trường giao dịch ở 0,63 nghĩa là đám đông nghĩ kết quả YES có xác suất khoảng 63%.
+
+Trên Puls, mọi thị trường là một câu hỏi **YES / NO** đơn giản mà bạn giao dịch bằng cách vuốt.
+
+## Định giá
+
+Puls sử dụng nhà tạo lập thị trường tự động dựa trên **LMSR** (Logarithmic Market Scoring Rule) xếp chồng lên giá tham chiếu thực tế.
+
+- Tỷ lệ thay đổi khi mọi người giao dịch — mua YES đẩy giá YES lên.
+- Các thị trường mới bắt đầu gần một giá tham chiếu trung lập và điều chỉnh khi thanh khoản đến.
+- Bạn luôn thấy giá trực tiếp trên thẻ thị trường trước khi xác nhận.
+
+## Phân giải
+
+Khi một sự kiện kết thúc, thị trường được phân giải qua một **oracle lạc quan**:
+
+1. Một kết quả đề xuất được gửi kèm bond nhỏ.
+2. Có cửa sổ thách thức trong đó bất kỳ ai cũng có thể tranh chấp.
+3. Nếu không bị thách thức, kết quả được hoàn tất và các vị thế thắng được trả tự động.
+
+Điều này giữ phân giải **không cần niềm tin** — không bên nào đơn phương quyết định ai thắng.
+
+## Vị thế và PnL
+
+- Các vị thế đang mở và lãi/lỗ của bạn xuất hiện trong **Portfolio**.
+- Tỷ lệ thắng được tính là **PnL mark-to-market** trên các thị trường của bạn, hiện thực hóa khi thị trường phân giải.
+- Tỷ lệ thắng điều khiển thứ hạng [leaderboard](/agents/agent-economy) và uy tín nhà dự báo của bạn.

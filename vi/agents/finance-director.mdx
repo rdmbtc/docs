@@ -1,0 +1,63 @@
+---
+title: "Finance Director (danh mục AI trả phí)"
+description: "Một agent AI premium đọc toàn bộ danh mục của bạn và xây một rổ +EV được quản lý rủi ro, có cấu trúc — trả bằng USDC qua x402, kèm bảo đảm hoàn tiền on-chain."
+---
+
+## Một nhà quản lý danh mục AI bạn trả bằng USDC
+
+**Finance Director** là một agent premium trong tab **My Agent** của bạn. Với một khoản phí
+**USDC x402** nhỏ, nó đọc **toàn bộ danh mục của bạn** — số dư, các vị thế mở và
+hồ sơ thắng/thua của bạn — sau đó trả lại một **rổ +EV được quản lý rủi ro, có cấu trúc**
+**định cỡ theo số dư của bạn**, mỗi mục có liên kết trực tiếp tới thị trường.
+
+Đó là nền kinh tế agent hướng trở lại với *bạn*: một chiến lược gia tự chủ làm
+nghiên cứu, định cỡ và đa dạng hóa mà người ta thường trả tiền cho cố vấn.
+
+## Cách hoạt động
+
+<Steps>
+  <Step title="Phân tích (xem trước miễn phí)">
+    Director đọc danh mục của bạn và tiết lộ những gì tìm được — số dư của bạn,
+    tỷ lệ thắng, và bao nhiêu thị trường +EV nó có thể xây quanh đó. Không tính phí.
+  </Step>
+  <Step title="Chọn hồ sơ rủi ro">
+    **Safe** (mục yêu thích xác suất cao, tỷ lệ thắng cao), **Balanced**, hoặc
+    **Aggressive** (lợi thế cao hơn, đi ngược đám đông hơn, lợi nhuận lớn hơn). Trung thực về sự
+    đánh đổi giữa tỷ lệ thắng ↔ lợi nhuận.
+  </Step>
+  <Step title="Mở khóa (x402)">
+    Trả phí bằng USDC. Director trả về một rổ **core / satellite / hedge**
+    — mỗi mục có phía, kích thước USDC (không vượt quá số dư của bạn),
+    xác suất đồng thuận, lý do một dòng, và liên kết thị trường có thể nhấn.
+  </Step>
+</Steps>
+
+## Bảo đảm hoàn tiền — chia sẻ rủi ro
+
+Đây là phần không cố vấn nào cung cấp: **nếu rổ được đề xuất bị thua khi
+các thị trường của nó phân giải, Director hoàn lại phí cho bạn — tự động, thanh toán trên Arc.**
+
+Kế hoạch được ghi nhận khi bạn mua nó. Một reconciler tách rời chờ cho đến khi mọi
+mục trong rổ của bạn được phân giải, tính kết quả, và:
+
+- **Rổ thắng** → Director giữ phí.
+- **Rổ thua** → nó chuyển phí trở lại ví của bạn trên Arc và thông báo
+  cho bạn. AI thực sự đặt tiền của mình vào lời nói.
+
+Đảm bảo đó là điều khiến "safe predicts" trở thành một lời hứa trung thực thay vì
+chỉ là tiếp thị.
+
+## Tại sao nó khác biệt
+
+- **Hiểu danh mục.** Nó định cỡ theo số dư *của bạn*, tránh các thị trường bạn đã nắm,
+  và có thể phòng hộ cho mức rủi ro đang mở của bạn.
+- **Học bạn là ai.** Nó đọc hồ sơ thắng/thua của riêng bạn và tùy chỉnh kế hoạch để
+  cải thiện nó.
+- **Có cơ sở.** Các mục đến từ cùng nghiên cứu trực tiếp + đồng thuận AI-Oracle mà
+  [bầy](/agents/swarm) giao dịch — các đường ~0¢/100¢ thoái hóa được lọc bỏ.
+- **Có thể compose.** Các agent bên ngoài cũng có thể mua một danh mục, qua một lời gọi x402
+  được ký bởi client tới `POST /api/agent/director` — thương mại agent-với-agent.
+
+<Note>
+Mang tính giáo dục, không phải tư vấn tài chính. Puls chạy trên Arc Testnet với test USDC.
+</Note>

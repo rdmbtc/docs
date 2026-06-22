@@ -1,0 +1,86 @@
+---
+title: "Payment flows"
+description: "Dua rel, satu ekonomi kreator — agen membayar melalui Gateway x402, manusia membayar melalui transfer gasless dalam aplikasi."
+---
+
+Setiap pembayaran kreator di Puls diselesaikan dalam **USDC di Arc** dan dicatat sebagai receipt. Tetapi uang bergerak dengan salah satu dari dua cara tergantung *siapa* yang membayar. Keduanya adalah nanopayments per-event — mereka hanya berbeda dalam bagaimana pembayaran ditandatangani.
+
+<CardGroup cols={2}>
+  <Card title="Agen membayar kreator" icon="robot">
+    Pembeli otonom menyelesaikan melalui alur **Gateway x402** kanonis.
+  </Card>
+  <Card title="Manusia membayar kreator" icon="user">
+    Pembayaran dalam aplikasi bergerak sebagai **transfer USDC gasless** dari smart wallet Anda.
+  </Card>
+</CardGroup>
+
+## Agen membayar kreator — Gateway x402
+
+Agen otonom memegang key-nya sendiri, sehingga ia dapat menggunakan alur [x402](/creator-economy/nanopayments) kanonis untuk membeli sumber daya kreator — misalnya, sinyal peramal:
+
+<Steps>
+  <Step title="Request">
+    Agen meminta endpoint berbayar (mis. analisis peramal).
+  </Step>
+  <Step title="Challenge 402">
+    Server menjawab `402 Payment Required` dengan harga dan detail pembayaran.
+  </Step>
+  <Step title="Tandatangan off-chain">
+    Agen menandatangani otorisasi pembayaran off-chain (nol gas) dan mencoba ulang dengan tanda tangan.
+  </Step>
+  <Step title="Verifikasi & sajikan">
+    Server memverifikasi otorisasi dan segera mengembalikan sumber daya.
+  </Step>
+  <Step title="Penyelesaian batch">
+    Circle Gateway mem-batch otorisasi dan menyelesaikannya di Arc dalam satu transaksi; kreator menerima USDC bersih.
+  </Step>
+</Steps>
+
+```mermaid
+sequenceDiagram
+    participant A as AI agent
+    participant S as Puls API
+    participant G as Circle Gateway
+    participant C as Creator wallet
+    A->>S: Request paid resource
+    S-->>A: 402 Payment Required
+    A->>A: Sign authorization off-chain (0 gas)
+    A->>S: Retry with signature
+    S-->>A: 200 — resource served
+    S->>G: Submit authorization
+    G->>C: Batch-settle USDC on Arc
+```
+
+<Note>
+Penyelesaian Gateway bersifat asinkron dan mengembalikan receipt transfer Circle — USDC on-chain mendarat di alamat kreator setelah batch flush.
+</Note>
+
+## Manusia membayar kreator — transfer gasless dalam aplikasi
+
+Di dalam aplikasi, dompet Anda adalah **smart-contract account (SCA) Circle**. Ia gasless dan disediakan untuk Anda — tidak ada private key di perangkat Anda untuk menghasilkan otorisasi x402 off-chain. Jadi pembayaran dalam aplikasi (membuka analisis, fee copy-trade, tip) bergerak sebagai **transfer USDC langsung** dari smart wallet Anda ke kreator, dengan gas disponsori oleh kebijakan gas-station sehingga Anda membayar nol gas.
+
+Ekonominya identik dengan x402 — dibayar per event, dalam USDC, di Arc, dicatat sebagai receipt — pembayaran hanya diotorisasi oleh smart wallet alih-alih tanda tangan off-chain.
+
+```mermaid
+sequenceDiagram
+    participant H as You (in app)
+    participant W as Your SCA wallet
+    participant GS as Gas Station
+    participant C as Creator wallet
+    H->>W: Tap "Unlock / Tip / Copy"
+    GS-->>W: Sponsor gas
+    W->>C: USDC transfer on Arc
+    C-->>H: Receipt recorded
+```
+
+## Bukti yang sama, dengan cara apa pun
+
+Rel mana pun yang digunakan, pembayaran menulis receipt — diberi tag `alpha_unlock`, `copy_fee`, atau `tip` — yang muncul di tampilan **Earnings** Anda dan di [Economy Explorer](/agents/economy-explorer) dengan penyelesaian on-chain-nya.
+
+<Tip>
+Unlock adalah **tepat-sekali**: charge dipesan sebelum transfer dan dikonfirmasi setelahnya, sehingga retry tidak pernah mengenakan biaya dua kali.
+</Tip>
+
+<Note>
+Rel agen aktif untuk demo x402 hari ini; pembayaran manusia dalam aplikasi diluncurkan bersama lapisan kreator. Lihat [roadmap](/roadmap).
+</Note>

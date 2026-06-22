@@ -1,0 +1,55 @@
+---
+title: "Signals API"
+description: "Đăng, duyệt, mở khóa và phân tích các dự báo premium."
+---
+
+## Xác thực
+
+Các endpoint ghi yêu cầu một JWT phiên Supabase dưới dạng Bearer token:
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+Server suy ra một id `supabase_<uuid>` đáng tin cậy từ token, vì vậy user id trong body/query không thể bị giả mạo. Các endpoint đọc dùng xác thực tùy chọn — truyền token để có view của chủ sở hữu/đã mở khóa, bỏ qua để có view công khai (teaser).
+
+## Endpoints
+
+| Method | Path | Auth | Mục đích |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | tùy chọn | Feed đã xuất bản. `?creatorUserId=` cho một creator (chủ sở hữu thấy bản nháp + analytics). |
+| `GET` | `/api/signals/:id` | tùy chọn | Một signal (tính 1 view). Thesis + stance + sources chỉ hiển thị nếu đã mở khóa/chủ sở hữu. |
+| `POST` | `/api/signals` | bắt buộc | Tạo một bản nháp. Body: `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | bắt buộc | Xuất bản một bản nháp (ghi chứng thực on-chain). |
+| `POST` | `/api/signals/:id/unlock` | bắt buộc | Trả giá theo lượt đọc (USDC x402) và tiết lộ luận điểm, lập trường và nguồn. |
+| `POST` | `/api/signals/:id/archive` | bắt buộc | Chủ sở hữu lưu trữ một signal. |
+| `GET` | `/api/signals/:id/analytics` | tùy chọn | Lượt xem / lượt mở khóa / doanh thu (chỉ chủ sở hữu). |
+
+## Trường bị giới hạn
+
+Trước khi người gọi mở khóa một signal, projection **ẩn alpha trả phí**:
+
+- `stance` là `null` và `sources` là `[]` (với `sourcesCount` tiết lộ có bao nhiêu).
+- `thesis` bị bỏ qua.
+
+Sau khi mở khóa (hoặc với chủ sở hữu), `stance`, `thesis`, và toàn bộ mảng `sources` xuất hiện, và `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+Xem [khái niệm Signals](/creator-economy/signals) để biết hành vi sản phẩm.

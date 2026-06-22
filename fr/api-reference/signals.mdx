@@ -1,0 +1,55 @@
+---
+title: "API Signals"
+description: "Publier, parcourir, déverrouiller et analyser des prévisions premium."
+---
+
+## Authentification
+
+Les endpoints en écriture requièrent un JWT de session Supabase comme Bearer token :
+
+```
+Authorization: Bearer <supabase_access_token>
+```
+
+Le serveur dérive un identifiant `supabase_<uuid>` de confiance à partir du token, les ids d'utilisateur dans le body/query ne peuvent donc pas être usurpés. Les endpoints en lecture utilisent une auth optionnelle — passez un token pour obtenir la vue propriétaire/déverrouillée, omettez-le pour la vue publique (teaser).
+
+## Endpoints
+
+| Méthode | Chemin | Auth | Objectif |
+| --- | --- | --- | --- |
+| `GET` | `/api/signals` | optionnelle | Flux publié. `?creatorUserId=` pour un créateur (le propriétaire voit drafts + analytics). |
+| `GET` | `/api/signals/:id` | optionnelle | Un signal (compte une vue). Thèse + position + sources uniquement si déverrouillé/propriétaire. |
+| `POST` | `/api/signals` | requise | Créer un draft. Body : `title`, `thesis`, `marketQuestion?`, `marketSlug?`, `stance`, `confidence`, `edgeBps?`, `horizon?`, `teaser?`, `priceUsdc?`. |
+| `POST` | `/api/signals/:id/publish` | requise | Publier un draft (écrit l'attestation on-chain). |
+| `POST` | `/api/signals/:id/unlock` | requise | Payer le prix par lecture (USDC x402) et révéler la thèse, la position et les sources. |
+| `POST` | `/api/signals/:id/archive` | requise | Le propriétaire archive un signal. |
+| `GET` | `/api/signals/:id/analytics` | optionnelle | Vues / déverrouillages / revenus (propriétaire uniquement). |
+
+## Champs verrouillés
+
+Avant qu'un appelant n'ait déverrouillé un signal, la projection **cache l'alpha payant** :
+
+- `stance` est `null` et `sources` est `[]` (avec `sourcesCount` qui tease combien existent).
+- `thesis` est omis.
+
+Après déverrouillage (ou pour le propriétaire), `stance`, `thesis` et le tableau complet `sources` apparaissent, et `unlocked: true`.
+
+```json
+{
+  "id": "…",
+  "title": "France — 2026 World Cup",
+  "marketQuestion": "Will France win Group I in the 2026 FIFA World Cup?",
+  "marketSlug": "will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "marketLink": "https://pulsmarket.tech/m/will-france-win-group-i-in-the-2026-fifa-world-cup",
+  "stance": null,
+  "confidence": 0.8,
+  "priceUsdc": 0.001,
+  "unlocked": false,
+  "sourcesCount": 3,
+  "sources": [],
+  "creatorTrackRecord": { "resolved": 0, "correct": 0, "winRate": null, "published": 12 },
+  "onchain": { "tx": "0x…", "explorer": "https://testnet.arcscan.app/tx/0x…" }
+}
+```
+
+Voir le [concept Signals](/creator-economy/signals) pour le comportement produit.

@@ -1,0 +1,52 @@
+---
+title: "Nanopayments (x402)"
+description: "Bagaimana Puls memungkinkan Anda membayar sebagian kecil sen untuk wawasan — dan dibayar."
+---
+
+## Ide: dibayar per wawasan
+
+Di Puls, **peramal adalah seorang kreator**. Analisis yang baik adalah produk, dan harus dibayar — bukan dengan langganan, tetapi per penggunaan: per pembacaan, per sinyal, per transaksi yang disalin, per tip.
+
+Pembayaran itu kecil — sebagian kecil sen. Transfer on-chain biasa tidak dapat melakukannya secara ekonomis. **Nanopayments x402** bisa.
+
+## Bagaimana x402 bekerja
+
+x402 adalah alur pembayaran yang dibangun di sekitar kode status HTTP `402 Payment Required`:
+
+<Steps>
+  <Step title="Request">
+    Pembeli meminta sumber daya berbayar — misalnya, analisis seorang peramal.
+  </Step>
+  <Step title="Challenge 402">
+    Server merespons dengan `402 Payment Required` dan detail pembayaran.
+  </Step>
+  <Step title="Tandatangan off-chain">
+    Pembeli menandatangani otorisasi pembayaran **off-chain** (nol gas) dan mencoba ulang permintaan dengan tanda tangan.
+  </Step>
+  <Step title="Sajikan">
+    Server memverifikasi tanda tangan dan segera mengembalikan sumber daya.
+  </Step>
+  <Step title="Penyelesaian batch">
+    Banyak otorisasi di-batch dan diselesaikan on-chain dalam satu transaksi. Penjual menerima jumlah bersih.
+  </Step>
+</Steps>
+
+Karena otorisasi ditandatangani off-chain dan diselesaikan dalam batch, pembayaran sekecil **$0,000001** menjadi praktis.
+
+## Di mana nanopayments muncul di Puls
+
+<CardGroup cols={3}>
+  <Card title="Alpha marketplace" icon="lightbulb" href="/creator-economy/alpha-marketplace">
+    Bayar per pembacaan untuk membuka analisis peramal.
+  </Card>
+  <Card title="Copy-trade" icon="copy" href="/creator-economy/copy-trade">
+    Micro-fee untuk pemimpin per transaksi yang disalin.
+  </Card>
+  <Card title="Tipping" icon="hand-holding-dollar" href="/creator-economy/tipping">
+    Tip sekali ketuk untuk peramal yang Anda hargai.
+  </Card>
+</CardGroup>
+
+<Note>
+Lapisan x402 sedang diluncurkan di Puls. Trading sepenuhnya aktif hari ini; analisis berbayar, copy-trade, dan tipping ada di [roadmap](/roadmap).
+</Note>

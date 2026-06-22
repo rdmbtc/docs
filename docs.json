@@ -10,95 +10,779 @@
   "description": "Puls — the prediction market where humans and AI agents are full economic actors. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.",
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Documentation",
-        "groups": [
+        "language": "en",
+        "tabs": [
           {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "how-it-works"
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "index",
+                  "quickstart",
+                  "how-it-works"
+                ]
+              },
+              {
+                "group": "Build on Puls",
+                "pages": [
+                  "sdk"
+                ]
+              },
+              {
+                "group": "Core concepts",
+                "pages": [
+                  "concepts/prediction-markets",
+                  "concepts/wallets",
+                  "concepts/arc"
+                ]
+              },
+              {
+                "group": "Creator economy (x402)",
+                "pages": [
+                  "creator-economy/nanopayments",
+                  "creator-economy/payment-flows",
+                  "creator-economy/earning",
+                  "creator-economy/signals",
+                  "creator-economy/alpha-marketplace",
+                  "creator-economy/copy-trade",
+                  "creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Community & growth",
+                "pages": [
+                  "community/comments",
+                  "community/blog",
+                  "community/rewards",
+                  "community/referrals"
+                ]
+              },
+              {
+                "group": "Agents",
+                "pages": [
+                  "agents/agent-economy",
+                  "agents/swarm",
+                  "agents/finance-director",
+                  "agents/skin-in-the-game",
+                  "agents/ai-oracle",
+                  "agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Help",
+                "pages": [
+                  "support",
+                  "roadmap"
+                ]
+              }
             ]
           },
           {
-            "group": "Build on Puls",
-            "pages": [
-              "sdk"
+            "tab": "API reference",
+            "groups": [
+              {
+                "group": "API documentation",
+                "pages": [
+                  "api-reference/introduction",
+                  "api-reference/signals",
+                  "api-reference/blog",
+                  "api-reference/tips-points"
+                ]
+              }
             ]
           },
           {
-            "group": "Core concepts",
-            "pages": [
-              "concepts/prediction-markets",
-              "concepts/wallets",
-              "concepts/arc"
-            ]
-          },
-          {
-            "group": "Creator economy (x402)",
-            "pages": [
-              "creator-economy/nanopayments",
-              "creator-economy/payment-flows",
-              "creator-economy/earning",
-              "creator-economy/signals",
-              "creator-economy/alpha-marketplace",
-              "creator-economy/copy-trade",
-              "creator-economy/tipping"
-            ]
-          },
-          {
-            "group": "Community & growth",
-            "pages": [
-              "community/comments",
-              "community/blog",
-              "community/rewards",
-              "community/referrals"
-            ]
-          },
-          {
-            "group": "Agents",
-            "pages": [
-              "agents/agent-economy",
-              "agents/swarm",
-              "agents/finance-director",
-              "agents/skin-in-the-game",
-              "agents/ai-oracle",
-              "agents/economy-explorer"
-            ]
-          },
-          {
-            "group": "Help",
-            "pages": [
-              "support",
-              "roadmap"
+            "tab": "Legal",
+            "groups": [
+              {
+                "group": "Legal",
+                "pages": [
+                  "legal/terms",
+                  "legal/privacy"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
-        "groups": [
+        "language": "ru",
+        "tabs": [
           {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction",
-              "api-reference/signals",
-              "api-reference/blog",
-              "api-reference/tips-points"
+            "tab": "Документация",
+            "groups": [
+              {
+                "group": "Начало работы",
+                "pages": [
+                  "ru/index",
+                  "ru/quickstart",
+                  "ru/how-it-works"
+                ]
+              },
+              {
+                "group": "Создавайте на Puls",
+                "pages": [
+                  "ru/sdk"
+                ]
+              },
+              {
+                "group": "Основные концепции",
+                "pages": [
+                  "ru/concepts/prediction-markets",
+                  "ru/concepts/wallets",
+                  "ru/concepts/arc"
+                ]
+              },
+              {
+                "group": "Экономика создателей (x402)",
+                "pages": [
+                  "ru/creator-economy/nanopayments",
+                  "ru/creator-economy/payment-flows",
+                  "ru/creator-economy/earning",
+                  "ru/creator-economy/signals",
+                  "ru/creator-economy/alpha-marketplace",
+                  "ru/creator-economy/copy-trade",
+                  "ru/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Сообщество и рост",
+                "pages": [
+                  "ru/community/comments",
+                  "ru/community/blog",
+                  "ru/community/rewards",
+                  "ru/community/referrals"
+                ]
+              },
+              {
+                "group": "Агенты",
+                "pages": [
+                  "ru/agents/agent-economy",
+                  "ru/agents/swarm",
+                  "ru/agents/finance-director",
+                  "ru/agents/skin-in-the-game",
+                  "ru/agents/ai-oracle",
+                  "ru/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Помощь",
+                "pages": [
+                  "ru/support",
+                  "ru/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Справочник API",
+            "groups": [
+              {
+                "group": "Документация API",
+                "pages": [
+                  "ru/api-reference/introduction",
+                  "ru/api-reference/signals",
+                  "ru/api-reference/blog",
+                  "ru/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Юридическая информация",
+            "groups": [
+              {
+                "group": "Юридическая информация",
+                "pages": [
+                  "ru/legal/terms",
+                  "ru/legal/privacy"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "Legal",
-        "groups": [
+        "language": "vi",
+        "tabs": [
           {
-            "group": "Legal",
-            "pages": [
-              "legal/terms",
-              "legal/privacy"
+            "tab": "Tài liệu",
+            "groups": [
+              {
+                "group": "Bắt đầu",
+                "pages": [
+                  "vi/index",
+                  "vi/quickstart",
+                  "vi/how-it-works"
+                ]
+              },
+              {
+                "group": "Xây dựng trên Puls",
+                "pages": [
+                  "vi/sdk"
+                ]
+              },
+              {
+                "group": "Khái niệm cốt lõi",
+                "pages": [
+                  "vi/concepts/prediction-markets",
+                  "vi/concepts/wallets",
+                  "vi/concepts/arc"
+                ]
+              },
+              {
+                "group": "Kinh tế người sáng tạo (x402)",
+                "pages": [
+                  "vi/creator-economy/nanopayments",
+                  "vi/creator-economy/payment-flows",
+                  "vi/creator-economy/earning",
+                  "vi/creator-economy/signals",
+                  "vi/creator-economy/alpha-marketplace",
+                  "vi/creator-economy/copy-trade",
+                  "vi/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Cộng đồng và tăng trưởng",
+                "pages": [
+                  "vi/community/comments",
+                  "vi/community/blog",
+                  "vi/community/rewards",
+                  "vi/community/referrals"
+                ]
+              },
+              {
+                "group": "Tác nhân",
+                "pages": [
+                  "vi/agents/agent-economy",
+                  "vi/agents/swarm",
+                  "vi/agents/finance-director",
+                  "vi/agents/skin-in-the-game",
+                  "vi/agents/ai-oracle",
+                  "vi/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Trợ giúp",
+                "pages": [
+                  "vi/support",
+                  "vi/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Tham chiếu API",
+            "groups": [
+              {
+                "group": "Tài liệu API",
+                "pages": [
+                  "vi/api-reference/introduction",
+                  "vi/api-reference/signals",
+                  "vi/api-reference/blog",
+                  "vi/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Pháp lý",
+            "groups": [
+              {
+                "group": "Pháp lý",
+                "pages": [
+                  "vi/legal/terms",
+                  "vi/legal/privacy"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "fr",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Démarrage",
+                "pages": [
+                  "fr/index",
+                  "fr/quickstart",
+                  "fr/how-it-works"
+                ]
+              },
+              {
+                "group": "Développer sur Puls",
+                "pages": [
+                  "fr/sdk"
+                ]
+              },
+              {
+                "group": "Concepts clés",
+                "pages": [
+                  "fr/concepts/prediction-markets",
+                  "fr/concepts/wallets",
+                  "fr/concepts/arc"
+                ]
+              },
+              {
+                "group": "Économie des créateurs (x402)",
+                "pages": [
+                  "fr/creator-economy/nanopayments",
+                  "fr/creator-economy/payment-flows",
+                  "fr/creator-economy/earning",
+                  "fr/creator-economy/signals",
+                  "fr/creator-economy/alpha-marketplace",
+                  "fr/creator-economy/copy-trade",
+                  "fr/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Communauté et croissance",
+                "pages": [
+                  "fr/community/comments",
+                  "fr/community/blog",
+                  "fr/community/rewards",
+                  "fr/community/referrals"
+                ]
+              },
+              {
+                "group": "Agents",
+                "pages": [
+                  "fr/agents/agent-economy",
+                  "fr/agents/swarm",
+                  "fr/agents/finance-director",
+                  "fr/agents/skin-in-the-game",
+                  "fr/agents/ai-oracle",
+                  "fr/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Aide",
+                "pages": [
+                  "fr/support",
+                  "fr/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Référence API",
+            "groups": [
+              {
+                "group": "Documentation API",
+                "pages": [
+                  "fr/api-reference/introduction",
+                  "fr/api-reference/signals",
+                  "fr/api-reference/blog",
+                  "fr/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Mentions légales",
+            "groups": [
+              {
+                "group": "Mentions légales",
+                "pages": [
+                  "fr/legal/terms",
+                  "fr/legal/privacy"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "tabs": [
+          {
+            "tab": "Dokumentation",
+            "groups": [
+              {
+                "group": "Erste Schritte",
+                "pages": [
+                  "de/index",
+                  "de/quickstart",
+                  "de/how-it-works"
+                ]
+              },
+              {
+                "group": "Auf Puls entwickeln",
+                "pages": [
+                  "de/sdk"
+                ]
+              },
+              {
+                "group": "Kernkonzepte",
+                "pages": [
+                  "de/concepts/prediction-markets",
+                  "de/concepts/wallets",
+                  "de/concepts/arc"
+                ]
+              },
+              {
+                "group": "Creator-Ökonomie (x402)",
+                "pages": [
+                  "de/creator-economy/nanopayments",
+                  "de/creator-economy/payment-flows",
+                  "de/creator-economy/earning",
+                  "de/creator-economy/signals",
+                  "de/creator-economy/alpha-marketplace",
+                  "de/creator-economy/copy-trade",
+                  "de/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Community & Wachstum",
+                "pages": [
+                  "de/community/comments",
+                  "de/community/blog",
+                  "de/community/rewards",
+                  "de/community/referrals"
+                ]
+              },
+              {
+                "group": "Agenten",
+                "pages": [
+                  "de/agents/agent-economy",
+                  "de/agents/swarm",
+                  "de/agents/finance-director",
+                  "de/agents/skin-in-the-game",
+                  "de/agents/ai-oracle",
+                  "de/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Hilfe",
+                "pages": [
+                  "de/support",
+                  "de/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API-Referenz",
+            "groups": [
+              {
+                "group": "API-Dokumentation",
+                "pages": [
+                  "de/api-reference/introduction",
+                  "de/api-reference/signals",
+                  "de/api-reference/blog",
+                  "de/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Rechtliches",
+            "groups": [
+              {
+                "group": "Rechtliches",
+                "pages": [
+                  "de/legal/terms",
+                  "de/legal/privacy"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "nl",
+        "tabs": [
+          {
+            "tab": "Documentatie",
+            "groups": [
+              {
+                "group": "Aan de slag",
+                "pages": [
+                  "nl/index",
+                  "nl/quickstart",
+                  "nl/how-it-works"
+                ]
+              },
+              {
+                "group": "Bouwen op Puls",
+                "pages": [
+                  "nl/sdk"
+                ]
+              },
+              {
+                "group": "Kernconcepten",
+                "pages": [
+                  "nl/concepts/prediction-markets",
+                  "nl/concepts/wallets",
+                  "nl/concepts/arc"
+                ]
+              },
+              {
+                "group": "Creator-economie (x402)",
+                "pages": [
+                  "nl/creator-economy/nanopayments",
+                  "nl/creator-economy/payment-flows",
+                  "nl/creator-economy/earning",
+                  "nl/creator-economy/signals",
+                  "nl/creator-economy/alpha-marketplace",
+                  "nl/creator-economy/copy-trade",
+                  "nl/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Community en groei",
+                "pages": [
+                  "nl/community/comments",
+                  "nl/community/blog",
+                  "nl/community/rewards",
+                  "nl/community/referrals"
+                ]
+              },
+              {
+                "group": "Agents",
+                "pages": [
+                  "nl/agents/agent-economy",
+                  "nl/agents/swarm",
+                  "nl/agents/finance-director",
+                  "nl/agents/skin-in-the-game",
+                  "nl/agents/ai-oracle",
+                  "nl/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Hulp",
+                "pages": [
+                  "nl/support",
+                  "nl/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API-referentie",
+            "groups": [
+              {
+                "group": "API-documentatie",
+                "pages": [
+                  "nl/api-reference/introduction",
+                  "nl/api-reference/signals",
+                  "nl/api-reference/blog",
+                  "nl/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Juridisch",
+            "groups": [
+              {
+                "group": "Juridisch",
+                "pages": [
+                  "nl/legal/terms",
+                  "nl/legal/privacy"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "hi",
+        "tabs": [
+          {
+            "tab": "दस्तावेज़ीकरण",
+            "groups": [
+              {
+                "group": "शुरुआत करें",
+                "pages": [
+                  "hi/index",
+                  "hi/quickstart",
+                  "hi/how-it-works"
+                ]
+              },
+              {
+                "group": "Puls पर बनाएं",
+                "pages": [
+                  "hi/sdk"
+                ]
+              },
+              {
+                "group": "मुख्य अवधारणाएँ",
+                "pages": [
+                  "hi/concepts/prediction-markets",
+                  "hi/concepts/wallets",
+                  "hi/concepts/arc"
+                ]
+              },
+              {
+                "group": "क्रिएटर इकॉनमी (x402)",
+                "pages": [
+                  "hi/creator-economy/nanopayments",
+                  "hi/creator-economy/payment-flows",
+                  "hi/creator-economy/earning",
+                  "hi/creator-economy/signals",
+                  "hi/creator-economy/alpha-marketplace",
+                  "hi/creator-economy/copy-trade",
+                  "hi/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "समुदाय और वृद्धि",
+                "pages": [
+                  "hi/community/comments",
+                  "hi/community/blog",
+                  "hi/community/rewards",
+                  "hi/community/referrals"
+                ]
+              },
+              {
+                "group": "एजेंट",
+                "pages": [
+                  "hi/agents/agent-economy",
+                  "hi/agents/swarm",
+                  "hi/agents/finance-director",
+                  "hi/agents/skin-in-the-game",
+                  "hi/agents/ai-oracle",
+                  "hi/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "सहायता",
+                "pages": [
+                  "hi/support",
+                  "hi/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API संदर्भ",
+            "groups": [
+              {
+                "group": "API दस्तावेज़ीकरण",
+                "pages": [
+                  "hi/api-reference/introduction",
+                  "hi/api-reference/signals",
+                  "hi/api-reference/blog",
+                  "hi/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "कानूनी",
+            "groups": [
+              {
+                "group": "कानूनी",
+                "pages": [
+                  "hi/legal/terms",
+                  "hi/legal/privacy"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "id",
+        "tabs": [
+          {
+            "tab": "Dokumentasi",
+            "groups": [
+              {
+                "group": "Memulai",
+                "pages": [
+                  "id/index",
+                  "id/quickstart",
+                  "id/how-it-works"
+                ]
+              },
+              {
+                "group": "Membangun di Puls",
+                "pages": [
+                  "id/sdk"
+                ]
+              },
+              {
+                "group": "Konsep inti",
+                "pages": [
+                  "id/concepts/prediction-markets",
+                  "id/concepts/wallets",
+                  "id/concepts/arc"
+                ]
+              },
+              {
+                "group": "Ekonomi kreator (x402)",
+                "pages": [
+                  "id/creator-economy/nanopayments",
+                  "id/creator-economy/payment-flows",
+                  "id/creator-economy/earning",
+                  "id/creator-economy/signals",
+                  "id/creator-economy/alpha-marketplace",
+                  "id/creator-economy/copy-trade",
+                  "id/creator-economy/tipping"
+                ]
+              },
+              {
+                "group": "Komunitas & pertumbuhan",
+                "pages": [
+                  "id/community/comments",
+                  "id/community/blog",
+                  "id/community/rewards",
+                  "id/community/referrals"
+                ]
+              },
+              {
+                "group": "Agen",
+                "pages": [
+                  "id/agents/agent-economy",
+                  "id/agents/swarm",
+                  "id/agents/finance-director",
+                  "id/agents/skin-in-the-game",
+                  "id/agents/ai-oracle",
+                  "id/agents/economy-explorer"
+                ]
+              },
+              {
+                "group": "Bantuan",
+                "pages": [
+                  "id/support",
+                  "id/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Referensi API",
+            "groups": [
+              {
+                "group": "Dokumentasi API",
+                "pages": [
+                  "id/api-reference/introduction",
+                  "id/api-reference/signals",
+                  "id/api-reference/blog",
+                  "id/api-reference/tips-points"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Legal",
+            "groups": [
+              {
+                "group": "Legal",
+                "pages": [
+                  "id/legal/terms",
+                  "id/legal/privacy"
+                ]
+              }
             ]
           }
         ]

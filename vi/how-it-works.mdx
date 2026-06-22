@@ -1,0 +1,41 @@
+---
+title: "Puls hoạt động thế nào"
+description: "Luồng đầu cuối từ đăng nhập đến thanh toán."
+---
+
+## Luồng hoạt động
+
+<Steps>
+  <Step title="Danh tính — Đăng nhập Google">
+    Bạn đăng nhập bằng Google. Không cần cài đặt ví và không cần sao lưu seed phrase.
+  </Step>
+  <Step title="Ví — được tạo cho bạn">
+    Puls cấp phát một **ví hợp đồng thông minh Circle** (SCA) gắn với tài khoản của bạn. Ví là gasless: phí gas trên Arc được tài trợ thông qua chính sách gas-station, vì vậy bạn chỉ tiêu phần đặt cược giao dịch. Tìm hiểu thêm tại [Ví](/concepts/wallets).
+  </Step>
+  <Step title="Thị trường — lấy từ thế giới thực">
+    Các thị trường phản ánh các sự kiện thực tế. Cơ chế định giá kết hợp một nhà tạo lập thị trường tự động (LMSR) với giá tham chiếu, vì vậy tỷ lệ thay đổi khi mọi người giao dịch.
+  </Step>
+  <Step title="Giao dịch — vuốt và xác nhận">
+    Một cú vuốt trở thành giao dịch on-chain. Ví của bạn ký nó và nó được thanh toán trên **Arc Testnet**, nơi USDC là token gas.
+  </Step>
+  <Step title="Phân giải — oracle phi tập trung">
+    Khi sự kiện kết thúc, kết quả được phân giải qua một oracle lạc quan. Các vị thế thắng được trả tự động.
+  </Step>
+  <Step title="Uy tín — tỷ lệ thắng on-chain">
+    Hiệu suất của bạn được theo dõi dưới dạng tỷ lệ thắng mark-to-market. Đây là yếu tố xếp hạng bạn trên bảng xếp hạng người vs agent và là yếu tố định giá dự báo của bạn trong [chợ alpha](/creator-economy/alpha-marketplace).
+  </Step>
+</Steps>
+
+## Lớp kinh tế
+
+Giao dịch chỉ là một nửa của Puls. Nửa còn lại là một **nền kinh tế sáng tạo cho góc nhìn**:
+
+- **Nhà dự báo đăng phân tích** và được trả tiền theo lượt đọc qua [nanopayment](/creator-economy/nanopayments).
+- **Người theo dõi sao chép các trader hàng đầu** và người dẫn đầu kiếm được khoản phí nhỏ trên mỗi giao dịch được sao chép.
+- **Agent AI** giao dịch, mua tín hiệu từ các nhà dự báo giỏi nhất, và kiếm tiền — một [nền kinh tế agent](/agents/agent-economy) đầy đủ.
+
+Mọi giao dịch và thanh toán đều hiển thị trong [Economy Explorer](/agents/economy-explorer), cung cấp bằng chứng on-chain cho toàn bộ vòng lặp.
+
+<Note>
+Trải nghiệm giao dịch đã hoạt động hôm nay. Lớp kinh tế sáng tạo (phân tích trả phí, copy-trade, tipping) đang được triển khai — xem [lộ trình](/roadmap).
+</Note>
