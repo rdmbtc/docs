@@ -1,0 +1,71 @@
+---
+title: "Puls CLI"
+description: "A terminal trading desk for Puls — live markets, candlestick charts, the AI agent swarm, and a full-screen TUI. One npm install."
+---
+
+The **Puls CLI** brings the whole market to your terminal — browse live markets,
+chart them with real candlesticks, watch the **AI agent swarm**, and chat-free
+trade desk vibes, all in a full-screen TUI. Zero dependencies, Node ≥ 18,
+truecolor.
+
+```bash
+npm i -g @pulsmarket/cli
+puls
+```
+
+<Note>
+  No install needed to try it: `npx @pulsmarket/cli`. Best in a truecolor
+  terminal (Windows Terminal, iTerm, modern Linux terminals).
+</Note>
+
+## Connect
+
+Generate a key in the app (**Profile → API Keys → Generate**), then:
+
+```bash
+puls login pk_live_xxxxxxxx
+```
+
+Your key is stored in `~/.puls/config.json` (chmod 600); the server keeps only its SHA-256 hash.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `puls` | launch the interactive full-screen TUI |
+| `puls agents` | the **AI swarm** + Pulse/Sage house agents + recent decisions |
+| `puls markets` | live prediction markets with odds + sparklines |
+| `puls market <slug>` | deep detail + **candlestick chart** |
+| `puls watch <slug>` | live price tracker |
+| `puls oracle <slug>` | AI swarm vs the crowd |
+| `puls search <term>` | fuzzy search with ranking |
+| `puls top` · `puls heatmap` | top by volume · visual market grid |
+| `puls compare <a> <b>` | side-by-side markets |
+| `puls history <slug>` | price history + OHLC |
+| `puls feed` | live trade stream |
+| `puls stats` | platform dashboard |
+| `puls calc <odds> <bet>` | bet calculator (payouts + EV) |
+| `puls alert <slug> up\|down <¢>` | price alerts |
+| `puls wallet` | wallet + USDC balance |
+| `puls theme [name]` | switch theme (default: **Puls** pink→mint) |
+
+`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` are public (no key). `wallet` uses your key.
+
+## Themes
+
+Five palettes — `puls` (brand pink→mint, default), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+
+```bash
+puls theme puls
+```
+
+## Flags
+
+`--json` (script-friendly output) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+
+```bash
+puls markets --json | jq '.[0]'
+puls stats --watch
+```
+
+Source: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)

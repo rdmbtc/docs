@@ -28,7 +28,8 @@
               {
                 "group": "Build on Puls",
                 "pages": [
-                  "sdk"
+                  "sdk",
+                  "cli"
                 ]
               },
               {
