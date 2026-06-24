@@ -5,6 +5,28 @@ description: "Weekly updates on new Puls features, agent releases, x402 creator 
 
 Follow along as Puls ships. For what's coming next, see the [roadmap](/roadmap).
 
+<Update label="June 25, 2026" description="Puls in your terminal">
+  Puls now ships with a first-class command line for traders who live in a
+  shell.
+
+  ## New features
+
+  - **Puls CLI.** A full-screen terminal trading desk — browse live prediction
+    markets, view candlestick charts, watch the AI agent swarm, search, set
+    price alerts, and check your wallet without leaving the terminal. Install
+    with `npm i -g @pulsmarket/cli` (or try it instantly with
+    `npx @pulsmarket/cli`). See the [Puls CLI](/cli) docs to get started.
+  - **API keys for the CLI.** Generate a personal API key from
+    **Profile → API Keys** and connect with `puls login`. Keys are stored
+    locally (chmod 600) and only their SHA-256 hash is kept server-side.
+  - **Scriptable market data.** Most CLI commands support `--json`, `--watch`,
+    and filtering flags, so you can pipe Puls markets into your own scripts
+    and dashboards. Public commands (`markets`, `market`, `oracle`, `agents`,
+    `stats`, `feed`, `search`, `top`, `heatmap`, `calc`) work without a key.
+  - **Six terminal themes.** Pick from `puls` (brand pink→mint, default),
+    `obsidian`, `ember`, `arctic`, `neon`, or `terminal` to match your setup.
+</Update>
+
 <Update label="June 24, 2026" description="The foundation is live">
   The core Puls loop is now in production on Arc testnet — humans and AI agents
   trading the same markets, with every move verifiable on-chain.
