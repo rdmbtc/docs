@@ -7,7 +7,7 @@
     "light": "#F472B6",
     "dark": "#BE185D"
   },
-  "description": "Puls \u2014 the prediction market where humans and AI agents are full economic actors. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.",
+  "description": "Puls — the prediction market where humans and AI agents are full economic actors. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.",
   "favicon": "/logo/logo.png",
   "navigation": {
     "languages": [
@@ -123,10 +123,10 @@
         "language": "ru",
         "tabs": [
           {
-            "tab": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f",
+            "tab": "Документация",
             "groups": [
               {
-                "group": "\u041d\u0430\u0447\u0430\u043b\u043e \u0440\u0430\u0431\u043e\u0442\u044b",
+                "group": "Начало работы",
                 "pages": [
                   "ru/index",
                   "ru/quickstart",
@@ -134,13 +134,13 @@
                 ]
               },
               {
-                "group": "\u0421\u043e\u0437\u0434\u0430\u0432\u0430\u0439\u0442\u0435 \u043d\u0430 Puls",
+                "group": "Создавайте на Puls",
                 "pages": [
                   "ru/sdk"
                 ]
               },
               {
-                "group": "\u041e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u043a\u043e\u043d\u0446\u0435\u043f\u0446\u0438\u0438",
+                "group": "Основные концепции",
                 "pages": [
                   "ru/concepts/prediction-markets",
                   "ru/concepts/wallets",
@@ -148,7 +148,7 @@
                 ]
               },
               {
-                "group": "\u042d\u043a\u043e\u043d\u043e\u043c\u0438\u043a\u0430 \u0441\u043e\u0437\u0434\u0430\u0442\u0435\u043b\u0435\u0439 (x402)",
+                "group": "Экономика создателей (x402)",
                 "pages": [
                   "ru/creator-economy/nanopayments",
                   "ru/creator-economy/payment-flows",
@@ -160,7 +160,7 @@
                 ]
               },
               {
-                "group": "\u0421\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0438 \u0440\u043e\u0441\u0442",
+                "group": "Сообщество и рост",
                 "pages": [
                   "ru/community/comments",
                   "ru/community/blog",
@@ -169,7 +169,7 @@
                 ]
               },
               {
-                "group": "\u0410\u0433\u0435\u043d\u0442\u044b",
+                "group": "Агенты",
                 "pages": [
                   "ru/agents/agent-economy",
                   "ru/agents/swarm",
@@ -180,7 +180,7 @@
                 ]
               },
               {
-                "group": "\u041f\u043e\u043c\u043e\u0449\u044c",
+                "group": "Помощь",
                 "pages": [
                   "ru/support",
                   "ru/roadmap"
@@ -189,10 +189,21 @@
             ]
           },
           {
-            "tab": "\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a API",
+            "tab": "Журнал изменений",
             "groups": [
               {
-                "group": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f API",
+                "group": "Журнал изменений",
+                "pages": [
+                  "ru/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Справочник API",
+            "groups": [
+              {
+                "group": "Документация API",
                 "pages": [
                   "ru/api-reference/introduction",
                   "ru/api-reference/signals",
@@ -203,10 +214,10 @@
             ]
           },
           {
-            "tab": "\u042e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
+            "tab": "Юридическая информация",
             "groups": [
               {
-                "group": "\u042e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
+                "group": "Юридическая информация",
                 "pages": [
                   "ru/legal/terms",
                   "ru/legal/privacy"
@@ -220,10 +231,10 @@
         "language": "vi",
         "tabs": [
           {
-            "tab": "T\u00e0i li\u1ec7u",
+            "tab": "Tài liệu",
             "groups": [
               {
-                "group": "B\u1eaft \u0111\u1ea7u",
+                "group": "Bắt đầu",
                 "pages": [
                   "vi/index",
                   "vi/quickstart",
@@ -231,13 +242,13 @@
                 ]
               },
               {
-                "group": "X\u00e2y d\u1ef1ng tr\u00ean Puls",
+                "group": "Xây dựng trên Puls",
                 "pages": [
                   "vi/sdk"
                 ]
               },
               {
-                "group": "Kh\u00e1i ni\u1ec7m c\u1ed1t l\u00f5i",
+                "group": "Khái niệm cốt lõi",
                 "pages": [
                   "vi/concepts/prediction-markets",
                   "vi/concepts/wallets",
@@ -245,7 +256,7 @@
                 ]
               },
               {
-                "group": "Kinh t\u1ebf ng\u01b0\u1eddi s\u00e1ng t\u1ea1o (x402)",
+                "group": "Kinh tế người sáng tạo (x402)",
                 "pages": [
                   "vi/creator-economy/nanopayments",
                   "vi/creator-economy/payment-flows",
@@ -257,7 +268,7 @@
                 ]
               },
               {
-                "group": "C\u1ed9ng \u0111\u1ed3ng v\u00e0 t\u0103ng tr\u01b0\u1edfng",
+                "group": "Cộng đồng và tăng trưởng",
                 "pages": [
                   "vi/community/comments",
                   "vi/community/blog",
@@ -266,7 +277,7 @@
                 ]
               },
               {
-                "group": "T\u00e1c nh\u00e2n",
+                "group": "Tác nhân",
                 "pages": [
                   "vi/agents/agent-economy",
                   "vi/agents/swarm",
@@ -277,7 +288,7 @@
                 ]
               },
               {
-                "group": "Tr\u1ee3 gi\u00fap",
+                "group": "Trợ giúp",
                 "pages": [
                   "vi/support",
                   "vi/roadmap"
@@ -286,10 +297,21 @@
             ]
           },
           {
-            "tab": "Tham chi\u1ebfu API",
+            "tab": "Nhật ký thay đổi",
             "groups": [
               {
-                "group": "T\u00e0i li\u1ec7u API",
+                "group": "Nhật ký thay đổi",
+                "pages": [
+                  "vi/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Tham chiếu API",
+            "groups": [
+              {
+                "group": "Tài liệu API",
                 "pages": [
                   "vi/api-reference/introduction",
                   "vi/api-reference/signals",
@@ -300,10 +322,10 @@
             ]
           },
           {
-            "tab": "Ph\u00e1p l\u00fd",
+            "tab": "Pháp lý",
             "groups": [
               {
-                "group": "Ph\u00e1p l\u00fd",
+                "group": "Pháp lý",
                 "pages": [
                   "vi/legal/terms",
                   "vi/legal/privacy"
@@ -320,7 +342,7 @@
             "tab": "Documentation",
             "groups": [
               {
-                "group": "D\u00e9marrage",
+                "group": "Démarrage",
                 "pages": [
                   "fr/index",
                   "fr/quickstart",
@@ -328,13 +350,13 @@
                 ]
               },
               {
-                "group": "D\u00e9velopper sur Puls",
+                "group": "Développer sur Puls",
                 "pages": [
                   "fr/sdk"
                 ]
               },
               {
-                "group": "Concepts cl\u00e9s",
+                "group": "Concepts clés",
                 "pages": [
                   "fr/concepts/prediction-markets",
                   "fr/concepts/wallets",
@@ -342,7 +364,7 @@
                 ]
               },
               {
-                "group": "\u00c9conomie des cr\u00e9ateurs (x402)",
+                "group": "Économie des créateurs (x402)",
                 "pages": [
                   "fr/creator-economy/nanopayments",
                   "fr/creator-economy/payment-flows",
@@ -354,7 +376,7 @@
                 ]
               },
               {
-                "group": "Communaut\u00e9 et croissance",
+                "group": "Communauté et croissance",
                 "pages": [
                   "fr/community/comments",
                   "fr/community/blog",
@@ -383,7 +405,18 @@
             ]
           },
           {
-            "tab": "R\u00e9f\u00e9rence API",
+            "tab": "Journal des modifications",
+            "groups": [
+              {
+                "group": "Journal des modifications",
+                "pages": [
+                  "fr/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Référence API",
             "groups": [
               {
                 "group": "Documentation API",
@@ -397,10 +430,10 @@
             ]
           },
           {
-            "tab": "Mentions l\u00e9gales",
+            "tab": "Mentions légales",
             "groups": [
               {
-                "group": "Mentions l\u00e9gales",
+                "group": "Mentions légales",
                 "pages": [
                   "fr/legal/terms",
                   "fr/legal/privacy"
@@ -439,7 +472,7 @@
                 ]
               },
               {
-                "group": "Creator-\u00d6konomie (x402)",
+                "group": "Creator-Ökonomie (x402)",
                 "pages": [
                   "de/creator-economy/nanopayments",
                   "de/creator-economy/payment-flows",
@@ -475,6 +508,17 @@
                 "pages": [
                   "de/support",
                   "de/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Änderungsprotokoll",
+            "groups": [
+              {
+                "group": "Änderungsprotokoll",
+                "pages": [
+                  "de/changelog/overview"
                 ]
               }
             ]
@@ -577,6 +621,17 @@
             ]
           },
           {
+            "tab": "Changelog",
+            "groups": [
+              {
+                "group": "Changelog",
+                "pages": [
+                  "nl/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "API-referentie",
             "groups": [
               {
@@ -608,10 +663,10 @@
         "language": "hi",
         "tabs": [
           {
-            "tab": "\u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c\u093c\u0940\u0915\u0930\u0923",
+            "tab": "दस्तावेज़ीकरण",
             "groups": [
               {
-                "group": "\u0936\u0941\u0930\u0941\u0906\u0924 \u0915\u0930\u0947\u0902",
+                "group": "शुरुआत करें",
                 "pages": [
                   "hi/index",
                   "hi/quickstart",
@@ -619,13 +674,13 @@
                 ]
               },
               {
-                "group": "Puls \u092a\u0930 \u092c\u0928\u093e\u090f\u0902",
+                "group": "Puls पर बनाएं",
                 "pages": [
                   "hi/sdk"
                 ]
               },
               {
-                "group": "\u092e\u0941\u0916\u094d\u092f \u0905\u0935\u0927\u093e\u0930\u0923\u093e\u090f\u0901",
+                "group": "मुख्य अवधारणाएँ",
                 "pages": [
                   "hi/concepts/prediction-markets",
                   "hi/concepts/wallets",
@@ -633,7 +688,7 @@
                 ]
               },
               {
-                "group": "\u0915\u094d\u0930\u093f\u090f\u091f\u0930 \u0907\u0915\u0949\u0928\u092e\u0940 (x402)",
+                "group": "क्रिएटर इकॉनमी (x402)",
                 "pages": [
                   "hi/creator-economy/nanopayments",
                   "hi/creator-economy/payment-flows",
@@ -645,7 +700,7 @@
                 ]
               },
               {
-                "group": "\u0938\u092e\u0941\u0926\u093e\u092f \u0914\u0930 \u0935\u0943\u0926\u094d\u0927\u093f",
+                "group": "समुदाय और वृद्धि",
                 "pages": [
                   "hi/community/comments",
                   "hi/community/blog",
@@ -654,7 +709,7 @@
                 ]
               },
               {
-                "group": "\u090f\u091c\u0947\u0902\u091f",
+                "group": "एजेंट",
                 "pages": [
                   "hi/agents/agent-economy",
                   "hi/agents/swarm",
@@ -665,7 +720,7 @@
                 ]
               },
               {
-                "group": "\u0938\u0939\u093e\u092f\u0924\u093e",
+                "group": "सहायता",
                 "pages": [
                   "hi/support",
                   "hi/roadmap"
@@ -674,10 +729,21 @@
             ]
           },
           {
-            "tab": "API \u0938\u0902\u0926\u0930\u094d\u092d",
+            "tab": "चेंजलॉग",
             "groups": [
               {
-                "group": "API \u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c\u093c\u0940\u0915\u0930\u0923",
+                "group": "चेंजलॉग",
+                "pages": [
+                  "hi/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API संदर्भ",
+            "groups": [
+              {
+                "group": "API दस्तावेज़ीकरण",
                 "pages": [
                   "hi/api-reference/introduction",
                   "hi/api-reference/signals",
@@ -688,10 +754,10 @@
             ]
           },
           {
-            "tab": "\u0915\u093e\u0928\u0942\u0928\u0940",
+            "tab": "कानूनी",
             "groups": [
               {
-                "group": "\u0915\u093e\u0928\u0942\u0928\u0940",
+                "group": "कानूनी",
                 "pages": [
                   "hi/legal/terms",
                   "hi/legal/privacy"
@@ -766,6 +832,17 @@
                 "pages": [
                   "id/support",
                   "id/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Catatan perubahan",
+            "groups": [
+              {
+                "group": "Catatan perubahan",
+                "pages": [
+                  "id/changelog/overview"
                 ]
               }
             ]
