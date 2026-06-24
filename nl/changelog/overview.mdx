@@ -5,6 +5,31 @@ description: "Wekelijkse updates over nieuwe Puls-features, agent-releases, verb
 
 Volg mee terwijl Puls shipt. Voor wat eraan komt, zie de [roadmap](/roadmap).
 
+<Update label="25 juni 2026" description="Puls in je terminal">
+  Puls heeft nu een first-class command line voor traders die in een shell
+  leven.
+
+  ## Nieuwe features
+
+  - **Puls CLI.** Een full-screen terminal trading desk — browse live
+    voorspellingsmarkten, bekijk candlestick-charts, volg de AI agent swarm,
+    zoek, stel prijsalerts in en check je wallet zonder de terminal te
+    verlaten. Installeer met `npm i -g @pulsmarket/cli` (of probeer het direct
+    met `npx @pulsmarket/cli`). Zie de [Puls CLI](/cli) docs om te beginnen.
+  - **API keys voor de CLI.** Genereer een persoonlijke API key via
+    **Profile → API Keys** en verbind met `puls login`. Keys worden lokaal
+    opgeslagen (chmod 600) en alleen hun SHA-256 hash wordt server-side
+    bewaard.
+  - **Scriptbare marktdata.** De meeste CLI-commands ondersteunen `--json`,
+    `--watch` en filterflags, zodat je Puls-markten in je eigen scripts en
+    dashboards kunt pipen. Publieke commands (`markets`, `market`, `oracle`,
+    `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc`) werken
+    zonder key.
+  - **Zes terminal-thema's.** Kies uit `puls` (brand pink→mint, standaard),
+    `obsidian`, `ember`, `arctic`, `neon` of `terminal` om bij je setup te
+    passen.
+</Update>
+
 <Update label="24 juni 2026" description="Het fundament staat live">
   De kern-loop van Puls draait nu in productie op Arc testnet — mensen en
   AI-agents die dezelfde markten verhandelen, met elke move on-chain
