@@ -1,0 +1,71 @@
+---
+title: "Puls CLI"
+description: "Puls के लिए एक टर्मिनल ट्रेडिंग डेस्क — लाइव मार्केट, कैंडलस्टिक चार्ट, AI एजेंट स्वार्म, और एक फुल-स्क्रीन TUI। एक npm install।"
+---
+
+**Puls CLI** पूरे मार्केट को आपके टर्मिनल में लाता है — लाइव मार्केट ब्राउज़ करें,
+उन्हें असली कैंडलस्टिक्स के साथ चार्ट करें, **AI एजेंट स्वार्म** को देखें, और चैट-फ्री
+ट्रेड डेस्क वाइब्स का अनुभव लें, यह सब एक फुल-स्क्रीन TUI में। शून्य निर्भरताएँ, Node ≥ 18,
+truecolor।
+
+```bash
+npm i -g @pulsmarket/cli
+puls
+```
+
+<Note>
+  इसे आज़माने के लिए किसी इंस्टॉल की ज़रूरत नहीं: `npx @pulsmarket/cli`। truecolor
+  टर्मिनल (Windows Terminal, iTerm, आधुनिक Linux टर्मिनल) में सबसे अच्छा।
+</Note>
+
+## कनेक्ट करें
+
+ऐप में एक की जनरेट करें (**Profile → API Keys → Generate**), फिर:
+
+```bash
+puls login pk_live_xxxxxxxx
+```
+
+आपकी की `~/.puls/config.json` (chmod 600) में स्टोर होती है; सर्वर केवल उसका SHA-256 हैश रखता है।
+
+## कमांड्स
+
+| कमांड | यह क्या करता है |
+|---|---|
+| `puls` | इंटरैक्टिव फुल-स्क्रीन TUI लॉन्च करें |
+| `puls agents` | **AI स्वार्म** + Pulse/Sage हाउस एजेंट्स + हाल के निर्णय |
+| `puls markets` | ऑड्स + स्पार्कलाइन्स के साथ लाइव प्रेडिक्शन मार्केट्स |
+| `puls market <slug>` | विस्तृत विवरण + **कैंडलस्टिक चार्ट** |
+| `puls watch <slug>` | लाइव प्राइस ट्रैकर |
+| `puls oracle <slug>` | AI स्वार्म बनाम भीड़ |
+| `puls search <term>` | रैंकिंग के साथ फ़ज़ी सर्च |
+| `puls top` · `puls heatmap` | वॉल्यूम के अनुसार टॉप · विज़ुअल मार्केट ग्रिड |
+| `puls compare <a> <b>` | साइड-बाय-साइड मार्केट्स |
+| `puls history <slug>` | प्राइस हिस्ट्री + OHLC |
+| `puls feed` | लाइव ट्रेड स्ट्रीम |
+| `puls stats` | प्लेटफ़ॉर्म डैशबोर्ड |
+| `puls calc <odds> <bet>` | बेट कैलकुलेटर (पेआउट्स + EV) |
+| `puls alert <slug> up\|down <¢>` | प्राइस अलर्ट्स |
+| `puls wallet` | वॉलेट + USDC बैलेंस |
+| `puls theme [name]` | थीम बदलें (डिफ़ॉल्ट: **Puls** pink→mint) |
+
+`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` सार्वजनिक हैं (कोई की नहीं)। `wallet` आपकी की का उपयोग करता है।
+
+## थीम्स
+
+पाँच पैलेट — `puls` (ब्रांड pink→mint, डिफ़ॉल्ट), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+
+```bash
+puls theme puls
+```
+
+## फ़्लैग्स
+
+`--json` (स्क्रिप्ट-फ्रेंडली आउटपुट) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+
+```bash
+puls markets --json | jq '.[0]'
+puls stats --watch
+```
+
+स्रोत: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)

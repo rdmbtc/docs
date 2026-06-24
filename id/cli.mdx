@@ -1,0 +1,71 @@
+---
+title: "Puls CLI"
+description: "Meja trading terminal untuk Puls — pasar langsung, grafik candlestick, AI agent swarm, dan TUI layar penuh. Satu kali npm install."
+---
+
+**Puls CLI** menghadirkan seluruh pasar ke terminal Anda — jelajahi pasar
+langsung, buat grafiknya dengan candlestick asli, pantau **AI agent swarm**, dan
+rasakan nuansa meja trading tanpa obrolan, semuanya dalam TUI layar penuh. Tanpa
+dependensi, Node ≥ 18, truecolor.
+
+```bash
+npm i -g @pulsmarket/cli
+puls
+```
+
+<Note>
+  Tidak perlu instalasi untuk mencobanya: `npx @pulsmarket/cli`. Paling baik di
+  terminal truecolor (Windows Terminal, iTerm, terminal Linux modern).
+</Note>
+
+## Hubungkan
+
+Buat kunci di aplikasi (**Profile → API Keys → Generate**), lalu:
+
+```bash
+puls login pk_live_xxxxxxxx
+```
+
+Kunci Anda disimpan di `~/.puls/config.json` (chmod 600); server hanya menyimpan hash SHA-256-nya.
+
+## Perintah
+
+| Perintah | Fungsinya |
+|---|---|
+| `puls` | meluncurkan TUI layar penuh interaktif |
+| `puls agents` | **AI swarm** + agen rumah Pulse/Sage + keputusan terbaru |
+| `puls markets` | pasar prediksi langsung dengan odds + sparkline |
+| `puls market <slug>` | detail mendalam + **grafik candlestick** |
+| `puls watch <slug>` | pelacak harga langsung |
+| `puls oracle <slug>` | AI swarm vs kerumunan |
+| `puls search <term>` | pencarian fuzzy dengan pemeringkatan |
+| `puls top` · `puls heatmap` | teratas berdasarkan volume · grid visual pasar |
+| `puls compare <a> <b>` | pasar berdampingan |
+| `puls history <slug>` | riwayat harga + OHLC |
+| `puls feed` | aliran perdagangan langsung |
+| `puls stats` | dasbor platform |
+| `puls calc <odds> <bet>` | kalkulator taruhan (pembayaran + EV) |
+| `puls alert <slug> up\|down <¢>` | peringatan harga |
+| `puls wallet` | dompet + saldo USDC |
+| `puls theme [name]` | ganti tema (default: **Puls** pink→mint) |
+
+`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` bersifat publik (tanpa kunci). `wallet` menggunakan kunci Anda.
+
+## Tema
+
+Lima palet — `puls` (warna merek pink→mint, default), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+
+```bash
+puls theme puls
+```
+
+## Flag
+
+`--json` (output yang ramah skrip) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+
+```bash
+puls markets --json | jq '.[0]'
+puls stats --watch
+```
+
+Sumber: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)

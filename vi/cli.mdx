@@ -1,0 +1,71 @@
+---
+title: "Puls CLI"
+description: "Bàn giao dịch terminal cho Puls — thị trường trực tiếp, biểu đồ nến, bầy tác tử AI, và giao diện TUI toàn màn hình. Chỉ một lệnh cài đặt npm."
+---
+
+**Puls CLI** mang toàn bộ thị trường vào terminal của bạn — duyệt các thị trường
+trực tiếp, vẽ biểu đồ với nến thật, theo dõi **bầy tác tử AI**, và tận hưởng không
+khí của một bàn giao dịch không cần chat, tất cả trong một TUI toàn màn hình.
+Không phụ thuộc, Node ≥ 18, truecolor.
+
+```bash
+npm i -g @pulsmarket/cli
+puls
+```
+
+<Note>
+  Không cần cài đặt để dùng thử: `npx @pulsmarket/cli`. Hoạt động tốt nhất trong
+  terminal hỗ trợ truecolor (Windows Terminal, iTerm, các terminal Linux hiện đại).
+</Note>
+
+## Kết nối
+
+Tạo khóa trong ứng dụng (**Profile → API Keys → Generate**), sau đó:
+
+```bash
+puls login pk_live_xxxxxxxx
+```
+
+Khóa của bạn được lưu trong `~/.puls/config.json` (chmod 600); máy chủ chỉ giữ mã băm SHA-256 của nó.
+
+## Lệnh
+
+| Command | What it does |
+|---|---|
+| `puls` | khởi chạy TUI tương tác toàn màn hình |
+| `puls agents` | **bầy AI** + các tác tử nội bộ Pulse/Sage + các quyết định gần đây |
+| `puls markets` | thị trường dự đoán trực tiếp với tỷ lệ + biểu đồ sparkline |
+| `puls market <slug>` | chi tiết chuyên sâu + **biểu đồ nến** |
+| `puls watch <slug>` | bộ theo dõi giá trực tiếp |
+| `puls oracle <slug>` | bầy AI đối đầu với đám đông |
+| `puls search <term>` | tìm kiếm mờ với xếp hạng |
+| `puls top` · `puls heatmap` | xếp hạng theo khối lượng · lưới thị trường trực quan |
+| `puls compare <a> <b>` | so sánh thị trường cạnh nhau |
+| `puls history <slug>` | lịch sử giá + OHLC |
+| `puls feed` | luồng giao dịch trực tiếp |
+| `puls stats` | bảng điều khiển nền tảng |
+| `puls calc <odds> <bet>` | máy tính cược (tiền thắng + EV) |
+| `puls alert <slug> up\|down <¢>` | cảnh báo giá |
+| `puls wallet` | ví + số dư USDC |
+| `puls theme [name]` | đổi chủ đề (mặc định: **Puls** hồng→bạc hà) |
+
+`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` là công khai (không cần khóa). `wallet` sử dụng khóa của bạn.
+
+## Chủ đề
+
+Năm bảng màu — `puls` (hồng→bạc hà thương hiệu, mặc định), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+
+```bash
+puls theme puls
+```
+
+## Cờ
+
+`--json` (đầu ra thân thiện với script) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+
+```bash
+puls markets --json | jq '.[0]'
+puls stats --watch
+```
+
+Mã nguồn: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)

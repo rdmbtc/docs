@@ -137,7 +137,8 @@
               {
                 "group": "Создавайте на Puls",
                 "pages": [
-                  "ru/sdk"
+                  "ru/sdk",
+                  "ru/cli"
                 ]
               },
               {
@@ -245,7 +246,8 @@
               {
                 "group": "Xây dựng trên Puls",
                 "pages": [
-                  "vi/sdk"
+                  "vi/sdk",
+                  "vi/cli"
                 ]
               },
               {
@@ -353,7 +355,8 @@
               {
                 "group": "Développer sur Puls",
                 "pages": [
-                  "fr/sdk"
+                  "fr/sdk",
+                  "fr/cli"
                 ]
               },
               {
@@ -461,7 +464,8 @@
               {
                 "group": "Auf Puls entwickeln",
                 "pages": [
-                  "de/sdk"
+                  "de/sdk",
+                  "de/cli"
                 ]
               },
               {
@@ -569,7 +573,8 @@
               {
                 "group": "Bouwen op Puls",
                 "pages": [
-                  "nl/sdk"
+                  "nl/sdk",
+                  "nl/cli"
                 ]
               },
               {
@@ -677,7 +682,8 @@
               {
                 "group": "Puls पर बनाएं",
                 "pages": [
-                  "hi/sdk"
+                  "hi/sdk",
+                  "hi/cli"
                 ]
               },
               {
@@ -785,7 +791,8 @@
               {
                 "group": "Membangun di Puls",
                 "pages": [
-                  "id/sdk"
+                  "id/sdk",
+                  "id/cli"
                 ]
               },
               {
