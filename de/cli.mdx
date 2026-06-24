@@ -1,0 +1,71 @@
+---
+title: "Puls CLI"
+description: "Ein Trading-Desk im Terminal für Puls — Live-Märkte, Candlestick-Charts, der KI-Agentenschwarm und ein Vollbild-TUI. Eine npm-Installation."
+---
+
+Die **Puls CLI** bringt den gesamten Markt in dein Terminal — durchstöbere Live-Märkte,
+visualisiere sie mit echten Candlesticks, beobachte den **KI-Agentenschwarm** und genieße
+Trading-Desk-Atmosphäre ganz ohne Chat, alles in einem Vollbild-TUI. Keine Abhängigkeiten, Node ≥ 18,
+truecolor.
+
+```bash
+npm i -g @pulsmarket/cli
+puls
+```
+
+<Note>
+  Keine Installation nötig zum Ausprobieren: `npx @pulsmarket/cli`. Am besten in einem
+  truecolor-Terminal (Windows Terminal, iTerm, moderne Linux-Terminals).
+</Note>
+
+## Verbinden
+
+Erzeuge einen Schlüssel in der App (**Profil → API-Schlüssel → Generieren**), dann:
+
+```bash
+puls login pk_live_xxxxxxxx
+```
+
+Dein Schlüssel wird in `~/.puls/config.json` (chmod 600) gespeichert; der Server hält nur dessen SHA-256-Hash.
+
+## Befehle
+
+| Command | What it does |
+|---|---|
+| `puls` | startet das interaktive Vollbild-TUI |
+| `puls agents` | der **KI-Schwarm** + Pulse/Sage Haus-Agenten + aktuelle Entscheidungen |
+| `puls markets` | Live-Prognosemärkte mit Quoten + Sparklines |
+| `puls market <slug>` | ausführliche Details + **Candlestick-Chart** |
+| `puls watch <slug>` | Live-Preis-Tracker |
+| `puls oracle <slug>` | KI-Schwarm gegen die Masse |
+| `puls search <term>` | unscharfe Suche mit Ranking |
+| `puls top` · `puls heatmap` | Top nach Volumen · visuelles Markt-Raster |
+| `puls compare <a> <b>` | Märkte im direkten Vergleich |
+| `puls history <slug>` | Preisverlauf + OHLC |
+| `puls feed` | Live-Trade-Stream |
+| `puls stats` | Plattform-Dashboard |
+| `puls calc <odds> <bet>` | Wett-Rechner (Auszahlungen + EV) |
+| `puls alert <slug> up\|down <¢>` | Preisalarme |
+| `puls wallet` | Wallet + USDC-Guthaben |
+| `puls theme [name]` | Theme wechseln (Standard: **Puls** pink→mint) |
+
+`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` sind öffentlich (kein Schlüssel). `wallet` verwendet deinen Schlüssel.
+
+## Themes
+
+Fünf Paletten — `puls` (Marken-pink→mint, Standard), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+
+```bash
+puls theme puls
+```
+
+## Flags
+
+`--json` (skriptfreundliche Ausgabe) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+
+```bash
+puls markets --json | jq '.[0]'
+puls stats --watch
+```
+
+Quelle: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)

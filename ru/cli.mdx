@@ -1,0 +1,72 @@
+---
+title: "Puls CLI"
+description: "Терминальный торговый стол для Puls — живые рынки, свечные графики, рой AI-агентов и полноэкранный TUI. Одна команда npm install."
+---
+
+**Puls CLI** приносит весь рынок прямо в ваш терминал — просматривайте живые
+рынки, стройте настоящие свечные графики, наблюдайте за **роем AI-агентов** и
+ощутите атмосферу торгового стола без лишней болтовни — всё это в полноэкранном
+TUI. Никаких зависимостей, Node ≥ 18, truecolor.
+
+```bash
+npm i -g @pulsmarket/cli
+puls
+```
+
+<Note>
+  Установка не требуется, чтобы попробовать: `npx @pulsmarket/cli`. Лучше всего
+  работает в truecolor-терминале (Windows Terminal, iTerm, современные терминалы
+  Linux).
+</Note>
+
+## Подключение
+
+Сгенерируйте ключ в приложении (**Profile → API Keys → Generate**), затем:
+
+```bash
+puls login pk_live_xxxxxxxx
+```
+
+Ваш ключ хранится в `~/.puls/config.json` (chmod 600); сервер хранит только его SHA-256-хеш.
+
+## Команды
+
+| Команда | Что делает |
+|---|---|
+| `puls` | запускает интерактивный полноэкранный TUI |
+| `puls agents` | **рой AI-агентов** + домашние агенты Pulse/Sage + последние решения |
+| `puls markets` | живые рынки предсказаний с коэффициентами и спарклайнами |
+| `puls market <slug>` | подробная информация + **свечной график** |
+| `puls watch <slug>` | живой трекер цены |
+| `puls oracle <slug>` | рой AI против толпы |
+| `puls search <term>` | нечёткий поиск с ранжированием |
+| `puls top` · `puls heatmap` | топ по объёму · визуальная сетка рынков |
+| `puls compare <a> <b>` | рынки бок о бок |
+| `puls history <slug>` | история цен + OHLC |
+| `puls feed` | живой поток сделок |
+| `puls stats` | панель статистики платформы |
+| `puls calc <odds> <bet>` | калькулятор ставок (выплаты + EV) |
+| `puls alert <slug> up\|down <¢>` | оповещения о цене |
+| `puls wallet` | кошелёк + баланс USDC |
+| `puls theme [name]` | смена темы (по умолчанию: **Puls** розовый→мятный) |
+
+`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` — публичные (ключ не нужен). `wallet` использует ваш ключ.
+
+## Темы
+
+Пять палитр — `puls` (брендовая розовый→мятный, по умолчанию), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+
+```bash
+puls theme puls
+```
+
+## Флаги
+
+`--json` (вывод, удобный для скриптов) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+
+```bash
+puls markets --json | jq '.[0]'
+puls stats --watch
+```
+
+Исходный код: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)
