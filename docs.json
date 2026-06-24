@@ -81,6 +81,17 @@
             ]
           },
           {
+            "tab": "Changelog",
+            "groups": [
+              {
+                "group": "Changelog",
+                "pages": [
+                  "changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "API reference",
             "groups": [
               {
@@ -173,6 +184,17 @@
                 "pages": [
                   "ru/support",
                   "ru/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Журнал изменений",
+            "groups": [
+              {
+                "group": "Журнал изменений",
+                "pages": [
+                  "ru/changelog/overview"
                 ]
               }
             ]
@@ -275,6 +297,17 @@
             ]
           },
           {
+            "tab": "Nhật ký thay đổi",
+            "groups": [
+              {
+                "group": "Nhật ký thay đổi",
+                "pages": [
+                  "vi/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "Tham chiếu API",
             "groups": [
               {
@@ -367,6 +400,17 @@
                 "pages": [
                   "fr/support",
                   "fr/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Journal des modifications",
+            "groups": [
+              {
+                "group": "Journal des modifications",
+                "pages": [
+                  "fr/changelog/overview"
                 ]
               }
             ]
@@ -469,6 +513,17 @@
             ]
           },
           {
+            "tab": "Änderungsprotokoll",
+            "groups": [
+              {
+                "group": "Änderungsprotokoll",
+                "pages": [
+                  "de/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "API-Referenz",
             "groups": [
               {
@@ -561,6 +616,17 @@
                 "pages": [
                   "nl/support",
                   "nl/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "groups": [
+              {
+                "group": "Changelog",
+                "pages": [
+                  "nl/changelog/overview"
                 ]
               }
             ]
@@ -663,6 +729,17 @@
             ]
           },
           {
+            "tab": "चेंजलॉग",
+            "groups": [
+              {
+                "group": "चेंजलॉग",
+                "pages": [
+                  "hi/changelog/overview"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "API संदर्भ",
             "groups": [
               {
@@ -755,6 +832,17 @@
                 "pages": [
                   "id/support",
                   "id/roadmap"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Catatan perubahan",
+            "groups": [
+              {
+                "group": "Catatan perubahan",
+                "pages": [
+                  "id/changelog/overview"
                 ]
               }
             ]
