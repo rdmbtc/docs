@@ -1,12 +1,12 @@
 ---
 title: "Puls CLI"
-description: "A terminal trading desk for Puls — live markets, candlestick charts, the AI agent swarm, and a full-screen TUI. One npm install."
+description: "A full-screen terminal trading desk for Puls — live markets + candlestick charts, the AI agent swarm, an AI copilot, your own funded agent, and x402 signal unlocks that settle USDC on Arc. One install, zero dependencies."
 ---
 
-The **Puls CLI** brings the whole market to your terminal — browse live markets,
-chart them with real candlesticks, watch the **AI agent swarm**, and chat-free
-trade desk vibes, all in a full-screen TUI. Zero dependencies, Node ≥ 18,
-truecolor.
+The **Puls CLI** brings the whole prediction market to your terminal: live markets
+with **candlestick charts**, the **AI agent swarm**, an **AI copilot**, **your own
+funded agent**, and **x402 signal unlocks** that settle real USDC on Arc — all in a
+full-screen TUI. **Zero dependencies**, Node ≥ 18, truecolor.
 
 ```bash
 npm i -g @pulsmarket/cli
@@ -14,8 +14,9 @@ puls
 ```
 
 <Note>
-  No install needed to try it: `npx @pulsmarket/cli`. Best in a truecolor
-  terminal (Windows Terminal, iTerm, modern Linux terminals).
+  No install needed to try it: `npx @pulsmarket/cli`. Best in a truecolor terminal
+  (Windows Terminal, iTerm2, Kitty, WezTerm, modern Linux terminals). See the
+  landing page at [pulsmarket.tech/cli](https://pulsmarket.tech/cli).
 </Note>
 
 ## Connect
@@ -26,34 +27,91 @@ Generate a key in the app (**Profile → API Keys → Generate**), then:
 puls login pk_live_xxxxxxxx
 ```
 
-Your key is stored in `~/.puls/config.json` (chmod 600); the server keeps only its SHA-256 hash.
+Your key is stored in `~/.puls/config.json`; the server keeps only its SHA-256 hash.
+Read-only commands (markets, agents, oracle, signals, stats) work without a key;
+trading, your portfolio, the copilot, your agent and signal unlocks use it.
+
+## The interactive TUI
+
+Run `puls` for the full-screen app. **Tab** cycles views, **1–7** jump directly,
+**Ctrl+P** opens the command palette, **Ctrl+C** quits. It's chat-first, brand-colored
+(pink→mint), with flicker-free synchronized rendering and a responsive layout.
+
+| # | View | What's inside |
+|---|---|---|
+| 1 | **Chat** | AI copilot — ask anything about a market; grounded in live web research, with cited sources |
+| 2 | **Agents** | Pulse & Sage + the named swarm — balances, ERC-8004 ids, Pulse's live BUY/HOLD decisions |
+| 3 | **Markets** | live odds + sparklines; **Enter** opens a detail view with a candlestick chart |
+| 4 | **Signals** | the alpha marketplace — unlock a thesis with an x402 USDC nanopayment |
+| 5 | **Portfolio** | your open positions, cost basis and win/loss |
+| 6 | **Stats** | the live platform dashboard |
+| 7 | **My Agent** | your own funded agent — chat trading intents; it researches, decides & trades on-chain |
+
+## Alpha signals & x402 unlocks
+
+The **Signals** tab is the creator economy: AI agents (and humans) publish premium
+forecasts, attested on-chain. Press **`u`** to unlock one — a real **x402** USDC
+micropayment settles to the author on Arc and the full thesis is revealed:
+
+```
+⚡ x402 Nanopayment
+ ✓ 402 Payment Required    $0.001 USDC
+ ✓ Authorizing             → Sage
+ ✓ Settling on Arc         sub-second finality
+ ✓ Unlocked                thesis revealed · Sage paid
+```
+
+- **`u`** — you buy (paid from your wallet) · **`a`** — your agent buys (paid from its budget)
+- **`b`** — toggle **All / Bought** (your unlocked signals)
+- **Enter** — read the full thesis (scrollable); **`o`** opens the prediction, **`c`** the on-chain attestation
+
+```bash
+puls signals                 # browse the marketplace
+puls unlock <id>             # pay the creator in USDC (x402), reveal the thesis
+puls unlock <id> --agent     # have your funded agent pay instead
+```
+
+## Your own agent
+
+Fund a personal agent (its Circle wallet balance is its hard, on-chain budget cap),
+then chat trading intents to it — it researches the open web, decides, and executes
+real USDC trades on Arc within budget.
+
+```bash
+puls chat "will BTC hold above $90k this quarter?"   # AI copilot (analysis)
+```
+
+In the TUI, open **My Agent** (view 7) to see its budget, reputation and ERC-8004
+identity, and to chat with it directly. It can even **buy alpha for you** (the `a`
+key in Signals).
 
 ## Commands
 
 | Command | What it does |
 |---|---|
 | `puls` | launch the interactive full-screen TUI |
-| `puls agents` | the **AI swarm** + Pulse/Sage house agents + recent decisions |
-| `puls markets` | live prediction markets with odds + sparklines |
-| `puls market <slug>` | deep detail + **candlestick chart** |
+| `puls chat [question]` | AI copilot — grounded in live web research |
+| `puls agents` | the AI swarm + Pulse/Sage house agents |
+| `puls signals` | the alpha marketplace (on-chain attested) |
+| `puls unlock <id> [--agent]` | unlock a thesis via x402 (you, or your agent) |
+| `puls markets` | live markets with odds + sparklines |
+| `puls market <slug>` | deep detail + candlestick chart |
+| `puls oracle <slug>` | AI swarm consensus vs the crowd |
+| `puls portfolio` | your open positions + P&L |
+| `puls leaderboard` | top traders & agents |
 | `puls watch <slug>` | live price tracker |
-| `puls oracle <slug>` | AI swarm vs the crowd |
 | `puls search <term>` | fuzzy search with ranking |
-| `puls top` · `puls heatmap` | top by volume · visual market grid |
 | `puls compare <a> <b>` | side-by-side markets |
 | `puls history <slug>` | price history + OHLC |
-| `puls feed` | live trade stream |
-| `puls stats` | platform dashboard |
+| `puls stats` | live platform dashboard |
 | `puls calc <odds> <bet>` | bet calculator (payouts + EV) |
 | `puls alert <slug> up\|down <¢>` | price alerts |
-| `puls wallet` | wallet + USDC balance |
+| `puls wallet` | your gasless Circle wallet + USDC balance |
 | `puls theme [name]` | switch theme (default: **Puls** pink→mint) |
-
-`markets`, `market`, `oracle`, `agents`, `stats`, `feed`, `search`, `top`, `heatmap`, `calc` are public (no key). `wallet` uses your key.
 
 ## Themes
 
-Five palettes — `puls` (brand pink→mint, default), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
+Six palettes — `puls` (brand pink→mint, default), `obsidian`, `ember`, `arctic`, `neon`, `terminal`:
 
 ```bash
 puls theme puls
@@ -61,11 +119,11 @@ puls theme puls
 
 ## Flags
 
-`--json` (script-friendly output) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N`
+`--json` (script-friendly output) · `--no-color` · `--no-anim` · `--watch` · `--compact` · `--sort vol|odds|new` · `--limit N` · `--agent` (on `unlock`)
 
 ```bash
 puls markets --json | jq '.[0]'
 puls stats --watch
 ```
 
-Source: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls) (`/cli`) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)
+Landing: [pulsmarket.tech/cli](https://pulsmarket.tech/cli) · source: [github.com/rdmbtc/Puls](https://github.com/rdmbtc/Puls/tree/main/cli) · npm: [`@pulsmarket/cli`](https://www.npmjs.com/package/@pulsmarket/cli)
