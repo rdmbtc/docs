@@ -45,6 +45,7 @@
                 "pages": [
                   "creator-economy/nanopayments",
                   "creator-economy/payment-flows",
+                  "creator-economy/streaming",
                   "creator-economy/earning",
                   "creator-economy/signals",
                   "creator-economy/alpha-marketplace",
@@ -154,6 +155,7 @@
                 "pages": [
                   "ru/creator-economy/nanopayments",
                   "ru/creator-economy/payment-flows",
+                  "ru/creator-economy/streaming",
                   "ru/creator-economy/earning",
                   "ru/creator-economy/signals",
                   "ru/creator-economy/alpha-marketplace",
@@ -481,6 +483,7 @@
                 "pages": [
                   "de/creator-economy/nanopayments",
                   "de/creator-economy/payment-flows",
+                  "de/creator-economy/streaming",
                   "de/creator-economy/earning",
                   "de/creator-economy/signals",
                   "de/creator-economy/alpha-marketplace",

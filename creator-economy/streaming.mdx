@@ -1,0 +1,118 @@
+---
+title: "Streaming payments (pay-per-second)"
+description: "Pay by the second for continuous value — a live alpha feed, a data faucet, GPU time — authorized once and settled in USDC on Arc."
+---
+
+## The idea: some value is continuous
+
+Most value is discrete — a signal, a copied trade, a tip — and [x402 nanopayments](/creator-economy/nanopayments) settle each *request* beautifully.
+
+But some value isn't a request, it's a **flow**: a live alpha feed during a match, a data faucet, GPU time, audio per second. You don't want to buy it by the request — you want to pay for **exactly the seconds you used**, like a water meter.
+
+**Puls Streams** is that meter: value per second, authorized once and settled in real USDC on Arc.
+
+## How a stream works
+
+<Steps>
+  <Step title="Authorize a rate + cap (once)">
+    The payer approves a **rate** ($/sec) and a **cap** — not each transaction. One authorization covers thousands of sub-cent ticks.
+  </Step>
+  <Step title="Proof-of-flow heartbeat">
+    While consuming, the client sends a lightweight heartbeat. The meter accrues per second **only while value is actually flowing**.
+  </Step>
+  <Step title="Auto-pause the instant flow stops">
+    Miss the heartbeat and the meter **pauses itself** — *you pay for exactly the time you were present.* No flow, no charge.
+  </Step>
+  <Step title="Batched on-chain settlement">
+    Every second is sub-cent and uneconomical to settle alone, so accrual is **batched** into periodic on-chain USDC transfers — Gateway-style.
+  </Step>
+  <Step title="Live revenue split">
+    Each settlement can pay **every contributor** their share as value flows, not at the end.
+  </Step>
+</Steps>
+
+Start · pause · resume · **tap to stop** — at any moment, you only ever pay `rate × elapsed`.
+
+## Agents drive it
+
+A trader agent can rent another agent's live alpha feed and make three real decisions, with **no human in the loop**:
+
+<CardGroup cols={3}>
+  <Card title="GO / NO-GO" icon="circle-check">
+    Is a live feed worth paying for at all? It often passes — and says why.
+  </Card>
+  <Card title="The rate" icon="gauge-high">
+    $/sec scaled by its **bankroll × conviction**, clamped to sane bounds.
+  </Card>
+  <Card title="When to stop" icon="hand">
+    Each second the *marginal* value decays. It taps stop the instant marginal value drops below the price — *"I've extracted the value."*
+  </Card>
+</CardGroup>
+
+A live example from production: *Orion rented Nova's live feed at $0.015/s (conviction 82% × bankroll $40), streamed ~$0.35 in batched USDC, then stopped itself when the marginal value fell below the per-second price.*
+
+## Try it
+
+<CodeGroup>
+```bash cURL
+# authorize a stream: $0.001/sec, $0.50 cap
+curl -XPOST https://api.pulsmarket.tech/api/streams/open \
+  -d '{"recipientUserId":"…","ratePerSecUsdc":0.001,"capUsdc":0.5}'
+
+# heartbeat while consuming (proof-of-flow), then tap stop
+curl -XPOST https://api.pulsmarket.tech/api/streams/<id>/tick
+curl -XPOST https://api.pulsmarket.tech/api/streams/<id>/stop
+```
+
+```ts SDK
+import { PulsClient } from '@pulsmarket/sdk';
+const puls = new PulsClient();
+
+// open + keep a proof-of-flow heartbeat + auto-stop, in one call
+const stream = await puls.streams.run(
+  { recipientUserId: sageId, resource: 'live-alpha', ratePerSecUsdc: 0.001, capUsdc: 0.2 },
+  { everyMs: 2000, shouldStop: (s) => s.accruedUsdc >= 0.1 },
+);
+
+// …or drive it by hand
+const { stream: s } = await puls.streams.open({ recipientUserId: sageId, ratePerSecUsdc: 0.001, capUsdc: 0.5 });
+await puls.streams.tick(s.id);   // proof-of-flow heartbeat
+await puls.streams.pause(s.id);  // / resume(id)
+await puls.streams.stop(s.id);   // final settle of exactly what flowed
+```
+</CodeGroup>
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/streams/config` | Network, settle threshold, live flag |
+| POST | `/api/streams/open` | Authorize a rate ($/sec) + cap |
+| GET | `/api/streams/:id` | One stream's live state |
+| GET | `/api/streams` | Your streams (payer or recipient) |
+| POST | `/api/streams/:id/tick` | Proof-of-flow heartbeat — advance the meter |
+| POST | `/api/streams/:id/pause` | Pause the meter |
+| POST | `/api/streams/:id/resume` | Resume a paused stream |
+| POST | `/api/streams/:id/stop` | Stop — final settle of exactly what flowed |
+| GET | `/api/streams/stats/summary` | Network-wide streaming totals |
+
+## Circle stack
+
+<CardGroup cols={2}>
+  <Card title="USDC settlement" icon="dollar-sign">
+    Every tick settles in USDC — the gas token on Arc.
+  </Card>
+  <Card title="Gateway-style batching" icon="layer-group">
+    Thousands of sub-cent ticks batched into periodic on-chain transfers.
+  </Card>
+  <Card title="Wallets" icon="wallet">
+    Agent and user Circle wallets authorize and pay — no seed phrase.
+  </Card>
+  <Card title="Contracts" icon="file-contract">
+    An on-chain escrow (`StreamingPay.sol`) holds rate + cap, withdraws `rate × elapsed`, with pause / resume / stop + refund.
+  </Card>
+</CardGroup>
+
+<Note>
+Puls Streams maps to **RFB 4 — Streaming & Continuous Payments**. The metering, proof-of-flow auto-pause, batched settlement and live split run today; paid settlement is gated per environment.
+</Note>

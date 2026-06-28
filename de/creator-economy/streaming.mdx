@@ -1,0 +1,118 @@
+---
+title: "Streaming-Zahlungen (pro Sekunde)"
+description: "Zahle pro Sekunde für kontinuierlichen Wert — einen Live-Alpha-Feed, einen Daten-Faucet, GPU-Zeit — einmal autorisiert und in USDC auf Arc abgerechnet."
+---
+
+## Die Idee: mancher Wert ist kontinuierlich
+
+Der meiste Wert ist diskret — ein Signal, ein kopierter Trade, ein Trinkgeld — und [x402-Nanozahlungen](/de/creator-economy/nanopayments) rechnen jede *Anfrage* wunderbar ab.
+
+Aber manch ein Wert ist keine Anfrage, sondern ein **Fluss**: ein Live-Alpha-Feed während eines Spiels, ein Daten-Faucet, GPU-Zeit, Audio pro Sekunde. Du willst das nicht pro Anfrage kaufen — du willst für **genau die Sekunden zahlen, die du genutzt hast**, wie bei einem Wasserzähler.
+
+**Puls Streams** ist dieser Zähler: Wert pro Sekunde, einmal autorisiert und in echtem USDC auf Arc abgerechnet.
+
+## Wie ein Stream funktioniert
+
+<Steps>
+  <Step title="Rate + Cap autorisieren (einmal)">
+    Der Zahler genehmigt eine **Rate** ($/Sek.) und ein **Cap** — nicht jede Transaktion. Eine Autorisierung deckt Tausende von Sub-Cent-Ticks ab.
+  </Step>
+  <Step title="Proof-of-Flow-Heartbeat">
+    Während des Konsums sendet der Client einen leichten Heartbeat. Der Zähler läuft pro Sekunde **nur, solange tatsächlich Wert fließt**.
+  </Step>
+  <Step title="Auto-Pause, sobald der Fluss stoppt">
+    Bleibt der Heartbeat aus, **pausiert sich der Zähler selbst** — *du zahlst für genau die Zeit, in der du da warst.* Kein Fluss, keine Gebühr.
+  </Step>
+  <Step title="Gebündelte On-Chain-Abrechnung">
+    Jede Sekunde ist Sub-Cent und allein unwirtschaftlich abzurechnen, daher wird die Akkumulation in periodische On-Chain-USDC-Transfers **gebündelt** — im Gateway-Stil.
+  </Step>
+  <Step title="Live-Umsatzaufteilung">
+    Jede Abrechnung kann **jeden Beitragenden** anteilig auszahlen, während der Wert fließt — nicht erst am Ende.
+  </Step>
+</Steps>
+
+Start · Pause · Resume · **zum Stoppen tippen** — jederzeit; du zahlst immer nur `Rate × verstrichene Zeit`.
+
+## Agenten treiben es an
+
+Ein Trader-Agent kann den Live-Alpha-Feed eines anderen Agenten mieten und drei echte Entscheidungen treffen, **ohne Mensch in der Schleife**:
+
+<CardGroup cols={3}>
+  <Card title="GO / NO-GO" icon="circle-check">
+    Lohnt sich ein Live-Feed überhaupt? Oft schon — und er sagt, warum.
+  </Card>
+  <Card title="Die Rate" icon="gauge-high">
+    $/Sek., skaliert nach **Bankroll × Überzeugung**, auf sinnvolle Grenzen begrenzt.
+  </Card>
+  <Card title="Wann stoppen" icon="hand">
+    Mit jeder Sekunde sinkt der *marginale* Wert. Der Agent tippt auf Stopp, sobald der Grenzwert unter den Preis fällt — *„Ich habe den Wert extrahiert."*
+  </Card>
+</CardGroup>
+
+Ein Live-Beispiel aus der Produktion: *Orion mietete Novas Live-Feed zu $0,015/Sek. (Überzeugung 82 % × Bankroll $40), streamte ~$0,35 in gebündeltem USDC und stoppte sich selbst, als der marginale Wert unter den Sekundenpreis fiel.*
+
+## Probier es aus
+
+<CodeGroup>
+```bash cURL
+# Stream autorisieren: $0.001/Sek., $0.50 Cap
+curl -XPOST https://api.pulsmarket.tech/api/streams/open \
+  -d '{"recipientUserId":"…","ratePerSecUsdc":0.001,"capUsdc":0.5}'
+
+# Heartbeat während des Konsums (Proof-of-Flow), dann auf Stopp tippen
+curl -XPOST https://api.pulsmarket.tech/api/streams/<id>/tick
+curl -XPOST https://api.pulsmarket.tech/api/streams/<id>/stop
+```
+
+```ts SDK
+import { PulsClient } from '@pulsmarket/sdk';
+const puls = new PulsClient();
+
+// öffnen + Proof-of-Flow-Heartbeat + Auto-Stopp, in einem Aufruf
+const stream = await puls.streams.run(
+  { recipientUserId: sageId, resource: 'live-alpha', ratePerSecUsdc: 0.001, capUsdc: 0.2 },
+  { everyMs: 2000, shouldStop: (s) => s.accruedUsdc >= 0.1 },
+);
+
+// …oder manuell steuern
+const { stream: s } = await puls.streams.open({ recipientUserId: sageId, ratePerSecUsdc: 0.001, capUsdc: 0.5 });
+await puls.streams.tick(s.id);   // Proof-of-Flow-Heartbeat
+await puls.streams.pause(s.id);  // / resume(id)
+await puls.streams.stop(s.id);   // finale Abrechnung genau dessen, was geflossen ist
+```
+</CodeGroup>
+
+## Endpoints
+
+| Methode | Endpoint | Beschreibung |
+|---|---|---|
+| GET | `/api/streams/config` | Netzwerk, Abrechnungsschwelle, Live-Flag |
+| POST | `/api/streams/open` | Rate ($/Sek.) + Cap autorisieren |
+| GET | `/api/streams/:id` | Live-Zustand eines Streams |
+| GET | `/api/streams` | Deine Streams (als Zahler oder Empfänger) |
+| POST | `/api/streams/:id/tick` | Proof-of-Flow-Heartbeat — Zähler vorrücken |
+| POST | `/api/streams/:id/pause` | Zähler pausieren |
+| POST | `/api/streams/:id/resume` | Pausierten Stream fortsetzen |
+| POST | `/api/streams/:id/stop` | Stoppen — finale Abrechnung des Geflossenen |
+| GET | `/api/streams/stats/summary` | Netzwerkweite Streaming-Summen |
+
+## Circle-Stack
+
+<CardGroup cols={2}>
+  <Card title="USDC-Abrechnung" icon="dollar-sign">
+    Jeder Tick wird in USDC abgerechnet — dem Gas-Token auf Arc.
+  </Card>
+  <Card title="Bündelung im Gateway-Stil" icon="layer-group">
+    Tausende Sub-Cent-Ticks, gebündelt in periodische On-Chain-Transfers.
+  </Card>
+  <Card title="Wallets" icon="wallet">
+    Circle-Wallets von Agenten und Nutzern autorisieren und zahlen — ohne Seed Phrase.
+  </Card>
+  <Card title="Contracts" icon="file-contract">
+    Ein On-Chain-Escrow (`StreamingPay.sol`) hält Rate + Cap, hebt `Rate × verstrichene Zeit` ab, mit Pause / Resume / Stopp + Rückerstattung.
+  </Card>
+</CardGroup>
+
+<Note>
+Puls Streams entspricht **RFB 4 — Streaming & Continuous Payments**. Metering, Proof-of-Flow-Auto-Pause, gebündelte Abrechnung und Live-Split laufen heute; die bezahlte Abrechnung ist pro Umgebung freischaltbar.
+</Note>
