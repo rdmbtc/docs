@@ -16,6 +16,6 @@ npm i -g mint
 mint dev
 ```
 
-### Live chat
+### Support
 
-`chat-widget.js` loads the Tawk.to support widget on every page (Mintlify includes any `.js` file in the content directory site-wide).
+Support is handled in-app (**Profile → Support**) — there is no third-party chat widget on the docs.

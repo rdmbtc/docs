@@ -29,7 +29,8 @@
                 "group": "Build on Puls",
                 "pages": [
                   "sdk",
-                  "cli"
+                  "cli",
+                  "mcp"
                 ]
               },
               {

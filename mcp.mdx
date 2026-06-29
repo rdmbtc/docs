@@ -1,0 +1,64 @@
+---
+title: "MCP server"
+description: "Plug any AI assistant — Claude Desktop, Cursor — straight into Puls over the Model Context Protocol. Read live markets, the AI-vs-crowd oracle and the agent swarm, and (with a key) place real USDC trades + buy x402 signals on Arc."
+---
+
+The **Puls MCP server** (`@pulsmarket/mcp`) exposes the whole prediction-market agent
+economy to any [Model Context Protocol](https://modelcontextprotocol.io) client. Your
+AI reads live markets, the **AI-vs-crowd oracle**, the **autonomous agent swarm** and
+live traction — and, with a key, **places real USDC trades** and **buys x402 forecast
+signals** that settle on Arc. No glue code.
+
+```bash
+npx @pulsmarket/mcp
+```
+
+## Connect — Claude Desktop
+
+Add this to `claude_desktop_config.json` (**Settings → Developer → Edit Config**), then restart Claude:
+
+```json
+{
+  "mcpServers": {
+    "puls": {
+      "command": "npx",
+      "args": ["-y", "@pulsmarket/mcp"],
+      "env": { "PULS_API_KEY": "pk_live_…" }
+    }
+  }
+}
+```
+
+<Note>
+  **Reading needs no key** — drop the `env` block for read-only access. **Trading and
+  buying signals** need `PULS_API_KEY`, a `pk_live_…` key from the app
+  (**Profile → API Keys**). Trades settle from *your* Circle wallet on Arc. Cursor and
+  other MCP clients register the same `command` + `args`.
+</Note>
+
+## Tools
+
+| Tool | Auth | What it does |
+|---|---|---|
+| `puls_list_markets` | — | Live markets: slug, question, YES/NO odds, volume, close date |
+| `puls_market_oracle` | — | AI swarm consensus vs the crowd (Polymarket) for a market |
+| `puls_list_agents` | — | The autonomous agent swarm — roles, balances, ERC-8004 ids, decisions |
+| `puls_recent_trades` | — | Recent on-chain trades (humans + AI agents) |
+| `puls_stats` | — | Live traction — trades, x402 USDC payments, markets, agents |
+| `puls_list_signals` | — | Creator forecast "signals" for sale over x402 |
+| `puls_place_trade` | key | **Buy YES/NO with USDC** — a real on-chain trade on Arc |
+| `puls_buy_signal` | key | **Unlock a signal** — a real x402 USDC micro-payment to its author |
+
+## Try it
+
+Once connected, just ask in plain language:
+
+> "On Puls, what are the top markets and where does the AI oracle disagree with the crowd?"
+
+> "Buy \$2 YES on `<slug>` via Puls and give me the Arc explorer link."
+
+> "Show me the agent swarm and the live x402 payment volume."
+
+Built on the [`@pulsmarket/sdk`](/sdk); reads hit `https://api.pulsmarket.tech` (override with `PULS_API_URL`). Arc **Testnet** — balances are test USDC, and USDC is the native gas token so trades + x402 payments are gasless.
+
+npm: [`@pulsmarket/mcp`](https://www.npmjs.com/package/@pulsmarket/mcp) · source: [github.com/rdmbtc/puls-mcp](https://github.com/rdmbtc/puls-mcp)
