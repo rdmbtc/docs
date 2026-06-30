@@ -1,0 +1,138 @@
+---
+title: "Wallet API"
+description: "Endpoints for Circle wallet management."
+---
+
+<Note>
+  All Wallet API endpoints hit the **Arc Testnet** deployment at `https://api.pulsmarket.tech`.
+  Data and balances on testnet are not real and may be reset without notice.
+</Note>
+
+## Overview
+
+Puls provisions a **gasless Circle Smart Contract Account (SCA) wallet** for every user upon first interaction. These wallets are developer-controlled and fully abstracted:
+
+- **No gas required** — all transaction fees are sponsored by the Puls paymaster, so users never need to hold ETH or any gas token.
+- **Circle SCA** — each wallet is a smart contract account managed through Circle's Programmable Wallets infrastructure, providing enterprise-grade key management and security.
+- **Automatic provisioning** — calling the `get-or-create` endpoint will return the existing wallet or create a new one and link it to the authenticated user.
+- **USDC-native** — the wallet holds and transacts exclusively in USDC on the Arc Testnet chain.
+
+## Authentication
+
+Both Wallet API endpoints require a Supabase JWT Bearer token.
+
+| Endpoint | Auth Required |
+| --- | --- |
+| `POST /api/wallet/get-or-create` | **Yes** — Supabase JWT Bearer token |
+| `GET /api/wallet/balance` | **Yes** — Supabase JWT Bearer token |
+
+Include the header on every request:
+
+```
+Authorization: Bearer <SUPABASE_JWT>
+```
+
+---
+
+## Get or Create Wallet
+
+```
+POST /api/wallet/get-or-create
+```
+
+Returns the user's existing Circle SCA wallet, or provisions a new one if none exists. The wallet is automatically linked to the authenticated user's account.
+
+### Headers
+
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer <SUPABASE_JWT>` |
+
+### Request Body
+
+No request body required.
+
+### Response
+
+```json
+{
+  "walletId": "wlt_01abc",
+  "address": "0x7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b",
+  "chainId": 2010111,
+  "type": "SCA",
+  "createdAt": "2026-06-15T12:00:00Z",
+  "isNew": false
+}
+```
+
+### Response Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `walletId` | `string` | Circle wallet identifier. |
+| `address` | `string` | On-chain wallet address (smart contract account). |
+| `chainId` | `number` | Chain ID of the wallet (`2010111` for Arc Testnet). |
+| `type` | `string` | Wallet type — always `"SCA"` (Smart Contract Account). |
+| `createdAt` | `string` | ISO 8601 timestamp of wallet creation. |
+| `isNew` | `boolean` | `true` if the wallet was just created by this call. |
+
+### Error Codes
+
+| Status | Description |
+| --- | --- |
+| `401` | Missing or invalid JWT. |
+| `500` | Circle wallet provisioning failed. |
+
+---
+
+## Get Wallet Balance
+
+```
+GET /api/wallet/balance
+```
+
+Returns the USDC balance of the authenticated user's wallet.
+
+### Headers
+
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer <SUPABASE_JWT>` |
+
+### Response
+
+```json
+{
+  "walletId": "wlt_01abc",
+  "address": "0x7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b",
+  "balances": [
+    {
+      "token": "USDC",
+      "amount": "150.00",
+      "contractAddress": "0xUsdc...",
+      "decimals": 6
+    }
+  ],
+  "chainId": 2010111
+}
+```
+
+### Balance Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `walletId` | `string` | Circle wallet identifier. |
+| `address` | `string` | On-chain wallet address. |
+| `balances` | `array` | Array of token balances held by the wallet. |
+| `balances[].token` | `string` | Token symbol (e.g. `"USDC"`). |
+| `balances[].amount` | `string` | Human-readable balance (string to preserve precision). |
+| `balances[].contractAddress` | `string` | Token contract address on-chain. |
+| `balances[].decimals` | `number` | Token decimal places. |
+| `chainId` | `number` | Chain ID (`2010111` for Arc Testnet). |
+
+### Error Codes
+
+| Status | Description |
+| --- | --- |
+| `401` | Missing or invalid JWT. |
+| `404` | No wallet found for this user. Call `POST /api/wallet/get-or-create` first. |

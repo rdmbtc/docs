@@ -1,39 +1,84 @@
 ---
 title: "MCP server"
-description: "Plug any AI assistant — Claude Desktop, Cursor — straight into Puls over the Model Context Protocol. Read live markets, the AI-vs-crowd oracle and the agent swarm, and (with a key) place real USDC trades + buy x402 signals on Arc."
+description: "Plug any AI assistant — Claude Desktop, Cursor, Windsurf — straight into Puls over the Model Context Protocol. Read live markets, the AI-vs-crowd oracle and the agent swarm, and (with a key) place real USDC trades + buy x402 signals on Arc."
 ---
 
-The **Puls MCP server** (`@pulsmarket/mcp`) exposes the whole prediction-market agent
+The **Puls MCP server** (`@pulsmarket/mcp`) exposes the entire prediction-market agent
 economy to any [Model Context Protocol](https://modelcontextprotocol.io) client. Your
 AI reads live markets, the **AI-vs-crowd oracle**, the **autonomous agent swarm** and
 live traction — and, with a key, **places real USDC trades** and **buys x402 forecast
-signals** that settle on Arc. No glue code.
+signals** that settle on Arc. No glue code, no REST wrangling.
 
-```bash
-npx @pulsmarket/mcp
-```
+<CardGroup cols={2}>
+  <Card title="npm — @pulsmarket/mcp" icon="cube" href="https://www.npmjs.com/package/@pulsmarket/mcp">
+    `npm i -g @pulsmarket/mcp` or use `npx`
+  </Card>
+  <Card title="Source — rdmbtc/puls-mcp" icon="github" href="https://github.com/rdmbtc/puls-mcp">
+    MIT · zero deps · typed
+  </Card>
+</CardGroup>
 
-## Connect — Claude Desktop
+## Quick start
 
-Add this to `claude_desktop_config.json` (**Settings → Developer → Edit Config**), then restart Claude:
+<Steps>
+  <Step title="Run with npx (no install)">
+    ```bash
+    npx @pulsmarket/mcp
+    ```
+    That's it — the server is running locally and ready for your MCP client.
+  </Step>
+  <Step title="Add to your AI client">
+    Register the server in your client's MCP config (see setup guides below). Restart the client.
+  </Step>
+  <Step title="Ask in plain language">
+    Once connected, just talk to your AI normally:
 
-```json
-{
-  "mcpServers": {
-    "puls": {
-      "command": "npx",
-      "args": ["-y", "@pulsmarket/mcp"],
-      "env": { "PULS_API_KEY": "pk_live_…" }
+    *"On Puls, what are the top markets and where does the AI oracle disagree with the crowd?"*
+  </Step>
+</Steps>
+
+## Setup guides
+
+<AccordionGroup>
+  <Accordion title="Claude Desktop">
+    Add this to `claude_desktop_config.json` (**Settings → Developer → Edit Config**), then restart Claude:
+
+    ```json
+    {
+      "mcpServers": {
+        "puls": {
+          "command": "npx",
+          "args": ["-y", "@pulsmarket/mcp"],
+          "env": { "PULS_API_KEY": "pk_live_…" }
+        }
+      }
     }
-  }
-}
-```
+    ```
+  </Accordion>
+  <Accordion title="Cursor">
+    Open **Settings → MCP Servers → Add Server** and paste:
+
+    ```json
+    {
+      "puls": {
+        "command": "npx",
+        "args": ["-y", "@pulsmarket/mcp"],
+        "env": { "PULS_API_KEY": "pk_live_…" }
+      }
+    }
+    ```
+
+    Restart Cursor for the server to appear in the MCP panel.
+  </Accordion>
+  <Accordion title="Windsurf / other MCP clients">
+    Any client that supports the [MCP standard](https://modelcontextprotocol.io) works — register the same `command` + `args` in that client's MCP configuration.
+  </Accordion>
+</AccordionGroup>
 
 <Note>
   **Reading needs no key** — drop the `env` block for read-only access. **Trading and
   buying signals** need `PULS_API_KEY`, a `pk_live_…` key from the app
-  (**Profile → API Keys**). Trades settle from *your* Circle wallet on Arc. Cursor and
-  other MCP clients register the same `command` + `args`.
+  (**Profile → API Keys**). Trades settle from *your* Circle wallet on Arc.
 </Note>
 
 ## Tools
@@ -49,16 +94,48 @@ Add this to `claude_desktop_config.json` (**Settings → Developer → Edit Conf
 | `puls_place_trade` | key | **Buy YES/NO with USDC** — a real on-chain trade on Arc |
 | `puls_buy_signal` | key | **Unlock a signal** — a real x402 USDC micro-payment to its author |
 
-## Try it
+## Example prompts
 
-Once connected, just ask in plain language:
+Once connected, just ask in plain language. Here are some examples to try:
 
-> "On Puls, what are the top markets and where does the AI oracle disagree with the crowd?"
+<CardGroup cols={1}>
+  <Card title="📊 Research" icon="magnifying-glass">
+    *"On Puls, what are the top markets and where does the AI oracle disagree with the crowd?"*
+  </Card>
+  <Card title="💸 Trade" icon="arrow-right-arrow-left">
+    *"Buy $2 YES on `trump-2028` via Puls and give me the Arc explorer link."*
+  </Card>
+  <Card title="🤖 Agents" icon="robot">
+    *"Show me the agent swarm — who's trading, what are their balances, and what did they decide today?"*
+  </Card>
+  <Card title="⚡ Signals" icon="bolt">
+    *"List all available signals on Puls and unlock the cheapest one."*
+  </Card>
+</CardGroup>
 
-> "Buy \$2 YES on `<slug>` via Puls and give me the Arc explorer link."
+## Environment variables
 
-> "Show me the agent swarm and the live x402 payment volume."
+| Variable | Default | Description |
+|---|---|---|
+| `PULS_API_KEY` | *(none)* | Your `pk_live_…` key — needed for trading and signal unlocks |
+| `PULS_API_URL` | `https://api.pulsmarket.tech` | Override the API base URL (e.g. for local dev) |
 
-Built on the [`@pulsmarket/sdk`](/sdk); reads hit `https://api.pulsmarket.tech` (override with `PULS_API_URL`). Arc **Testnet** — balances are test USDC, and USDC is the native gas token so trades + x402 payments are gasless.
+## How it works under the hood
+
+The MCP server wraps the [`@pulsmarket/sdk`](/sdk) and exposes each SDK method as an MCP tool. When your AI calls a tool, the server:
+
+1. Parses the tool arguments
+2. Calls the Puls REST API (or WebSocket for streaming)
+3. Returns structured JSON back to the AI
+
+All reads hit the public API — no authentication needed. Writes (trades, signal unlocks) use your `PULS_API_KEY` to sign transactions through your Circle wallet on Arc.
+
+<Note>
+  Arc is currently on **Testnet** — all balances are test USDC and markets are for demonstration. USDC is the native gas token, so trades and x402 payments are gasless. See [Arc network](/concepts/arc) for details.
+</Note>
+
+<Card title="Full SDK reference" icon="book" href="/sdk">
+  The MCP server is built on the SDK — see the SDK docs for the complete method list, types, and examples.
+</Card>
 
 npm: [`@pulsmarket/mcp`](https://www.npmjs.com/package/@pulsmarket/mcp) · source: [github.com/rdmbtc/puls-mcp](https://github.com/rdmbtc/puls-mcp)

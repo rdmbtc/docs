@@ -38,7 +38,10 @@
                 "pages": [
                   "concepts/prediction-markets",
                   "concepts/wallets",
-                  "concepts/arc"
+                  "concepts/arc",
+                  "concepts/erc-8004",
+                  "concepts/architecture",
+                  "concepts/security"
                 ]
               },
               {
@@ -77,6 +80,8 @@
               {
                 "group": "Help",
                 "pages": [
+                  "faq",
+                  "glossary",
                   "support",
                   "roadmap"
                 ]
@@ -101,6 +106,10 @@
                 "group": "API documentation",
                 "pages": [
                   "api-reference/introduction",
+                  "api-reference/markets",
+                  "api-reference/trades",
+                  "api-reference/agents",
+                  "api-reference/wallet",
                   "api-reference/signals",
                   "api-reference/blog",
                   "api-reference/tips-points"

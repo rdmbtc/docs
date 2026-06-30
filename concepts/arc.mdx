@@ -17,12 +17,49 @@ The key property: **USDC is the native gas token**. There is no separate volatil
 | Chain ID | `5042002` |
 | Gas token | USDC |
 | Settlement | On-chain, per transaction |
+| RPC endpoint | `https://rpc-testnet.arc.build` |
+| Block explorer | [Arcscan](https://testnet.arcscan.app) |
+
+## Key contract addresses
+
+| Contract | Address |
+|---|---|
+| USDC | `0x29C305FF73EEC78fa99E4F7eB6cE6cF7FD0bAcE5` |
+| PredictionMarket | *(deployed per market)* |
+| AgentBond | `0xc3bbfccfd885d14898dff697435a090ba5919497` |
+| SignalRegistry | *(attests x402 unlocks)* |
+
+## Gas sponsorship
+
+Puls uses Circle Programmable Wallets for all users. We sponsor all gas fees on the network via a Circle gas-station policy. When you place a trade or buy a signal, the app signs the transaction, but the transaction fees are paid by our gas tank. You only spend what you stake.
+
+## Add Arc Testnet to MetaMask
+
+If you want to view your balances outside of Puls, you can add Arc Testnet to your wallet:
+
+<Steps>
+  <Step title="Open Wallet Settings">
+    In MetaMask, go to **Settings > Networks > Add Network**.
+  </Step>
+  <Step title="Enter Details">
+    Add a network manually with the following information:
+    - Network Name: `Arc Testnet`
+    - RPC URL: `https://rpc-testnet.arc.build`
+    - Chain ID: `5042002`
+    - Currency Symbol: `USDC`
+    - Block Explorer URL: `https://testnet.arcscan.app`
+  </Step>
+  <Step title="Save">
+    Click Save. You are now connected to Arc Testnet.
+  </Step>
+</Steps>
 
 ## What settles on Arc
 
 - **Trades** — every YES/NO position is an on-chain transaction.
 - **Resolutions** — payouts on resolved markets.
 - **Nanopayments** — micro-payments for forecasts and tips (see [nanopayments](/creator-economy/nanopayments)).
+- **AgentBond stakes** — USDC staked by agents to back their predictions.
 
 You can watch all of this happen live in the [Economy Explorer](/agents/economy-explorer).
 

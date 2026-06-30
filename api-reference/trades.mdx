@@ -1,0 +1,237 @@
+---
+title: "Trades API"
+description: "Endpoints for placing and managing trades."
+---
+
+<Note>
+  All Trades API endpoints hit the **Arc Testnet** deployment at `https://api.pulsmarket.tech`.
+  Data and balances on testnet are not real and may be reset without notice.
+</Note>
+
+## Authentication
+
+| Endpoint | Auth Required |
+| --- | --- |
+| `POST /api/trade/buy` | **Yes** — Supabase JWT Bearer token |
+| `POST /api/trade/sell` | **Yes** — Supabase JWT Bearer token |
+| `GET /api/trade/status/:txId` | **Yes** — Supabase JWT Bearer token |
+| `POST /api/trade/claim` | **Yes** — Supabase JWT Bearer token |
+| `GET /api/trades/recent` | No |
+
+For authenticated endpoints, include the header:
+
+```
+Authorization: Bearer <SUPABASE_JWT>
+```
+
+---
+
+## Buy Outcome Tokens
+
+```
+POST /api/trade/buy
+```
+
+Places a buy order for outcome tokens on a prediction market.
+
+### Headers
+
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer <SUPABASE_JWT>` |
+| `Content-Type` | `application/json` |
+
+### Request Body
+
+```json
+{
+  "marketSlug": "btc-100k-july-2026",
+  "outcome": "Yes",
+  "amount": 25.00,
+  "maxPrice": 0.65
+}
+```
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `marketSlug` | `string` | Yes | Slug of the target market. |
+| `outcome` | `string` | Yes | Outcome to buy (e.g. `"Yes"` or `"No"`). |
+| `amount` | `number` | Yes | USDC amount to spend. |
+| `maxPrice` | `number` | No | Maximum price per token (slippage protection). |
+
+### Response
+
+```json
+{
+  "txId": "tx_9f8e7d6c",
+  "marketSlug": "btc-100k-july-2026",
+  "outcome": "Yes",
+  "amount": 25.00,
+  "tokensReceived": 40.32,
+  "avgPrice": 0.62,
+  "status": "pending",
+  "txHash": "0xdef456..."
+}
+```
+
+---
+
+## Sell Outcome Tokens
+
+```
+POST /api/trade/sell
+```
+
+Sells outcome tokens back to the market.
+
+### Headers
+
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer <SUPABASE_JWT>` |
+| `Content-Type` | `application/json` |
+
+### Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `marketSlug` | `string` | Yes | Slug of the target market. |
+| `outcome` | `string` | Yes | Outcome to sell (e.g. `"Yes"` or `"No"`). |
+| `tokenAmount` | `number` | Yes | Number of tokens to sell. |
+| `minPrice` | `number` | No | Minimum price per token (slippage protection). |
+
+### Response
+
+```json
+{
+  "txId": "tx_1a2b3c4d",
+  "marketSlug": "btc-100k-july-2026",
+  "outcome": "Yes",
+  "tokensSold": 40.32,
+  "usdcReceived": 24.80,
+  "avgPrice": 0.615,
+  "status": "pending",
+  "txHash": "0xabc789..."
+}
+```
+
+---
+
+## Check Trade Status
+
+```
+GET /api/trade/status/:txId
+```
+
+Returns the current status of a trade transaction.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `txId` | `string` | Yes | Transaction ID returned from a buy or sell call. |
+
+### Headers
+
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer <SUPABASE_JWT>` |
+
+### Response
+
+```json
+{
+  "txId": "tx_9f8e7d6c",
+  "status": "confirmed",
+  "txHash": "0xdef456...",
+  "blockNumber": 1284503,
+  "confirmedAt": "2026-06-28T14:32:10Z"
+}
+```
+
+### Status Values
+
+| Status | Description |
+| --- | --- |
+| `pending` | Transaction submitted, awaiting confirmation. |
+| `confirmed` | Transaction confirmed on-chain. |
+| `failed` | Transaction reverted or timed out. |
+
+---
+
+## Claim Winnings
+
+```
+POST /api/trade/claim
+```
+
+Claims USDC winnings from a resolved market.
+
+### Headers
+
+| Header | Value |
+| --- | --- |
+| `Authorization` | `Bearer <SUPABASE_JWT>` |
+| `Content-Type` | `application/json` |
+
+### Request Body
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `marketSlug` | `string` | Yes | Slug of the resolved market. |
+
+### Response
+
+```json
+{
+  "txId": "tx_c1a1m00",
+  "marketSlug": "btc-100k-july-2026",
+  "usdcClaimed": 40.32,
+  "status": "pending",
+  "txHash": "0xfed321..."
+}
+```
+
+### Error Codes
+
+| Status | Description |
+| --- | --- |
+| `400` | Market is not yet resolved. |
+| `401` | Missing or invalid JWT. |
+| `404` | Market not found or no position to claim. |
+
+---
+
+## Recent Trades
+
+```
+GET /api/trades/recent
+```
+
+Returns the most recent trades across all markets. No authentication required.
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `limit` | `number` | No | Number of trades to return. Default `20`, max `100`. |
+
+### Response
+
+```json
+{
+  "trades": [
+    {
+      "txId": "tx_9f8e7d6c",
+      "marketSlug": "btc-100k-july-2026",
+      "outcome": "Yes",
+      "side": "buy",
+      "amount": 25.00,
+      "price": 0.62,
+      "trader": "0x7a8b...9c0d",
+      "timestamp": "2026-06-28T14:31:55Z"
+    }
+  ],
+  "total": 1
+}
+```
