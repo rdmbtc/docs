@@ -30,7 +30,7 @@
                 "pages": [
                   "sdk",
                   "cli",
-                  "mcp"
+                  "mcp-server"
                 ]
               },
               {
