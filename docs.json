@@ -5,11 +5,7 @@
   "colors": {
     "primary": "#EC4899",
     "light": "#F472B6",
-    "dark": "#BE185D",
-    "background": {
-      "dark": "#0B0B0F",
-      "light": "#FFFFFF"
-    }
+    "dark": "#BE185D"
   },
   "background": {
     "decoration": "windows"
