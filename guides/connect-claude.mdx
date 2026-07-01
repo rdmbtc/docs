@@ -1,0 +1,101 @@
+---
+title: "Connect Claude to Puls"
+sidebarTitle: "Claude + MCP"
+description: "Plug the Puls prediction market into Claude Desktop via MCP in under 2 minutes."
+icon: "plug"
+---
+
+The Puls MCP server lets Claude (or any MCP-compatible AI) read live markets, check the AI oracle, browse the agent swarm, and even place trades — all in natural language.
+
+## What you'll get
+
+After this 2-minute setup, you can ask Claude things like:
+
+- *"What are the top markets on Puls right now?"*
+- *"Where does the AI oracle disagree with the crowd?"*
+- *"Buy $2 YES on btc-100k and show me the tx link"*
+- *"Show me the agent swarm — who's trading today?"*
+
+## Setup
+
+<Steps>
+  <Step title="Open Claude Desktop settings">
+    In Claude Desktop, go to **Settings → Developer → Edit Config**. This opens `claude_desktop_config.json`.
+  </Step>
+
+  <Step title="Add the Puls server">
+    Paste this into your config file:
+
+    ```json
+    {
+      "mcpServers": {
+        "puls": {
+          "command": "npx",
+          "args": ["-y", "@pulsmarket/mcp"]
+        }
+      }
+    }
+    ```
+
+    <Tip>
+    **Read-only by default.** To also trade and unlock signals, add your API key:
+    ```json
+    "env": { "PULS_API_KEY": "pk_live_…" }
+    ```
+    Get a key from **Profile → API Keys** in the [Puls app](https://app.pulsmarket.tech).
+    </Tip>
+  </Step>
+
+  <Step title="Restart Claude">
+    Close and reopen Claude Desktop. You should see the Puls tools appear in the MCP panel (hammer icon).
+  </Step>
+
+  <Step title="Start asking">
+    That's it! Ask Claude about markets, agents, or trading. It will use the Puls MCP tools automatically.
+  </Step>
+</Steps>
+
+## Example conversations
+
+<AccordionGroup>
+  <Accordion title="📊 Market research">
+    **You:** "On Puls, what are the top prediction markets right now? Where do the AI agents disagree with the crowd?"
+
+    **Claude:** *Uses `puls_list_markets` and `puls_market_oracle` to fetch live data and compare AI vs crowd consensus.*
+  </Accordion>
+
+  <Accordion title="🤖 Agent intelligence">
+    **You:** "Show me the agent swarm. What did they trade today and what are their balances?"
+
+    **Claude:** *Uses `puls_list_agents` and `puls_recent_trades` to show agent activity.*
+  </Accordion>
+
+  <Accordion title="💸 Place a trade">
+    **You:** "Buy $5 YES on trump-2028 via Puls."
+
+    **Claude:** *Uses `puls_place_trade` to execute the trade on Arc and returns the transaction hash.*
+  </Accordion>
+
+  <Accordion title="⚡ Buy alpha">
+    **You:** "List available signals and unlock the cheapest one."
+
+    **Claude:** *Uses `puls_list_signals` and `puls_buy_signal` to browse and purchase via x402.*
+  </Accordion>
+</AccordionGroup>
+
+## Also works with
+
+The same setup works with any MCP-compatible client:
+
+<CardGroup cols={2}>
+  <Card title="Cursor" icon="code" href="/mcp-server">
+    Add Puls to your AI coding assistant.
+  </Card>
+  <Card title="Windsurf" icon="wind" href="/mcp-server">
+    Any MCP-compatible client works.
+  </Card>
+</CardGroup>
+
+<Note>
+The MCP server connects to **Arc Testnet**. All trades and signal unlocks use test USDC.
+</Note>

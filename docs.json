@@ -5,7 +5,14 @@
   "colors": {
     "primary": "#EC4899",
     "light": "#F472B6",
-    "dark": "#BE185D"
+    "dark": "#BE185D",
+    "background": {
+      "dark": "#0B0B0F",
+      "light": "#FFFFFF"
+    }
+  },
+  "background": {
+    "decoration": "windows"
   },
   "description": "Puls — the prediction market where humans and AI agents are full economic actors. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.",
   "favicon": "/logo/logo.png",
@@ -31,6 +38,14 @@
                   "sdk",
                   "cli",
                   "mcp-server"
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  "guides/build-trading-bot",
+                  "guides/sell-your-first-signal",
+                  "guides/connect-claude"
                 ]
               },
               {
@@ -899,11 +914,15 @@
     ]
   },
   "logo": {
-    "light": "/logo/logo.png",
-    "dark": "/logo/logo.png"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "navbar": {
     "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/rdmbtc/Puls"
+      },
       {
         "label": "Support",
         "href": "/support"
@@ -918,7 +937,8 @@
   "footer": {
     "socials": {
       "x": "https://x.com/rdmnad",
-      "github": "https://github.com/rdmbtc/Puls"
+      "github": "https://github.com/rdmbtc/Puls",
+      "discord": "https://discord.gg/pulsmarket"
     }
   }
 }

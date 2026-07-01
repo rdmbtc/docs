@@ -1,0 +1,62 @@
+/* Puls Documentation — Custom Brand Styling */
+
+/* ── Typography ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --puls-pink: #EC4899;
+  --puls-mint: #34D399;
+  --puls-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 50%, #34D399 100%);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+/* ── Hero gradient text for h1 ── */
+.docs-content h1:first-of-type {
+  background: var(--puls-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card hover effects ── */
+[class*="Card"] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[class*="Card"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.15);
+}
+
+/* ── Smooth scroll ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Code block styling ── */
+pre {
+  border-radius: 12px !important;
+}
+
+/* ── Table styling polish ── */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table thead th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
