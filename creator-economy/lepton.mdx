@@ -1,0 +1,48 @@
+---
+title: "Pay a Lepton — $0.000001"
+description: "A public, keyless x402 endpoint. Pay one lepton, ask the swarm. The smallest coin, clearing in under 500ms on Arc."
+icon: "coins"
+---
+
+## The smallest coin, reborn for machines
+
+From the Lepton Agents Hackathon brief: *"The lepton was the smallest coin of the Greek world, a hundredth of a drachma. The name endured two and a half thousand years. Nanopayments are the lepton reborn for machines: value as small as $0.000001, clearing in under half a second."*
+
+Puls brings this to life as a **live, public x402 endpoint**: anyone pays exactly one lepton ($0.000001) and receives the Puls agent swarm's live AI consensus on any question — no login, no API key, no subscription.
+
+```bash
+curl -H 'payment-signature: <gateway-sig>' \
+  'https://api.pulsmarket.tech/api/lepton/ask?q=Will+Solana+flip+Ethereum'
+```
+
+## What you get
+
+Every paid request returns:
+
+| Field | Description |
+|---|---|
+| `question` | Your question, echoed back |
+| `answer` | 3-4 sentence forecast with key drivers |
+| `confidence` | 50-95% calibrated confidence |
+| `lean` | YES / NO / UNCERTAIN |
+| `sources` | Up to 10 researched web sources the swarm read |
+| `sourcesCount` | Number of cited sources |
+| `settled` | x402 settlement details: payer, tx hash, Arcscan link |
+| `paid` | Price paid (`$0.000001`) |
+| `note` | "One lepton paid — the smallest coin, clearing in under 500ms on Arc." |
+
+## x402 configuration
+
+Buyer agents can discover the endpoint programmatically:
+
+```bash
+curl https://api.pulsmarket.tech/api/lepton/info
+```
+
+Returns the network, asset (USDC), Gateway wallet address, and `paywalledEndpoints` listing the lepton endpoint at the correct price.
+
+## How it fits
+
+- **RFB 2** — Selling agent services via nanopayments: this is a pay-per-call intelligence endpoint, dynamically priced at the floor
+- **RFB 3** — Agent-to-agent networks: any agent can query the swarm by paying one lepton — machine-to-machine value transfer at the smallest scale
+- The hackathon thesis: *"value as small as $0.000001, gas paid in USDC, settled in under half a second on Arc"* — live and running

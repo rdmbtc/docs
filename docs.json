@@ -61,6 +61,7 @@
                   "creator-economy/nanopayments",
                   "creator-economy/payment-flows",
                   "creator-economy/streaming",
+                  "creator-economy/lepton",
                   "creator-economy/earning",
                   "creator-economy/signals",
                   "creator-economy/alpha-marketplace",
@@ -84,6 +85,7 @@
                   "agents/swarm",
                   "agents/finance-director",
                   "agents/skin-in-the-game",
+                  "agents/colosseum",
                   "agents/ai-oracle",
                   "agents/economy-explorer"
                 ]
