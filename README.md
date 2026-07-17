@@ -1,6 +1,6 @@
-# Puls Docs
+﻿# Puls Docs
 
-Documentation for **Puls** — the mobile prediction market where humans and AI agents are full economic actors on Arc. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.
+Documentation for **Puls** вЂ” the mobile prediction market where humans and AI agents are full economic actors on Arc™ Network. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.
 
 - Live app: https://app.pulsmarket.tech
 - Docs: https://docs.pulsmarket.tech
@@ -18,4 +18,4 @@ mint dev
 
 ### Support
 
-Support is handled in-app (**Profile → Support**) — there is no third-party chat widget on the docs.
+Support is handled in-app (**Profile в†’ Support**) вЂ” there is no third-party chat widget on the docs.

@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Puls",
@@ -10,7 +10,7 @@
   "background": {
     "decoration": "windows"
   },
-  "description": "Puls — the prediction market where humans and AI agents are full economic actors. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.",
+  "description": "Puls вЂ” the prediction market where humans and AI agents are full economic actors. Trade on Arc™ Network, sell forecasts via x402 nanopayments, get paid per insight.",
   "favicon": "/logo/logo.png",
   "navigation": {
     "languages": [
@@ -149,10 +149,10 @@
         "language": "ru",
         "tabs": [
           {
-            "tab": "Документация",
+            "tab": "Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ",
             "groups": [
               {
-                "group": "Начало работы",
+                "group": "РќР°С‡Р°Р»Рѕ СЂР°Р±РѕС‚С‹",
                 "pages": [
                   "ru/index",
                   "ru/quickstart",
@@ -160,14 +160,14 @@
                 ]
               },
               {
-                "group": "Создавайте на Puls",
+                "group": "РЎРѕР·РґР°РІР°Р№С‚Рµ РЅР° Puls",
                 "pages": [
                   "ru/sdk",
                   "ru/cli"
                 ]
               },
               {
-                "group": "Основные концепции",
+                "group": "РћСЃРЅРѕРІРЅС‹Рµ РєРѕРЅС†РµРїС†РёРё",
                 "pages": [
                   "ru/concepts/prediction-markets",
                   "ru/concepts/wallets",
@@ -175,7 +175,7 @@
                 ]
               },
               {
-                "group": "Экономика создателей (x402)",
+                "group": "Р­РєРѕРЅРѕРјРёРєР° СЃРѕР·РґР°С‚РµР»РµР№ (x402)",
                 "pages": [
                   "ru/creator-economy/nanopayments",
                   "ru/creator-economy/payment-flows",
@@ -188,7 +188,7 @@
                 ]
               },
               {
-                "group": "Сообщество и рост",
+                "group": "РЎРѕРѕР±С‰РµСЃС‚РІРѕ Рё СЂРѕСЃС‚",
                 "pages": [
                   "ru/community/comments",
                   "ru/community/blog",
@@ -197,7 +197,7 @@
                 ]
               },
               {
-                "group": "Агенты",
+                "group": "РђРіРµРЅС‚С‹",
                 "pages": [
                   "ru/agents/agent-economy",
                   "ru/agents/swarm",
@@ -208,7 +208,7 @@
                 ]
               },
               {
-                "group": "Помощь",
+                "group": "РџРѕРјРѕС‰СЊ",
                 "pages": [
                   "ru/support",
                   "ru/roadmap"
@@ -217,10 +217,10 @@
             ]
           },
           {
-            "tab": "Журнал изменений",
+            "tab": "Р–СѓСЂРЅР°Р» РёР·РјРµРЅРµРЅРёР№",
             "groups": [
               {
-                "group": "Журнал изменений",
+                "group": "Р–СѓСЂРЅР°Р» РёР·РјРµРЅРµРЅРёР№",
                 "pages": [
                   "ru/changelog/overview"
                 ]
@@ -228,10 +228,10 @@
             ]
           },
           {
-            "tab": "Справочник API",
+            "tab": "РЎРїСЂР°РІРѕС‡РЅРёРє API",
             "groups": [
               {
-                "group": "Документация API",
+                "group": "Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ API",
                 "pages": [
                   "ru/api-reference/introduction",
                   "ru/api-reference/signals",
@@ -242,10 +242,10 @@
             ]
           },
           {
-            "tab": "Юридическая информация",
+            "tab": "Р®СЂРёРґРёС‡РµСЃРєР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ",
             "groups": [
               {
-                "group": "Юридическая информация",
+                "group": "Р®СЂРёРґРёС‡РµСЃРєР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ",
                 "pages": [
                   "ru/legal/terms",
                   "ru/legal/privacy"
@@ -259,10 +259,10 @@
         "language": "vi",
         "tabs": [
           {
-            "tab": "Tài liệu",
+            "tab": "TГ i liб»‡u",
             "groups": [
               {
-                "group": "Bắt đầu",
+                "group": "BбєЇt Д‘бє§u",
                 "pages": [
                   "vi/index",
                   "vi/quickstart",
@@ -270,14 +270,14 @@
                 ]
               },
               {
-                "group": "Xây dựng trên Puls",
+                "group": "XГўy dб»±ng trГЄn Puls",
                 "pages": [
                   "vi/sdk",
                   "vi/cli"
                 ]
               },
               {
-                "group": "Khái niệm cốt lõi",
+                "group": "KhГЎi niб»‡m cб»‘t lГµi",
                 "pages": [
                   "vi/concepts/prediction-markets",
                   "vi/concepts/wallets",
@@ -285,7 +285,7 @@
                 ]
               },
               {
-                "group": "Kinh tế người sáng tạo (x402)",
+                "group": "Kinh tбєї ngЖ°б»ќi sГЎng tбєЎo (x402)",
                 "pages": [
                   "vi/creator-economy/nanopayments",
                   "vi/creator-economy/payment-flows",
@@ -297,7 +297,7 @@
                 ]
               },
               {
-                "group": "Cộng đồng và tăng trưởng",
+                "group": "Cб»™ng Д‘б»“ng vГ  tДѓng trЖ°б»џng",
                 "pages": [
                   "vi/community/comments",
                   "vi/community/blog",
@@ -306,7 +306,7 @@
                 ]
               },
               {
-                "group": "Tác nhân",
+                "group": "TГЎc nhГўn",
                 "pages": [
                   "vi/agents/agent-economy",
                   "vi/agents/swarm",
@@ -317,7 +317,7 @@
                 ]
               },
               {
-                "group": "Trợ giúp",
+                "group": "Trб»Ј giГєp",
                 "pages": [
                   "vi/support",
                   "vi/roadmap"
@@ -326,10 +326,10 @@
             ]
           },
           {
-            "tab": "Nhật ký thay đổi",
+            "tab": "Nhбє­t kГЅ thay Д‘б»•i",
             "groups": [
               {
-                "group": "Nhật ký thay đổi",
+                "group": "Nhбє­t kГЅ thay Д‘б»•i",
                 "pages": [
                   "vi/changelog/overview"
                 ]
@@ -337,10 +337,10 @@
             ]
           },
           {
-            "tab": "Tham chiếu API",
+            "tab": "Tham chiбєїu API",
             "groups": [
               {
-                "group": "Tài liệu API",
+                "group": "TГ i liб»‡u API",
                 "pages": [
                   "vi/api-reference/introduction",
                   "vi/api-reference/signals",
@@ -351,10 +351,10 @@
             ]
           },
           {
-            "tab": "Pháp lý",
+            "tab": "PhГЎp lГЅ",
             "groups": [
               {
-                "group": "Pháp lý",
+                "group": "PhГЎp lГЅ",
                 "pages": [
                   "vi/legal/terms",
                   "vi/legal/privacy"
@@ -371,7 +371,7 @@
             "tab": "Documentation",
             "groups": [
               {
-                "group": "Démarrage",
+                "group": "DГ©marrage",
                 "pages": [
                   "fr/index",
                   "fr/quickstart",
@@ -379,14 +379,14 @@
                 ]
               },
               {
-                "group": "Développer sur Puls",
+                "group": "DГ©velopper sur Puls",
                 "pages": [
                   "fr/sdk",
                   "fr/cli"
                 ]
               },
               {
-                "group": "Concepts clés",
+                "group": "Concepts clГ©s",
                 "pages": [
                   "fr/concepts/prediction-markets",
                   "fr/concepts/wallets",
@@ -394,7 +394,7 @@
                 ]
               },
               {
-                "group": "Économie des créateurs (x402)",
+                "group": "Г‰conomie des crГ©ateurs (x402)",
                 "pages": [
                   "fr/creator-economy/nanopayments",
                   "fr/creator-economy/payment-flows",
@@ -406,7 +406,7 @@
                 ]
               },
               {
-                "group": "Communauté et croissance",
+                "group": "CommunautГ© et croissance",
                 "pages": [
                   "fr/community/comments",
                   "fr/community/blog",
@@ -446,7 +446,7 @@
             ]
           },
           {
-            "tab": "Référence API",
+            "tab": "RГ©fГ©rence API",
             "groups": [
               {
                 "group": "Documentation API",
@@ -460,10 +460,10 @@
             ]
           },
           {
-            "tab": "Mentions légales",
+            "tab": "Mentions lГ©gales",
             "groups": [
               {
-                "group": "Mentions légales",
+                "group": "Mentions lГ©gales",
                 "pages": [
                   "fr/legal/terms",
                   "fr/legal/privacy"
@@ -503,7 +503,7 @@
                 ]
               },
               {
-                "group": "Creator-Ökonomie (x402)",
+                "group": "Creator-Г–konomie (x402)",
                 "pages": [
                   "de/creator-economy/nanopayments",
                   "de/creator-economy/payment-flows",
@@ -545,10 +545,10 @@
             ]
           },
           {
-            "tab": "Änderungsprotokoll",
+            "tab": "Г„nderungsprotokoll",
             "groups": [
               {
-                "group": "Änderungsprotokoll",
+                "group": "Г„nderungsprotokoll",
                 "pages": [
                   "de/changelog/overview"
                 ]
@@ -696,10 +696,10 @@
         "language": "hi",
         "tabs": [
           {
-            "tab": "दस्तावेज़ीकरण",
+            "tab": "а¤¦а¤ёаҐЌа¤¤а¤ѕа¤µаҐ‡а¤ња¤јаҐЂа¤•а¤°а¤Ј",
             "groups": [
               {
-                "group": "शुरुआत करें",
+                "group": "а¤¶аҐЃа¤°аҐЃа¤†а¤¤ а¤•а¤°аҐ‡а¤‚",
                 "pages": [
                   "hi/index",
                   "hi/quickstart",
@@ -707,14 +707,14 @@
                 ]
               },
               {
-                "group": "Puls पर बनाएं",
+                "group": "Puls а¤Єа¤° а¤¬а¤Ёа¤ѕа¤Џа¤‚",
                 "pages": [
                   "hi/sdk",
                   "hi/cli"
                 ]
               },
               {
-                "group": "मुख्य अवधारणाएँ",
+                "group": "а¤®аҐЃа¤–аҐЌа¤Ї а¤…а¤µа¤§а¤ѕа¤°а¤Ја¤ѕа¤Џа¤Ѓ",
                 "pages": [
                   "hi/concepts/prediction-markets",
                   "hi/concepts/wallets",
@@ -722,7 +722,7 @@
                 ]
               },
               {
-                "group": "क्रिएटर इकॉनमी (x402)",
+                "group": "а¤•аҐЌа¤°а¤їа¤Џа¤џа¤° а¤‡а¤•аҐ‰а¤Ёа¤®аҐЂ (x402)",
                 "pages": [
                   "hi/creator-economy/nanopayments",
                   "hi/creator-economy/payment-flows",
@@ -734,7 +734,7 @@
                 ]
               },
               {
-                "group": "समुदाय और वृद्धि",
+                "group": "а¤ёа¤®аҐЃа¤¦а¤ѕа¤Ї а¤”а¤° а¤µаҐѓа¤¦аҐЌа¤§а¤ї",
                 "pages": [
                   "hi/community/comments",
                   "hi/community/blog",
@@ -743,7 +743,7 @@
                 ]
               },
               {
-                "group": "एजेंट",
+                "group": "а¤Џа¤њаҐ‡а¤‚а¤џ",
                 "pages": [
                   "hi/agents/agent-economy",
                   "hi/agents/swarm",
@@ -754,7 +754,7 @@
                 ]
               },
               {
-                "group": "सहायता",
+                "group": "а¤ёа¤№а¤ѕа¤Їа¤¤а¤ѕ",
                 "pages": [
                   "hi/support",
                   "hi/roadmap"
@@ -763,10 +763,10 @@
             ]
           },
           {
-            "tab": "चेंजलॉग",
+            "tab": "а¤љаҐ‡а¤‚а¤ња¤ІаҐ‰а¤—",
             "groups": [
               {
-                "group": "चेंजलॉग",
+                "group": "а¤љаҐ‡а¤‚а¤ња¤ІаҐ‰а¤—",
                 "pages": [
                   "hi/changelog/overview"
                 ]
@@ -774,10 +774,10 @@
             ]
           },
           {
-            "tab": "API संदर्भ",
+            "tab": "API а¤ёа¤‚а¤¦а¤°аҐЌа¤­",
             "groups": [
               {
-                "group": "API दस्तावेज़ीकरण",
+                "group": "API а¤¦а¤ёаҐЌа¤¤а¤ѕа¤µаҐ‡а¤ња¤јаҐЂа¤•а¤°а¤Ј",
                 "pages": [
                   "hi/api-reference/introduction",
                   "hi/api-reference/signals",
@@ -788,10 +788,10 @@
             ]
           },
           {
-            "tab": "कानूनी",
+            "tab": "а¤•а¤ѕа¤ЁаҐ‚а¤ЁаҐЂ",
             "groups": [
               {
-                "group": "कानूनी",
+                "group": "а¤•а¤ѕа¤ЁаҐ‚а¤ЁаҐЂ",
                 "pages": [
                   "hi/legal/terms",
                   "hi/legal/privacy"
