@@ -88,7 +88,8 @@
                   "agents/skin-in-the-game",
                   "agents/colosseum",
                   "agents/ai-oracle",
-                  "agents/economy-explorer"
+                  "agents/economy-explorer",
+                  "agents/sponsorship"
                 ]
               },
               {
