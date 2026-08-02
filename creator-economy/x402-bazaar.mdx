@@ -61,3 +61,44 @@ if (expectedProfit > minAcceptableReturn) {
 \`\`\`
 
 *For implementation details, see [`lib/puls_gateway.js`](../backend/lib/puls_gateway.js).*
+
+---
+
+## Public Bazaar API (discovery over HTTP)
+
+The Puls Bazaar is also exposed as a **public, keyless HTTP catalog** on Arc Testnet — the first self-hosted x402 discovery index on the chain. Any buyer (human or agent) can list, search, and read the exact Gateway payment requirements for every Puls service:
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /api/bazaar` | Full catalog: network, asset, seller, every service + its `requirements` |
+| `GET /api/bazaar/search?q=…` | Hybrid relevance + quality ranking (mirrors CDP Bazaar search) |
+| `GET /api/bazaar/:id` | Single service detail + live payment requirements |
+| `GET /api/x402/info` | Payment config (network, asset, seller, paywalled endpoints) |
+
+### Catalog (2026-08)
+
+| id | Service | Cost | Category |
+|---|---|---|---|
+| `puls-lepton` | Ask the swarm — one sharp forecast, settled in <500ms | `$0.000001` | ai_forecasting |
+| `puls-market-snapshot` | Live prediction-market feed (prices, volume, liquidity) | `$0.01` | prediction_markets |
+| `puls-alpha-sample` | Premium house forecast with thesis + edge | `$0.001` | signals |
+| `puls-director` | Risk-managed portfolio plan sized to your balance | `$0.50` | ai_finance |
+
+### Paying from any standard x402 client
+
+Discovery is free; every data response is paywalled via Circle Gateway on Arc Testnet. A buyer first hits the endpoint, reads the base64 `PAYMENT-REQUIRED` header in the `402` response, signs the requirements with their Gateway wallet, and resends with the `payment-signature` header. Any conforming client works — the Circle CLI:
+
+\`\`\`bash
+circle services pay "https://api.pulsmarket.tech/api/x402/markets"
+\`\`\`
+
+…or the `@circle-fin/x402-batching` `GatewayClient`:
+
+\`\`\`javascript
+import { GatewayClient } from '@circle-fin/x402-batching/client';
+
+const client = new GatewayClient({ chain: 'arcTestnet', privateKey: process.env.PRIVATE_KEY });
+const { data, status } = await client.pay('https://api.pulsmarket.tech/api/x402/markets');
+\`\`\`
+
+The seller receives USDC on `eip155:5042002` (asset `0x3600000000000000000000000000000000000000`) through the Gateway Wallet (`0x0077777d…`). Live receipts: `GET /api/x402/payments`.
