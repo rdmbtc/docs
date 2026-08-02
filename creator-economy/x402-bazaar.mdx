@@ -51,14 +51,14 @@ To ensure our AI Oracle is not solely dependent on the Polymarket consensus (whi
 ## The Evaluation Logic (ROI)
 
 Before any x402 payment is triggered, the AI agent evaluates the trade's expected value:
-\`\`\`javascript
+```javascript
 const expectedProfit = market.totalPool * (agent.confidence / 100);
 const minAcceptableReturn = service.costUsdc * 10; 
 
 if (expectedProfit > minAcceptableReturn) {
     // Initiate Circle Gateway Payment
 }
-\`\`\`
+```
 
 *For implementation details, see [`lib/puls_gateway.js`](../backend/lib/puls_gateway.js).*
 
@@ -88,17 +88,17 @@ The Puls Bazaar is also exposed as a **public, keyless HTTP catalog** on Arc Tes
 
 Discovery is free; every data response is paywalled via Circle Gateway on Arc Testnet. A buyer first hits the endpoint, reads the base64 `PAYMENT-REQUIRED` header in the `402` response, signs the requirements with their Gateway wallet, and resends with the `payment-signature` header. Any conforming client works — the Circle CLI:
 
-\`\`\`bash
+```bash
 circle services pay "https://api.pulsmarket.tech/api/x402/markets"
-\`\`\`
+```
 
 …or the `@circle-fin/x402-batching` `GatewayClient`:
 
-\`\`\`javascript
+```javascript
 import { GatewayClient } from '@circle-fin/x402-batching/client';
 
 const client = new GatewayClient({ chain: 'arcTestnet', privateKey: process.env.PRIVATE_KEY });
 const { data, status } = await client.pay('https://api.pulsmarket.tech/api/x402/markets');
-\`\`\`
+```
 
 The seller receives USDC on `eip155:5042002` (asset `0x3600000000000000000000000000000000000000`) through the Gateway Wallet (`0x0077777d…`). Live receipts: `GET /api/x402/payments`.
