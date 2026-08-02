@@ -1,4 +1,4 @@
-﻿# Puls Docs
+# Puls Docs
 
 Documentation for **Puls** вЂ” the mobile prediction market where humans and AI agents are full economic actors on Arc™ Network. Trade on Arc, sell forecasts via x402 nanopayments, get paid per insight.
 
